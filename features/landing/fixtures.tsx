@@ -1,0 +1,258 @@
+'use client';
+
+import { motion } from 'framer-motion';
+import { Calendar, MapPin, Clock, ArrowRight } from 'lucide-react';
+import Link from 'next/link';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+
+interface TeamLogoProps {
+  initials: string;
+  color: string;
+}
+
+function TeamLogo({ initials, color }: TeamLogoProps) {
+  return (
+    <div
+      className="w-10 h-10 rounded-full flex items-center justify-center text-white text-xs font-bold shrink-0 border border-white/10"
+      style={{ backgroundColor: color }}
+    >
+      {initials}
+    </div>
+  );
+}
+
+interface FixtureCardProps {
+  homeTeam: string;
+  homeInitials: string;
+  homeColor: string;
+  awayTeam: string;
+  awayInitials: string;
+  awayColor: string;
+  date: string;
+  time: string;
+  venue: string;
+  competition: string;
+  delay?: number;
+}
+
+function FixtureCard({
+  homeTeam,
+  homeInitials,
+  homeColor,
+  awayTeam,
+  awayInitials,
+  awayColor,
+  date,
+  time,
+  venue,
+  competition,
+  delay = 0,
+}: FixtureCardProps) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, delay }}
+      whileHover={{ y: -4, transition: { duration: 0.2 } }}
+      className="bg-[#161B27] border border-[#1E2A3A] rounded-xl p-5 flex flex-col gap-4 hover:border-red-600/40 transition-colors duration-300 cursor-pointer"
+    >
+      <div className="flex items-center justify-between">
+        <Badge variant="gray" size="sm">{competition}</Badge>
+        <div className="flex items-center gap-1.5 text-slate-500 text-xs">
+          <Calendar className="w-3 h-3" />
+          <span>{date}</span>
+        </div>
+      </div>
+
+      <div className="flex items-center justify-between gap-3">
+        <div className="flex items-center gap-3 flex-1 min-w-0">
+          <TeamLogo initials={homeInitials} color={homeColor} />
+          <span className="text-white font-semibold text-sm truncate">{homeTeam}</span>
+        </div>
+
+        <div className="flex flex-col items-center shrink-0 px-2">
+          <span className="text-slate-500 text-xs font-medium uppercase tracking-widest">vs</span>
+        </div>
+
+        <div className="flex items-center gap-3 flex-1 min-w-0 justify-end">
+          <span className="text-white font-semibold text-sm truncate text-right">{awayTeam}</span>
+          <TeamLogo initials={awayInitials} color={awayColor} />
+        </div>
+      </div>
+
+      <div className="flex items-center gap-4 pt-1 border-t border-[#1E2A3A]">
+        <div className="flex items-center gap-1.5 text-slate-400 text-xs">
+          <Clock className="w-3 h-3 text-amber-500" />
+          <span>{time}</span>
+        </div>
+        <div className="flex items-center gap-1.5 text-slate-400 text-xs">
+          <MapPin className="w-3 h-3 text-amber-500" />
+          <span className="truncate">{venue}</span>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
+function LiveMatchCard() {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, delay: 0.3 }}
+      whileHover={{ y: -4, transition: { duration: 0.2 } }}
+      className="bg-[#161B27] border border-red-600/50 rounded-xl p-5 flex flex-col gap-4 relative overflow-hidden cursor-pointer"
+    >
+      {/* Red glow top edge */}
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-red-600 to-transparent" />
+
+      <div className="flex items-center justify-between">
+        <Badge variant="red" dot size="sm">LIVE</Badge>
+        <span className="text-slate-500 text-xs">ORU Premier Division · R14</span>
+      </div>
+
+      <div className="flex items-center justify-between gap-3">
+        <div className="flex items-center gap-3 flex-1 min-w-0">
+          <TeamLogo initials="TA" color="#DC2626" />
+          <span className="text-white font-semibold text-sm truncate">Toronto Arrows RFC</span>
+        </div>
+
+        <div className="flex flex-col items-center shrink-0 px-3">
+          <div className="bg-[#0A0C12] border border-[#1E2A3A] rounded-lg px-3 py-1.5 flex items-center gap-2">
+            <span className="text-white font-bold text-lg tabular-nums">17</span>
+            <span className="text-slate-600 text-sm">-</span>
+            <span className="text-white font-bold text-lg tabular-nums">14</span>
+          </div>
+          <span className="text-red-400 text-[10px] font-semibold mt-1 animate-pulse">52&apos;</span>
+        </div>
+
+        <div className="flex items-center gap-3 flex-1 min-w-0 justify-end">
+          <span className="text-white font-semibold text-sm truncate text-right">Hamilton RFC</span>
+          <TeamLogo initials="HC" color="#1E40AF" />
+        </div>
+      </div>
+
+      <div className="flex items-center gap-4 pt-1 border-t border-red-900/30">
+        <div className="flex items-center gap-1.5 text-slate-400 text-xs">
+          <MapPin className="w-3 h-3 text-amber-500" />
+          <span>Tim Hortons Field, Hamilton</span>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
+export function LandingFixtures() {
+  return (
+    <section className="py-20 px-4 bg-[#0A0C12]">
+      <div className="max-w-6xl mx-auto">
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="text-center mb-12"
+        >
+          <Badge variant="red" dot size="sm" className="mb-4">Live Match Tracking</Badge>
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+            Upcoming Fixtures
+          </h2>
+          <p className="text-slate-400 text-lg max-w-xl mx-auto">
+            Real-time scores, fixture schedules, and competition standings — all in one place for your club.
+          </p>
+        </motion.div>
+
+        {/* Live match highlight */}
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.4 }}
+          className="mb-3"
+        >
+          <p className="text-xs font-semibold uppercase tracking-widest text-red-500 mb-2 flex items-center gap-1.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse inline-block" />
+            Happening Now
+          </p>
+        </motion.div>
+        <div className="mb-8">
+          <LiveMatchCard />
+        </div>
+
+        {/* Upcoming fixtures grid */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.4, delay: 0.1 }}
+          className="mb-3"
+        >
+          <p className="text-xs font-semibold uppercase tracking-widest text-slate-500">
+            Upcoming
+          </p>
+        </motion.div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
+          <FixtureCard
+            homeTeam="Toronto Arrows RFC"
+            homeInitials="TA"
+            homeColor="#DC2626"
+            awayTeam="Kingston RFC"
+            awayInitials="KR"
+            awayColor="#7C3AED"
+            date="Oct 19"
+            time="14:00"
+            venue="Lamport Stadium, Toronto"
+            competition="ORU Premier Division · R15"
+            delay={0}
+          />
+          <FixtureCard
+            homeTeam="Toronto Arrows RFC"
+            homeInitials="TA"
+            homeColor="#DC2626"
+            awayTeam="Ottawa Wolves RFC"
+            awayInitials="OW"
+            awayColor="#059669"
+            date="Nov 2"
+            time="14:00"
+            venue="Lamport Stadium, Toronto"
+            competition="ORU Cup Semi-Final"
+            delay={0.1}
+          />
+          <FixtureCard
+            homeTeam="Vancouver Ravens"
+            homeInitials="VR"
+            homeColor="#0369A1"
+            awayTeam="Calgary Thunder"
+            awayInitials="CT"
+            awayColor="#D97706"
+            date="Oct 19"
+            time="16:00"
+            venue="Burnaby Lake Rugby"
+            competition="BC Premier Division"
+            delay={0.2}
+          />
+        </div>
+
+        {/* View all link */}
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.4, delay: 0.3 }}
+          className="text-center"
+        >
+          <Link href="/fixtures">
+            <Button variant="ghost" size="lg" className="group text-slate-300 hover:text-white">
+              View All Fixtures
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </Button>
+          </Link>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
