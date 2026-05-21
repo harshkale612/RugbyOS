@@ -125,14 +125,10 @@ function StandingRowItem({ row, delay }: { row: StandingRow; delay: number }) {
         }
       `}
     >
-      {/* Left accent border for user's team */}
-      {row.isUserTeam && (
-        <td className="p-0 w-0">
+      <td className="py-3.5 pl-5 pr-3 relative">
+        {row.isUserTeam && (
           <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-red-600 rounded-r-full" />
-        </td>
-      )}
-
-      <td className="py-3.5 pl-5 pr-3">
+        )}
         <PositionBadge position={row.position} />
       </td>
 
