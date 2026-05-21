@@ -105,6 +105,7 @@ export function Sidebar({ notificationCount = 3 }: SidebarProps) {
                   <Link
                     key={item.href}
                     href={item.href}
+                    onClick={() => setMobileOpen(false)}
                     className={cn(
                       'sidebar-link',
                       active && 'active',
@@ -126,6 +127,7 @@ export function Sidebar({ notificationCount = 3 }: SidebarProps) {
       <div className="px-2 py-2 border-t border-[#1E2A3A]">
         <Link
           href="/dashboard/notifications"
+          onClick={() => setMobileOpen(false)}
           className={cn('sidebar-link relative', collapsed && 'justify-center px-2')}
         >
           <Bell className="h-4 w-4 shrink-0" />
@@ -143,7 +145,7 @@ export function Sidebar({ notificationCount = 3 }: SidebarProps) {
 
       {/* Settings */}
       <div className="px-2 pb-2">
-        <Link href="/dashboard/settings" className={cn('sidebar-link', collapsed && 'justify-center px-2')}>
+        <Link href="/dashboard/settings" onClick={() => setMobileOpen(false)} className={cn('sidebar-link', collapsed && 'justify-center px-2')}>
           <Settings className="h-4 w-4 shrink-0" />
           {!collapsed && <span>Settings</span>}
         </Link>
