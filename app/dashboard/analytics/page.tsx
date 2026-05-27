@@ -12,14 +12,14 @@ import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { revenueData, memberRegistrationData, matchPerformanceData, attendanceData, dashboardStats } from '@/data/mock-dashboard';
 import { formatCurrency } from '@/lib/utils';
 
-const chartAxisStyle = { fill: '#64748b', fontSize: 11 };
-const gridStyle = { stroke: '#1E2A3A', strokeDasharray: '3 3' };
+const chartAxisStyle = { fill: 'hsl(var(--muted-foreground))', fontSize: 11 };
+const gridStyle = { stroke: 'hsl(var(--border))', strokeDasharray: '3 3' };
 
 const CustomTooltip = ({ active, payload, label }: { active?: boolean; payload?: { name: string; value: number; color: string }[]; label?: string }) => {
   if (!active || !payload?.length) return null;
   return (
-    <div className="bg-[#161B27] border border-[#1E2A3A] rounded-lg p-3 shadow-xl text-xs">
-      <p className="text-slate-400 mb-1.5 font-medium">{label}</p>
+    <div className="bg-card border border-border rounded-lg p-3 shadow-xl text-xs">
+      <p className="text-muted-foreground mb-1.5 font-medium">{label}</p>
       {payload.map((p, i) => (
         <p key={i} style={{ color: p.color }} className="font-semibold">
           {p.name}: {typeof p.value === 'number' && p.value > 1000 ? formatCurrency(p.value) : p.value}
@@ -113,7 +113,7 @@ export default function AnalyticsPage() {
                     <XAxis dataKey="label" tick={chartAxisStyle} axisLine={false} tickLine={false} />
                     <YAxis tick={chartAxisStyle} axisLine={false} tickLine={false} />
                     <Tooltip content={<CustomTooltip />} />
-                    <Legend wrapperStyle={{ fontSize: 11, color: '#94a3b8' }} />
+                    <Legend wrapperStyle={{ fontSize: 11, color: 'hsl(var(--muted-foreground))' }} />
                     <Bar dataKey="value" name="For" fill="#DC2626" radius={[3, 3, 0, 0]} maxBarSize={24} />
                     <Bar dataKey="secondary" name="Against" fill="#3b82f6" radius={[3, 3, 0, 0]} maxBarSize={24} />
                   </BarChart>

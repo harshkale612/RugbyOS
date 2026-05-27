@@ -13,7 +13,7 @@ const features = [
 
 export function LandingCTA() {
   return (
-    <section className="py-24 px-4 bg-[#0A0C12] relative overflow-hidden">
+    <section className="py-24 px-4 bg-background relative overflow-hidden transition-colors duration-300">
       {/* Hero radial glow */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_60%_at_50%_50%,rgba(220,38,38,0.12),transparent_70%)] pointer-events-none" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_40%_30%_at_50%_80%,rgba(245,158,11,0.07),transparent_70%)] pointer-events-none" />
@@ -55,7 +55,7 @@ export function LandingCTA() {
           }}
         >
           {/* Inner card */}
-          <div className="bg-[#161B27] rounded-3xl px-8 py-14 md:px-16 md:py-16 text-center relative overflow-hidden">
+          <div className="bg-card rounded-3xl px-8 py-14 md:px-16 md:py-16 text-center relative overflow-hidden">
             {/* Inner subtle glow */}
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-10%,rgba(220,38,38,0.08),transparent)] pointer-events-none" />
 
@@ -76,10 +76,10 @@ export function LandingCTA() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.55, delay: 0.2 }}
-              className="text-3xl md:text-5xl font-bold text-white mb-4 leading-tight"
+              className="text-3xl md:text-5xl font-bold text-foreground mb-4 leading-tight"
             >
               Ready to Modernise Your{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-amber-400">
+              <span className="text-transparent bg-clip-text bg-linear-to-r from-red-500 to-amber-400">
                 Rugby Club?
               </span>
             </motion.h2>
@@ -90,7 +90,7 @@ export function LandingCTA() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.28 }}
-              className="text-slate-400 text-lg md:text-xl max-w-2xl mx-auto mb-8"
+              className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto mb-8"
             >
               Get started for free today. No contracts, no complexity — just a smarter way to run your club from day one.
             </motion.p>
@@ -106,7 +106,7 @@ export function LandingCTA() {
               {features.map((feat) => (
                 <div key={feat} className="flex items-center gap-2">
                   <CheckCircle className="w-4 h-4 text-green-400 shrink-0" />
-                  <span className="text-slate-300 text-sm">{feat}</span>
+                  <span className="text-foreground/80 text-sm">{feat}</span>
                 </div>
               ))}
             </motion.div>
@@ -129,7 +129,7 @@ export function LandingCTA() {
                 <Button
                   variant="outline"
                   size="xl"
-                  className="min-w-[200px] border-[#1E2A3A] hover:border-amber-500/40 text-slate-300 hover:text-white hover:bg-amber-500/5"
+                  className="min-w-[200px] border-border hover:border-amber-500/40 text-muted-foreground hover:text-foreground hover:bg-amber-500/5"
                 >
                   Book a Demo
                 </Button>
@@ -142,7 +142,7 @@ export function LandingCTA() {
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: 0.55 }}
-              className="text-slate-600 text-xs mt-8"
+              className="text-muted-foreground/60 text-xs mt-8"
             >
               Join 200+ Canadian rugby clubs already using RugbyOS &middot; Cancel anytime
             </motion.p>

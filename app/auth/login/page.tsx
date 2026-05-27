@@ -78,11 +78,11 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0A0C12] flex">
+    <div className="min-h-screen bg-background transition-colors duration-300 flex">
       {/* Left decorative panel */}
       <div className="hidden lg:flex lg:w-[52%] relative overflow-hidden flex-col">
         {/* Background layers */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#0D1420] via-[#0A0C12] to-[#100818]" />
+        <div className="absolute inset-0 bg-linear-to-br from-[#0D1420] via-[#0A0C12] to-[#100818]" />
         <div className="absolute inset-0 bg-[url('/noise.png')] opacity-[0.03]" />
 
         {/* Grid pattern */}
@@ -129,7 +129,7 @@ export default function LoginPage() {
               </div>
               <h1 className="text-4xl font-bold text-white leading-tight">
                 Welcome Back to
-                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-amber-400">
+                <span className="block text-transparent bg-clip-text bg-linear-to-r from-red-400 to-amber-400">
                   RugbyOS
                 </span>
               </h1>
@@ -142,7 +142,7 @@ export default function LoginPage() {
             <div className="bg-[#161B27]/80 border border-[#1E2A3A] rounded-2xl p-5 backdrop-blur-sm space-y-4">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-red-600 to-red-800 flex items-center justify-center text-lg font-bold text-white shadow-lg">
+                  <div className="w-10 h-10 rounded-xl bg-linear-to-br from-red-600 to-red-800 flex items-center justify-center text-lg font-bold text-white shadow-lg">
                     T
                   </div>
                   <div>
@@ -202,7 +202,7 @@ export default function LoginPage() {
                 {['A', 'B', 'C'].map((l, i) => (
                   <div
                     key={i}
-                    className="w-6 h-6 rounded-full bg-gradient-to-br from-slate-600 to-slate-800 border border-[#1E2A3A] flex items-center justify-center text-[9px] font-bold text-slate-300"
+                    className="w-6 h-6 rounded-full bg-linear-to-br from-slate-600 to-slate-800 border border-[#1E2A3A] flex items-center justify-center text-[9px] font-bold text-slate-300"
                   >
                     {l}
                   </div>
@@ -216,7 +216,7 @@ export default function LoginPage() {
 
       {/* Right: Form side */}
       <div className="flex-1 flex flex-col items-center justify-center p-6 sm:p-10 lg:p-16 relative">
-        <div className="absolute inset-0 bg-[#0A0C12]" />
+        <div className="absolute inset-0 bg-background" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-red-600/5 blur-[100px] pointer-events-none" />
 
         <motion.div
@@ -230,20 +230,20 @@ export default function LoginPage() {
             <div className="w-8 h-8 rounded-lg bg-red-600 flex items-center justify-center">
               <Trophy className="w-4 h-4 text-white" />
             </div>
-            <span className="text-lg font-bold text-white">
+            <span className="text-lg font-bold text-foreground">
               Rugby<span className="text-red-500">OS</span>
             </span>
           </motion.div>
 
           {/* Header */}
           <motion.div variants={itemVariants} className="mb-8">
-            <h2 className="text-2xl font-bold text-white mb-1">Sign in to your account</h2>
-            <p className="text-slate-400 text-sm">Enter your credentials to continue</p>
+            <h2 className="text-2xl font-bold text-foreground mb-1">Sign in to your account</h2>
+            <p className="text-muted-foreground text-sm">Enter your credentials to continue</p>
           </motion.div>
 
           {/* Role selector */}
           <motion.div variants={itemVariants} className="mb-6">
-            <p className="text-xs font-medium text-slate-400 mb-3 uppercase tracking-wider">
+            <p className="text-xs font-medium text-muted-foreground mb-3 uppercase tracking-wider">
               Signing in as
             </p>
             <div className="grid grid-cols-4 gap-2">
@@ -259,7 +259,7 @@ export default function LoginPage() {
                       'flex flex-col items-center gap-1.5 p-2.5 rounded-xl border text-xs font-medium transition-all duration-200',
                       isActive
                         ? config.color
-                        : 'bg-[#161B27] border-[#1E2A3A] text-slate-500 hover:border-slate-600 hover:text-slate-300'
+                        : 'bg-card border-border text-muted-foreground hover:border-muted-foreground/40 hover:text-foreground'
                     )}
                   >
                     {config.icon}
@@ -273,7 +273,7 @@ export default function LoginPage() {
           {/* Form card */}
           <motion.div
             variants={itemVariants}
-            className="bg-[#161B27] border border-[#1E2A3A] rounded-2xl p-6 space-y-5"
+            className="bg-card border border-border rounded-2xl p-6 space-y-5"
           >
             <form onSubmit={handleSubmit} className="space-y-5">
               {/* Email */}
@@ -317,7 +317,7 @@ export default function LoginPage() {
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-300 transition-colors"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
                     tabIndex={-1}
                   >
                     {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
@@ -331,10 +331,10 @@ export default function LoginPage() {
                   type="button"
                   onClick={() => setRememberMe(!rememberMe)}
                   className={cn(
-                    'w-4.5 h-4.5 rounded border flex items-center justify-center transition-all duration-150 flex-shrink-0',
+                    'w-4.5 h-4.5 rounded border flex items-center justify-center transition-all duration-150 shrink-0',
                     rememberMe
                       ? 'bg-red-600 border-red-500'
-                      : 'bg-[#0F1117] border-[#1E2A3A] hover:border-slate-600'
+                      : 'bg-background border-border hover:border-muted-foreground/40'
                   )}
                   style={{ width: 18, height: 18 }}
                 >
@@ -350,7 +350,7 @@ export default function LoginPage() {
                     </svg>
                   )}
                 </button>
-                <span className="text-sm text-slate-400 select-none">Remember me for 30 days</span>
+                <span className="text-sm text-muted-foreground select-none">Remember me for 30 days</span>
               </div>
 
               {/* Sign in button */}
@@ -374,9 +374,9 @@ export default function LoginPage() {
 
             {/* Divider */}
             <div className="relative flex items-center gap-3">
-              <div className="flex-1 h-px bg-[#1E2A3A]" />
-              <span className="text-slate-600 text-xs">or continue with</span>
-              <div className="flex-1 h-px bg-[#1E2A3A]" />
+              <div className="flex-1 h-px bg-border" />
+              <span className="text-muted-foreground text-xs">or continue with</span>
+              <div className="flex-1 h-px bg-border" />
             </div>
 
             {/* Social login */}
@@ -404,7 +404,7 @@ export default function LoginPage() {
           </motion.div>
 
           {/* Sign up link */}
-          <motion.p variants={itemVariants} className="text-center text-sm text-slate-500 mt-6">
+          <motion.p variants={itemVariants} className="text-center text-sm text-muted-foreground mt-6">
             Don&apos;t have an account?{' '}
             <Link
               href="/auth/signup"

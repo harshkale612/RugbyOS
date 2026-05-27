@@ -52,13 +52,13 @@ function PlayerCard({
   return (
     <motion.div variants={fadeUp} className="relative group/card">
       <Link href={`/dashboard/players/${player.id}`} className="block group">
-        <Card className="bg-[#161B27] border border-[#1E2A3A] hover:border-red-600/40 transition-all duration-200 group-hover:shadow-lg group-hover:shadow-red-900/20">
+        <Card className="hover:border-red-600/40 transition-all duration-200 group-hover:shadow-lg group-hover:shadow-red-900/20">
           <CardContent className="p-4">
             <div className="flex items-center gap-3">
               {/* Avatar + jersey */}
               <div className="relative shrink-0">
                 <Avatar src={player.avatar} name={player.name} size="lg" />
-                <span className="absolute -bottom-1 -right-1 inline-flex items-center justify-center h-5 w-5 rounded-full bg-red-600 border border-[#0A0C12] text-[10px] font-black text-white">
+                <span className="absolute -bottom-1 -right-1 inline-flex items-center justify-center h-5 w-5 rounded-full bg-red-600 border border-background text-[10px] font-black text-white">
                   {player.jerseyNumber}
                 </span>
               </div>
@@ -66,7 +66,7 @@ function PlayerCard({
               {/* Info */}
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-1.5 flex-wrap">
-                  <p className="font-semibold text-white text-sm group-hover:text-red-400 transition-colors truncate">
+                  <p className="font-semibold text-foreground text-sm group-hover:text-red-400 transition-colors truncate">
                     {player.name}
                   </p>
                   {player.isCaptain && (
@@ -75,7 +75,7 @@ function PlayerCard({
                     </span>
                   )}
                 </div>
-                <p className="text-xs text-slate-500 truncate">{player.position}</p>
+                <p className="text-xs text-muted-foreground truncate">{player.position}</p>
                 <div className="mt-1.5">
                   <Badge variant={statusVariant[player.status] ?? 'gray'} size="sm" dot>
                     {player.status.charAt(0).toUpperCase() + player.status.slice(1)}
@@ -86,11 +86,11 @@ function PlayerCard({
               {/* Season stats */}
               <div className="shrink-0 text-right space-y-1">
                 <div>
-                  <p className="text-[10px] text-slate-500">Tries</p>
+                  <p className="text-[10px] text-muted-foreground">Tries</p>
                   <p className="text-sm font-bold text-red-400">{player.seasonStats.tries}</p>
                 </div>
                 <div>
-                  <p className="text-[10px] text-slate-500">Pts</p>
+                  <p className="text-[10px] text-muted-foreground">Pts</p>
                   <p className="text-sm font-bold text-amber-400">{player.seasonStats.points}</p>
                 </div>
               </div>
@@ -104,7 +104,7 @@ function PlayerCard({
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <button
-              className="h-7 w-7 rounded-md bg-[#0F1117]/90 border border-[#1E2A3A] flex items-center justify-center text-slate-400 hover:text-white hover:bg-[#1E2A3A] transition-colors"
+              className="h-7 w-7 rounded-md bg-background/90 border border-border flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
               onClick={(e) => e.preventDefault()}
             >
               <MoreHorizontal className="h-3.5 w-3.5" />
@@ -170,7 +170,7 @@ export default function PlayersPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#0A0C12]">
+    <div className="min-h-screen bg-background transition-colors duration-300">
       <DashboardHeader
         title="Players"
         subtitle={`${players.length} Registered Players`}
@@ -187,17 +187,17 @@ export default function PlayersPage() {
         <motion.div {...fadeUp} className="flex flex-col sm:flex-row gap-3">
           {/* Search bar */}
           <div className="relative flex-1 max-w-sm">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-500 pointer-events-none" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground pointer-events-none" />
             <input
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search players..."
-              className="w-full bg-[#161B27] border border-[#1E2A3A] rounded-xl pl-9 pr-9 py-2 text-sm text-white placeholder:text-slate-500 outline-none focus:border-red-600/50 transition-colors"
+              className="w-full bg-card border border-border rounded-xl pl-9 pr-9 py-2 text-sm text-foreground placeholder:text-muted-foreground outline-none focus:border-red-600/50 transition-colors"
             />
             {search && (
               <button
                 onClick={() => setSearch('')}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 hover:text-white transition-colors"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
               >
                 <X className="h-3.5 w-3.5" />
               </button>
@@ -213,19 +213,19 @@ export default function PlayersPage() {
                 className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all duration-200 border ${
                   filter === f.key
                     ? 'bg-red-600 text-white border-red-600'
-                    : 'bg-[#161B27] text-slate-400 border-[#1E2A3A] hover:text-white hover:border-red-600/30'
+                    : 'bg-card text-muted-foreground border-border hover:text-foreground hover:border-red-600/30'
                 }`}
               >
                 {f.label}
               </button>
             ))}
-            <span className="text-xs text-slate-500">{filtered.length} players</span>
+            <span className="text-xs text-muted-foreground">{filtered.length} players</span>
           </div>
         </motion.div>
 
         {/* Players grid */}
         {filtered.length === 0 ? (
-          <motion.div {...fadeUp} className="py-24 text-center text-slate-500">
+          <motion.div {...fadeUp} className="py-24 text-center text-muted-foreground">
             <p className="text-lg font-semibold mb-1">No players found</p>
             <p className="text-sm">Try adjusting your search or filters.</p>
           </motion.div>

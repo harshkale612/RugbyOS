@@ -69,10 +69,10 @@ function TestimonialCard({ testimonial, delay }: TestimonialCardProps) {
       viewport={{ once: true }}
       transition={{ duration: 0.55, delay }}
       whileHover={{ y: -6, transition: { duration: 0.2 } }}
-      className="relative bg-[#161B27] border border-[#1E2A3A] rounded-2xl p-6 flex flex-col gap-5 hover:border-amber-500/30 transition-colors duration-300 group"
+      className="relative bg-card border border-border rounded-2xl p-6 flex flex-col gap-5 hover:border-amber-500/30 transition-colors duration-300 group"
     >
       {/* Subtle top glow on hover */}
-      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-amber-500/0 to-transparent group-hover:via-amber-500/40 transition-all duration-300 rounded-t-2xl" />
+      <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-amber-500/0 to-transparent group-hover:via-amber-500/40 transition-all duration-300 rounded-t-2xl" />
 
       {/* Quote icon */}
       <div className="flex items-start justify-between">
@@ -83,12 +83,12 @@ function TestimonialCard({ testimonial, delay }: TestimonialCardProps) {
       </div>
 
       {/* Quote text */}
-      <p className="text-slate-300 text-sm leading-relaxed flex-1">
+      <p className="text-foreground/80 text-sm leading-relaxed flex-1">
         &ldquo;{testimonial.quote}&rdquo;
       </p>
 
       {/* Author */}
-      <div className="flex items-center gap-3 pt-2 border-t border-[#1E2A3A]">
+      <div className="flex items-center gap-3 pt-2 border-t border-border">
         <Avatar
           src={dicebearUrl}
           name={testimonial.name}
@@ -96,8 +96,8 @@ function TestimonialCard({ testimonial, delay }: TestimonialCardProps) {
           className="shrink-0"
         />
         <div className="min-w-0">
-          <p className="text-white font-semibold text-sm truncate">{testimonial.name}</p>
-          <p className="text-slate-400 text-xs truncate">
+          <p className="text-foreground font-semibold text-sm truncate">{testimonial.name}</p>
+          <p className="text-muted-foreground text-xs truncate">
             {testimonial.role} &middot; {testimonial.club}
           </p>
         </div>
@@ -108,7 +108,7 @@ function TestimonialCard({ testimonial, delay }: TestimonialCardProps) {
 
 export function LandingTestimonials() {
   return (
-    <section className="py-20 px-4 bg-[#0A0C12] relative overflow-hidden">
+    <section className="py-20 px-4 bg-background relative overflow-hidden transition-colors duration-300">
       {/* Background decoration */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_40%_at_50%_-10%,rgba(245,158,11,0.06),transparent)] pointer-events-none" />
 
@@ -122,10 +122,10 @@ export function LandingTestimonials() {
           className="text-center mb-12"
         >
           <Badge variant="gold" dot size="sm" className="mb-4">Testimonials</Badge>
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
             Trusted by Canadian Rugby Clubs
           </h2>
-          <p className="text-slate-400 text-lg max-w-xl mx-auto">
+          <p className="text-muted-foreground text-lg max-w-xl mx-auto">
             From coaches to administrators — see what rugby professionals are saying about RugbyOS.
           </p>
         </motion.div>
@@ -153,28 +153,28 @@ export function LandingTestimonials() {
                   src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${seed}`}
                   name={seed}
                   size="sm"
-                  className="border-2 border-[#0A0C12]"
+                  className="border-2 border-background"
                 />
               ))}
             </div>
-            <span className="text-slate-400 text-sm">
-              <span className="text-white font-semibold">200+</span> clubs across Canada
+            <span className="text-muted-foreground text-sm">
+              <span className="text-foreground font-semibold">200+</span> clubs across Canada
             </span>
           </div>
-          <div className="hidden sm:block w-px h-6 bg-[#1E2A3A]" />
+          <div className="hidden sm:block w-px h-6 bg-border" />
           <div className="flex items-center gap-1.5">
             <div className="flex items-center gap-0.5">
               {Array.from({ length: 5 }).map((_, i) => (
                 <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
               ))}
             </div>
-            <span className="text-slate-400 text-sm">
-              <span className="text-white font-semibold">4.9/5</span> average rating
+            <span className="text-muted-foreground text-sm">
+              <span className="text-foreground font-semibold">4.9/5</span> average rating
             </span>
           </div>
-          <div className="hidden sm:block w-px h-6 bg-[#1E2A3A]" />
-          <span className="text-slate-400 text-sm">
-            <span className="text-white font-semibold">15,000+</span> players managed
+          <div className="hidden sm:block w-px h-6 bg-border" />
+          <span className="text-muted-foreground text-sm">
+            <span className="text-foreground font-semibold">15,000+</span> players managed
           </span>
         </motion.div>
       </div>

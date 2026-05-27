@@ -172,10 +172,10 @@ export default function SignupPage() {
     : clubName.trim() && province && division;
 
   return (
-    <div className="min-h-screen bg-[#0A0C12] flex">
+    <div className="min-h-screen bg-background transition-colors duration-300 flex">
       {/* Left brand panel */}
-      <div className="hidden lg:flex lg:w-[420px] xl:w-[480px] flex-col relative overflow-hidden flex-shrink-0">
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0D1420] via-[#0A0C12] to-[#0D1420]" />
+      <div className="hidden lg:flex lg:w-[420px] xl:w-[480px] flex-col relative overflow-hidden shrink-0">
+        <div className="absolute inset-0 bg-linear-to-b from-[#0D1420] via-[#0A0C12] to-[#0D1420]" />
         <div
           className="absolute inset-0 opacity-[0.035]"
           style={{
@@ -206,7 +206,7 @@ export default function SignupPage() {
               </div>
               <h2 className="text-3xl font-bold text-white leading-tight">
                 Join Canadian Rugby&apos;s
-                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-amber-400">
+                <span className="block text-transparent bg-clip-text bg-linear-to-r from-red-400 to-amber-400">
                   #1 Platform
                 </span>
               </h2>
@@ -235,7 +235,7 @@ export default function SignupPage() {
                 >
                   <div
                     className={cn(
-                      'w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 transition-all',
+                      'w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold shrink-0 transition-all',
                       step > n
                         ? 'bg-emerald-500 text-white'
                         : step === n
@@ -272,7 +272,7 @@ export default function SignupPage() {
             <div className="w-8 h-8 rounded-lg bg-red-600 flex items-center justify-center">
               <Trophy className="w-4 h-4 text-white" />
             </div>
-            <span className="text-lg font-bold text-white">
+            <span className="text-lg font-bold text-foreground">
               Rugby<span className="text-red-500">OS</span>
             </span>
           </div>
@@ -280,14 +280,14 @@ export default function SignupPage() {
           {/* Progress bar */}
           <div className="mb-8">
             <div className="flex items-center justify-between mb-3">
-              <span className="text-sm font-medium text-white">Step {step} of 3</span>
-              <span className="text-xs text-slate-500">
+              <span className="text-sm font-medium text-foreground">Step {step} of 3</span>
+              <span className="text-xs text-muted-foreground">
                 {step === 1 ? 'Choose role' : step === 2 ? 'Account details' : 'Club setup'}
               </span>
             </div>
-            <div className="h-1.5 bg-[#1E2A3A] rounded-full overflow-hidden">
+            <div className="h-1.5 bg-border rounded-full overflow-hidden">
               <motion.div
-                className="h-full bg-gradient-to-r from-red-600 to-red-500 rounded-full"
+                className="h-full bg-linear-to-r from-red-600 to-red-500 rounded-full"
                 animate={{ width: `${(step / 3) * 100}%` }}
                 transition={{ duration: 0.4, ease: 'easeOut' }}
               />
@@ -313,10 +313,10 @@ export default function SignupPage() {
                     className="space-y-6"
                   >
                     <motion.div variants={itemVariants}>
-                      <h2 className="text-2xl font-bold text-white mb-1">
+                      <h2 className="text-2xl font-bold text-foreground mb-1">
                         Tell us about your role
                       </h2>
-                      <p className="text-slate-400 text-sm">
+                      <p className="text-muted-foreground text-sm">
                         We&apos;ll personalise your experience based on how you use RugbyOS.
                       </p>
                     </motion.div>
@@ -331,23 +331,23 @@ export default function SignupPage() {
                             'text-left p-4 rounded-2xl border transition-all duration-200 group',
                             selectedRole === card.role
                               ? card.color
-                              : 'bg-[#161B27] border-[#1E2A3A] hover:border-slate-600'
+                              : 'bg-card border-border hover:border-muted-foreground/40'
                           )}
                         >
                           <div
                             className={cn(
                               'w-10 h-10 rounded-xl flex items-center justify-center mb-3 transition-all',
-                              selectedRole === card.role ? card.accent : 'bg-[#1E2A3A] text-slate-400'
+                              selectedRole === card.role ? card.accent : 'bg-muted text-muted-foreground'
                             )}
                           >
                             {card.icon}
                           </div>
-                          <p className="font-semibold text-white text-sm mb-1">{card.role}</p>
-                          <p className="text-slate-500 text-xs mb-3">{card.description}</p>
+                          <p className="font-semibold text-foreground text-sm mb-1">{card.role}</p>
+                          <p className="text-muted-foreground text-xs mb-3">{card.description}</p>
                           <ul className="space-y-1">
                             {card.features.map((f) => (
-                              <li key={f} className="flex items-center gap-1.5 text-xs text-slate-400">
-                                <div className="w-1 h-1 rounded-full bg-slate-600 flex-shrink-0" />
+                              <li key={f} className="flex items-center gap-1.5 text-xs text-muted-foreground">
+                                <div className="w-1 h-1 rounded-full bg-muted-foreground/40 shrink-0" />
                                 {f}
                               </li>
                             ))}
@@ -368,7 +368,7 @@ export default function SignupPage() {
                       </Button>
                     </motion.div>
 
-                    <motion.p variants={itemVariants} className="text-center text-sm text-slate-500">
+                    <motion.p variants={itemVariants} className="text-center text-sm text-muted-foreground">
                       Already have an account?{' '}
                       <Link
                         href="/auth/login"
@@ -397,8 +397,8 @@ export default function SignupPage() {
                     className="space-y-5"
                   >
                     <motion.div variants={itemVariants}>
-                      <h2 className="text-2xl font-bold text-white mb-1">Create your account</h2>
-                      <p className="text-slate-400 text-sm">
+                      <h2 className="text-2xl font-bold text-foreground mb-1">Create your account</h2>
+                      <p className="text-muted-foreground text-sm">
                         Signing up as{' '}
                         <span className="text-red-400 font-medium">{selectedRole}</span>
                       </p>
@@ -406,7 +406,7 @@ export default function SignupPage() {
 
                     <motion.div
                       variants={itemVariants}
-                      className="bg-[#161B27] border border-[#1E2A3A] rounded-2xl p-6 space-y-4"
+                      className="bg-card border border-border rounded-2xl p-6 space-y-4"
                     >
                       <FormGroup>
                         <Label htmlFor="fullName">Full name</Label>
@@ -447,7 +447,7 @@ export default function SignupPage() {
                           <button
                             type="button"
                             onClick={() => setShowPassword(!showPassword)}
-                            className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-300 transition-colors"
+                            className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
                             tabIndex={-1}
                           >
                             {showPassword ? (
@@ -475,7 +475,7 @@ export default function SignupPage() {
                                       : password.length < 10
                                         ? 'bg-amber-400'
                                         : 'bg-emerald-400'
-                                    : 'bg-[#1E2A3A]'
+                                    : 'bg-border'
                                 )}
                               />
                             ))}
@@ -503,7 +503,7 @@ export default function SignupPage() {
                           <button
                             type="button"
                             onClick={() => setShowConfirm(!showConfirm)}
-                            className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-300 transition-colors"
+                            className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
                             tabIndex={-1}
                           >
                             {showConfirm ? (
@@ -556,8 +556,8 @@ export default function SignupPage() {
                     className="space-y-5"
                   >
                     <motion.div variants={itemVariants}>
-                      <h2 className="text-2xl font-bold text-white mb-1">Set up your club</h2>
-                      <p className="text-slate-400 text-sm">
+                      <h2 className="text-2xl font-bold text-foreground mb-1">Set up your club</h2>
+                      <p className="text-muted-foreground text-sm">
                         Create a new club or join one that already exists.
                       </p>
                     </motion.div>
@@ -565,7 +565,7 @@ export default function SignupPage() {
                     {/* Toggle */}
                     <motion.div
                       variants={itemVariants}
-                      className="flex p-1 bg-[#161B27] border border-[#1E2A3A] rounded-xl"
+                      className="flex p-1 bg-card border border-border rounded-xl"
                     >
                       {[
                         { label: 'Create new club', value: false },
@@ -579,7 +579,7 @@ export default function SignupPage() {
                             'flex-1 py-2 px-4 text-sm font-medium rounded-lg transition-all duration-200',
                             joinExisting === value
                               ? 'bg-red-600 text-white shadow-lg'
-                              : 'text-slate-400 hover:text-white'
+                              : 'text-muted-foreground hover:text-foreground'
                           )}
                         >
                           {label}
@@ -589,7 +589,7 @@ export default function SignupPage() {
 
                     <motion.div
                       variants={itemVariants}
-                      className="bg-[#161B27] border border-[#1E2A3A] rounded-2xl p-6 space-y-4"
+                      className="bg-card border border-border rounded-2xl p-6 space-y-4"
                     >
                       {joinExisting ? (
                         <FormGroup>
@@ -602,7 +602,7 @@ export default function SignupPage() {
                             onChange={(e) => setJoinCode(e.target.value.toUpperCase())}
                             className="font-mono tracking-widest uppercase"
                           />
-                          <p className="mt-2 text-xs text-slate-500">
+                          <p className="mt-2 text-xs text-muted-foreground">
                             Ask your Club Admin for the invitation code.
                           </p>
                         </FormGroup>
@@ -627,7 +627,7 @@ export default function SignupPage() {
                                 id="province"
                                 value={province}
                                 onChange={(e) => setProvince(e.target.value)}
-                                className="flex h-10 w-full rounded-lg border bg-[#0F1117] px-3 py-2 text-sm text-white transition-colors border-[#1E2A3A] focus:border-red-500/60 focus:outline-none focus:ring-2 focus:ring-red-500/20 appearance-none cursor-pointer pr-9"
+                                className="flex h-10 w-full rounded-lg border bg-background px-3 py-2 text-sm text-foreground transition-colors border-border focus:border-red-500/60 focus:outline-none focus:ring-2 focus:ring-red-500/20 appearance-none cursor-pointer pr-9"
                               >
                                 <option value="" disabled>
                                   Select province...
@@ -638,7 +638,7 @@ export default function SignupPage() {
                                   </option>
                                 ))}
                               </select>
-                              <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500 pointer-events-none" />
+                              <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
                             </div>
                           </FormGroup>
 
@@ -649,7 +649,7 @@ export default function SignupPage() {
                                 id="division"
                                 value={division}
                                 onChange={(e) => setDivision(e.target.value)}
-                                className="flex h-10 w-full rounded-lg border bg-[#0F1117] px-3 py-2 text-sm text-white transition-colors border-[#1E2A3A] focus:border-red-500/60 focus:outline-none focus:ring-2 focus:ring-red-500/20 appearance-none cursor-pointer pr-9"
+                                className="flex h-10 w-full rounded-lg border bg-background px-3 py-2 text-sm text-foreground transition-colors border-border focus:border-red-500/60 focus:outline-none focus:ring-2 focus:ring-red-500/20 appearance-none cursor-pointer pr-9"
                               >
                                 <option value="" disabled>
                                   Select division...
@@ -660,7 +660,7 @@ export default function SignupPage() {
                                   </option>
                                 ))}
                               </select>
-                              <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500 pointer-events-none" />
+                              <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
                             </div>
                           </FormGroup>
                         </>
@@ -684,10 +684,10 @@ export default function SignupPage() {
                       </Button>
                     </motion.div>
 
-                    <motion.p variants={itemVariants} className="text-center text-xs text-slate-600">
+                    <motion.p variants={itemVariants} className="text-center text-xs text-muted-foreground/60">
                       By creating an account, you agree to our{' '}
-                      <span className="text-slate-500 underline cursor-pointer">Terms</span> and{' '}
-                      <span className="text-slate-500 underline cursor-pointer">Privacy Policy</span>
+                      <span className="text-muted-foreground underline cursor-pointer">Terms</span> and{' '}
+                      <span className="text-muted-foreground underline cursor-pointer">Privacy Policy</span>
                     </motion.p>
                   </motion.div>
                 </motion.div>

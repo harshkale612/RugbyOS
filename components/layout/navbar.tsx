@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Trophy } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { ThemeToggle } from '@/components/ui/theme-toggle';
 import { cn } from '@/lib/utils';
 
 const navLinks = [
@@ -33,17 +34,17 @@ export function Navbar() {
     <nav
       className={cn(
         'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
-        scrolled ? 'glass border-b border-white/5' : 'bg-transparent'
+        scrolled ? 'glass border-b border-border/50 shadow-sm' : 'bg-transparent'
       )}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2.5 group">
-            <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-red-600 to-red-700 flex items-center justify-center shadow-lg group-hover:shadow-red-600/30 transition-shadow">
+            <div className="h-8 w-8 rounded-lg bg-linear-to-br from-red-600 to-red-700 flex items-center justify-center shadow-lg group-hover:shadow-red-600/30 transition-shadow">
               <Trophy className="h-4 w-4 text-white" />
             </div>
-            <span className="font-bold text-lg text-white tracking-tight">
+            <span className="font-bold text-lg text-foreground tracking-tight">
               Rugby<span className="text-red-500">OS</span>
             </span>
           </Link>
@@ -59,8 +60,8 @@ export function Navbar() {
                   className={cn(
                     'px-3 py-1.5 text-sm font-medium transition-colors rounded-md',
                     isActive
-                      ? 'text-white bg-white/8'
-                      : 'text-slate-400 hover:text-white hover:bg-white/5'
+                      ? 'text-foreground bg-foreground/8'
+                      : 'text-muted-foreground hover:text-foreground hover:bg-foreground/5'
                   )}
                 >
                   {link.label}
@@ -72,8 +73,10 @@ export function Navbar() {
             })}
           </div>
 
-          {/* CTA Buttons */}
+          {/* Right side: ThemeToggle + CTA */}
           <div className="hidden md:flex items-center gap-2">
+            <ThemeToggle />
+            <div className="w-px h-5 bg-border mx-1" />
             <Link href="/auth/login">
               <Button variant="ghost" size="sm">Log in</Button>
             </Link>
@@ -82,13 +85,16 @@ export function Navbar() {
             </Link>
           </div>
 
-          {/* Mobile menu toggle */}
-          <button
-            className="md:hidden p-2 rounded-lg text-slate-400 hover:text-white hover:bg-white/5 transition-colors"
-            onClick={() => setIsOpen(!isOpen)}
-          >
-            {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </button>
+          {/* Mobile: ThemeToggle + hamburger */}
+          <div className="md:hidden flex items-center gap-1.5">
+            <ThemeToggle />
+            <button
+              className="p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-foreground/5 transition-colors"
+              onClick={() => setIsOpen(!isOpen)}
+            >
+              {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
+          </div>
         </div>
       </div>
 
@@ -99,7 +105,7 @@ export function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden glass border-t border-white/5"
+            className="md:hidden glass border-t border-border/50"
           >
             <div className="px-4 py-3 space-y-1">
               {navLinks.map((link) => {
@@ -112,8 +118,8 @@ export function Navbar() {
                     className={cn(
                       'flex items-center gap-2 px-3 py-2 text-sm rounded-lg transition-colors',
                       isActive
-                        ? 'text-white bg-white/8 font-medium'
-                        : 'text-slate-300 hover:text-white hover:bg-white/5'
+                        ? 'text-foreground bg-foreground/8 font-medium'
+                        : 'text-muted-foreground hover:text-foreground hover:bg-foreground/5'
                     )}
                   >
                     {isActive && <span className="w-1 h-1 rounded-full bg-red-500 shrink-0" />}

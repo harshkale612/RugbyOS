@@ -168,26 +168,26 @@ function FixtureRow({ fixture, delay }: { fixture: Fixture; delay: number }) {
       initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, delay }}
-      className={`relative bg-[#161B27] border rounded-xl p-5 flex flex-col sm:flex-row sm:items-center gap-4 transition-colors duration-200 ${
+      className={`relative bg-card border rounded-xl p-5 flex flex-col sm:flex-row sm:items-center gap-4 transition-colors duration-200 ${
         isLive
           ? 'border-red-600/50 hover:border-red-600/70'
-          : 'border-[#1E2A3A] hover:border-slate-600/50'
+          : 'border-border hover:border-muted-foreground/40'
       }`}
     >
       {isLive && (
-        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-red-600 to-transparent rounded-t-xl" />
+        <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-red-600 to-transparent rounded-t-xl" />
       )}
 
       {/* Competition + date */}
       <div className="sm:w-48 shrink-0">
-        <div className="text-[11px] text-slate-500 font-medium truncate">{fixture.competition}</div>
+        <div className="text-[11px] text-muted-foreground font-medium truncate">{fixture.competition}</div>
         <div className="flex items-center gap-1.5 mt-1">
           {isLive ? (
             <Badge variant="red" dot size="sm">LIVE {fixture.minute}</Badge>
           ) : isResult ? (
-            <span className="text-[11px] text-slate-500 font-medium">Full Time</span>
+            <span className="text-[11px] text-muted-foreground font-medium">Full Time</span>
           ) : (
-            <div className="flex items-center gap-3 text-[11px] text-slate-400">
+            <div className="flex items-center gap-3 text-[11px] text-muted-foreground">
               <span className="flex items-center gap-1"><Calendar className="w-3 h-3" />{fixture.date}</span>
               <span className="flex items-center gap-1"><Clock className="w-3 h-3" />{fixture.time}</span>
             </div>
@@ -199,33 +199,33 @@ function FixtureRow({ fixture, delay }: { fixture: Fixture; delay: number }) {
       <div className="flex-1 flex items-center justify-between gap-3 min-w-0">
         <div className="flex items-center gap-3 flex-1 min-w-0">
           <TeamLogo initials={fixture.homeInitials} color={fixture.homeColor} />
-          <span className="text-white font-semibold text-sm truncate">{fixture.homeTeam}</span>
+          <span className="text-foreground font-semibold text-sm truncate">{fixture.homeTeam}</span>
         </div>
 
         <div className="shrink-0 px-3 text-center">
           {isLive || isResult ? (
-            <div className="bg-[#0A0C12] border border-[#1E2A3A] rounded-lg px-3 py-1.5 flex items-center gap-2">
-              <span className={`font-bold text-lg tabular-nums ${isLive ? 'text-white' : 'text-slate-300'}`}>
+            <div className="bg-background border border-border rounded-lg px-3 py-1.5 flex items-center gap-2">
+              <span className={`font-bold text-lg tabular-nums ${isLive ? 'text-foreground' : 'text-foreground/80'}`}>
                 {fixture.homeScore}
               </span>
-              <span className="text-slate-600 text-sm">-</span>
-              <span className={`font-bold text-lg tabular-nums ${isLive ? 'text-white' : 'text-slate-300'}`}>
+              <span className="text-muted-foreground text-sm">-</span>
+              <span className={`font-bold text-lg tabular-nums ${isLive ? 'text-foreground' : 'text-foreground/80'}`}>
                 {fixture.awayScore}
               </span>
             </div>
           ) : (
-            <span className="text-slate-500 text-xs font-medium uppercase tracking-widest">vs</span>
+            <span className="text-muted-foreground text-xs font-medium uppercase tracking-widest">vs</span>
           )}
         </div>
 
         <div className="flex items-center gap-3 flex-1 min-w-0 justify-end">
-          <span className="text-white font-semibold text-sm truncate text-right">{fixture.awayTeam}</span>
+          <span className="text-foreground font-semibold text-sm truncate text-right">{fixture.awayTeam}</span>
           <TeamLogo initials={fixture.awayInitials} color={fixture.awayColor} />
         </div>
       </div>
 
       {/* Venue */}
-      <div className="sm:w-44 shrink-0 flex items-center gap-1.5 text-slate-500 text-xs">
+      <div className="sm:w-44 shrink-0 flex items-center gap-1.5 text-muted-foreground text-xs">
         <MapPin className="w-3 h-3 text-amber-500 shrink-0" />
         <span className="truncate">{fixture.venue}</span>
       </div>
@@ -241,7 +241,7 @@ const sections: { label: string; status: FixtureStatus }[] = [
 
 export default function FixturesPage() {
   return (
-    <div className="min-h-screen bg-[#0A0C12]">
+    <div className="min-h-screen bg-background transition-colors duration-300">
       <div className="pt-24 pb-16">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
           {/* Back */}
@@ -253,7 +253,7 @@ export default function FixturesPage() {
           >
             <Link
               href="/"
-              className="inline-flex items-center gap-1.5 text-slate-400 hover:text-white text-sm transition-colors"
+              className="inline-flex items-center gap-1.5 text-muted-foreground hover:text-foreground text-sm transition-colors"
             >
               <ArrowLeft className="w-4 h-4" />
               Back to home
@@ -268,10 +268,10 @@ export default function FixturesPage() {
             className="mb-12"
           >
             <Badge variant="red" dot size="sm" className="mb-4">Live Match Tracking</Badge>
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
               All Fixtures
             </h1>
-            <p className="text-slate-400 text-lg max-w-xl">
+            <p className="text-muted-foreground text-lg max-w-xl">
               Live scores, upcoming fixtures, and recent results from Canadian rugby competitions.
             </p>
           </motion.div>
@@ -287,7 +287,7 @@ export default function FixturesPage() {
                     {status === 'live' && (
                       <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
                     )}
-                    <h2 className="text-xs font-bold uppercase tracking-widest text-slate-500">
+                    <h2 className="text-xs font-bold uppercase tracking-widest text-muted-foreground">
                       {label}
                     </h2>
                   </div>

@@ -43,7 +43,7 @@ export default function ClubDetailPage() {
   const club = mockClubs.find((c) => c.id === id) ?? mockClubs[0];
 
   return (
-    <div className="min-h-screen bg-[#0A0C12] flex flex-col">
+    <div className="min-h-screen bg-background transition-colors duration-300 flex flex-col">
       {/* Hero */}
       <section className="pt-24 pb-0 relative overflow-hidden">
         {/* Background band */}
@@ -64,7 +64,7 @@ export default function ClubDetailPage() {
             className="mb-6"
           >
             <Link href="/clubs">
-              <Button variant="ghost" size="sm" className="gap-1.5 text-slate-400">
+              <Button variant="ghost" size="sm" className="gap-1.5 text-muted-foreground">
                 <ChevronLeft className="h-4 w-4" /> All Clubs
               </Button>
             </Link>
@@ -79,7 +79,7 @@ export default function ClubDetailPage() {
           >
             {/* Logo / initials */}
             <div
-              className="h-24 w-24 rounded-2xl flex items-center justify-center text-4xl font-black text-white shadow-2xl shrink-0 border-2 border-white/10"
+              className="h-24 w-24 rounded-2xl flex items-center justify-center text-4xl font-black text-foreground shadow-2xl shrink-0 border-2 border-white/10"
               style={{
                 background: `linear-gradient(135deg, ${club.colors.primary}, ${club.colors.secondary})`,
               }}
@@ -94,12 +94,12 @@ export default function ClubDetailPage() {
                 </Badge>
                 <Badge variant="blue" size="sm">{club.division}</Badge>
               </div>
-              <h1 className="text-3xl sm:text-4xl font-black text-white leading-tight">{club.name}</h1>
-              <div className="flex items-center gap-1.5 mt-2 text-slate-400">
+              <h1 className="text-3xl sm:text-4xl font-black text-foreground leading-tight">{club.name}</h1>
+              <div className="flex items-center gap-1.5 mt-2 text-muted-foreground">
                 <MapPin className="h-4 w-4 shrink-0" />
                 <span>{club.city}, {club.province}, {club.country}</span>
               </div>
-              <p className="text-slate-400 mt-3 max-w-2xl leading-relaxed text-sm">{club.description}</p>
+              <p className="text-muted-foreground mt-3 max-w-2xl leading-relaxed text-sm">{club.description}</p>
             </div>
           </motion.div>
         </div>
@@ -121,14 +121,14 @@ export default function ClubDetailPage() {
                 { icon: Trophy, label: 'League Titles', value: club.stats.leagueTitles, color: 'text-amber-400' },
                 { icon: TrendingUp, label: 'Win Rate', value: `${club.stats.winRate}%`, color: 'text-green-400' },
               ].map(({ icon: Icon, label, value, color }, i) => (
-                <Card key={label} className="bg-[#161B27] border-[#1E2A3A]">
+                <Card key={label} className="bg-card border-border">
                   <CardContent className="flex items-center gap-4 py-4">
-                    <div className={cn('h-10 w-10 rounded-xl bg-[#0A0C12] border border-[#1E2A3A] flex items-center justify-center shrink-0', color)}>
+                    <div className={cn('h-10 w-10 rounded-xl bg-background border border-border flex items-center justify-center shrink-0', color)}>
                       <Icon className="h-5 w-5" />
                     </div>
                     <div>
-                      <p className="text-xl font-bold text-white tabular-nums">{value}</p>
-                      <p className="text-xs text-slate-500">{label}</p>
+                      <p className="text-xl font-bold text-foreground tabular-nums">{value}</p>
+                      <p className="text-xs text-muted-foreground">{label}</p>
                     </div>
                   </CardContent>
                 </Card>
@@ -146,7 +146,7 @@ export default function ClubDetailPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.26 }}
               >
-                <Card className="bg-[#161B27] border-[#1E2A3A]">
+                <Card className="bg-card border-border">
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2">
                       <Award className="h-5 w-5 text-amber-400" /> Achievements
@@ -157,14 +157,14 @@ export default function ClubDetailPage() {
                       {club.achievements.map((a) => (
                         <div
                           key={a.id}
-                          className="flex items-start gap-4 p-3 rounded-lg bg-[#0A0C12] border border-[#1E2A3A]"
+                          className="flex items-start gap-4 p-3 rounded-lg bg-background border border-border"
                         >
                           <div className="h-10 w-10 rounded-lg bg-amber-500/10 border border-amber-500/20 flex items-center justify-center shrink-0">
                             <Trophy className="h-4 w-4 text-amber-400" />
                           </div>
                           <div className="flex-1 min-w-0">
                             <div className="flex items-center gap-2 flex-wrap">
-                              <p className="text-sm font-semibold text-white">{a.title}</p>
+                              <p className="text-sm font-semibold text-foreground">{a.title}</p>
                               <Badge
                                 variant={(achievementTypeColors[a.type] ?? 'gray') as 'gold' | 'blue' | 'purple' | 'green' | 'gray'}
                                 size="sm"
@@ -172,7 +172,7 @@ export default function ClubDetailPage() {
                                 {a.type}
                               </Badge>
                             </div>
-                            <p className="text-xs text-slate-500 mt-0.5">{a.description}</p>
+                            <p className="text-xs text-muted-foreground mt-0.5">{a.description}</p>
                           </div>
                           <span className="text-sm font-bold text-amber-400 tabular-nums shrink-0">{a.year}</span>
                         </div>
@@ -188,7 +188,7 @@ export default function ClubDetailPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.32 }}
               >
-                <Card className="bg-[#161B27] border-[#1E2A3A]">
+                <Card className="bg-card border-border">
                   <CardHeader>
                     <CardTitle>Club Sponsors</CardTitle>
                   </CardHeader>
@@ -197,15 +197,15 @@ export default function ClubDetailPage() {
                       {club.sponsors.map((sponsor) => (
                         <div
                           key={sponsor.id}
-                          className="p-3 rounded-lg bg-[#0A0C12] border border-[#1E2A3A] flex items-center gap-2.5"
+                          className="p-3 rounded-lg bg-background border border-border flex items-center gap-2.5"
                         >
-                          <div className="h-8 w-8 rounded-lg bg-[#161B27] border border-[#1E2A3A] flex items-center justify-center shrink-0">
-                            <span className="text-xs font-bold text-slate-400">
+                          <div className="h-8 w-8 rounded-lg bg-card border border-border flex items-center justify-center shrink-0">
+                            <span className="text-xs font-bold text-muted-foreground">
                               {sponsor.name.slice(0, 2).toUpperCase()}
                             </span>
                           </div>
                           <div className="min-w-0">
-                            <p className="text-xs font-semibold text-white truncate">{sponsor.name}</p>
+                            <p className="text-xs font-semibold text-foreground truncate">{sponsor.name}</p>
                             <span className={cn('text-[10px] font-semibold uppercase tracking-wider px-1.5 py-0.5 rounded-full', tierColors[sponsor.tier])}>
                               {sponsor.tier}
                             </span>
@@ -225,7 +225,7 @@ export default function ClubDetailPage() {
               transition={{ duration: 0.5, delay: 0.36 }}
               className="space-y-6"
             >
-              <Card className="bg-[#161B27] border-[#1E2A3A]">
+              <Card className="bg-card border-border">
                 <CardHeader>
                   <CardTitle>Contact Information</CardTitle>
                 </CardHeader>
@@ -237,12 +237,12 @@ export default function ClubDetailPage() {
                     { icon: Globe, label: 'Website', value: club.contact.website },
                   ].map(({ icon: Icon, label, value }) => (
                     <div key={label} className="flex items-start gap-3">
-                      <div className="h-7 w-7 rounded-lg bg-[#0A0C12] border border-[#1E2A3A] flex items-center justify-center shrink-0 mt-0.5">
-                        <Icon className="h-3.5 w-3.5 text-slate-500" />
+                      <div className="h-7 w-7 rounded-lg bg-background border border-border flex items-center justify-center shrink-0 mt-0.5">
+                        <Icon className="h-3.5 w-3.5 text-muted-foreground" />
                       </div>
                       <div>
-                        <p className="text-[10px] text-slate-500 uppercase tracking-wider">{label}</p>
-                        <p className="text-sm text-slate-200 mt-0.5">{value}</p>
+                        <p className="text-[10px] text-muted-foreground uppercase tracking-wider">{label}</p>
+                        <p className="text-sm text-foreground/80 mt-0.5">{value}</p>
                       </div>
                     </div>
                   ))}
@@ -250,33 +250,33 @@ export default function ClubDetailPage() {
               </Card>
 
               {/* Social Media */}
-              <Card className="bg-[#161B27] border-[#1E2A3A]">
+              <Card className="bg-card border-border">
                 <CardHeader>
                   <CardTitle>Social Media</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-2">
                   {club.socialMedia.twitter && (
-                    <a href="#" className="flex items-center gap-3 p-2.5 rounded-lg hover:bg-[#0A0C12] transition-colors group">
+                    <a href="#" className="flex items-center gap-3 p-2.5 rounded-lg hover:bg-muted transition-colors group">
                       <AtSign className="h-4 w-4 text-blue-400 shrink-0" />
-                      <span className="text-sm text-slate-300 group-hover:text-white">{club.socialMedia.twitter}</span>
+                      <span className="text-sm text-foreground/80 group-hover:text-foreground">{club.socialMedia.twitter}</span>
                     </a>
                   )}
                   {club.socialMedia.instagram && (
-                    <a href="#" className="flex items-center gap-3 p-2.5 rounded-lg hover:bg-[#0A0C12] transition-colors group">
+                    <a href="#" className="flex items-center gap-3 p-2.5 rounded-lg hover:bg-muted transition-colors group">
                       <Hash className="h-4 w-4 text-pink-400 shrink-0" />
-                      <span className="text-sm text-slate-300 group-hover:text-white">{club.socialMedia.instagram}</span>
+                      <span className="text-sm text-foreground/80 group-hover:text-foreground">{club.socialMedia.instagram}</span>
                     </a>
                   )}
                   {club.socialMedia.facebook && (
-                    <a href="#" className="flex items-center gap-3 p-2.5 rounded-lg hover:bg-[#0A0C12] transition-colors group">
+                    <a href="#" className="flex items-center gap-3 p-2.5 rounded-lg hover:bg-muted transition-colors group">
                       <Share2 className="h-4 w-4 text-blue-500 shrink-0" />
-                      <span className="text-sm text-slate-300 group-hover:text-white">{club.socialMedia.facebook}</span>
+                      <span className="text-sm text-foreground/80 group-hover:text-foreground">{club.socialMedia.facebook}</span>
                     </a>
                   )}
                   {club.socialMedia.youtube && (
-                    <a href="#" className="flex items-center gap-3 p-2.5 rounded-lg hover:bg-[#0A0C12] transition-colors group">
+                    <a href="#" className="flex items-center gap-3 p-2.5 rounded-lg hover:bg-muted transition-colors group">
                       <PlayCircle className="h-4 w-4 text-red-500 shrink-0" />
-                      <span className="text-sm text-slate-300 group-hover:text-white">{club.socialMedia.youtube}</span>
+                      <span className="text-sm text-foreground/80 group-hover:text-foreground">{club.socialMedia.youtube}</span>
                     </a>
                   )}
                 </CardContent>

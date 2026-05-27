@@ -156,8 +156,8 @@ function NotifIcon({ type }: { type: Notification['type'] }) {
     case 'payment':      return <Zap className={cn(base, 'text-amber-400')} />;
     case 'selection':    return <Shield className={cn(base, 'text-green-400')} />;
     case 'announcement': return <Star className={cn(base, 'text-purple-400')} />;
-    case 'system':       return <CheckCircle className={cn(base, 'text-slate-400')} />;
-    default:             return <Bell className={cn(base, 'text-slate-400')} />;
+    case 'system':       return <CheckCircle className={cn(base, 'text-muted-foreground')} />;
+    default:             return <Bell className={cn(base, 'text-muted-foreground')} />;
   }
 }
 
@@ -261,28 +261,28 @@ export default function AnnouncementsPage() {
             <CardContent className="space-y-4">
               {/* Textarea */}
               <div>
-                <label className="text-xs text-slate-400 font-medium mb-1.5 block">Message</label>
+                <label className="text-xs text-muted-foreground font-medium mb-1.5 block">Message</label>
                 <textarea
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                   placeholder="Write your announcement here..."
                   rows={4}
-                  className="w-full bg-[#0F1117] border border-[#1E2A3A] rounded-lg px-3 py-2.5 text-sm text-white placeholder:text-slate-600 outline-none resize-none focus:border-red-600/50 focus:ring-1 focus:ring-red-600/20 transition-colors"
+                  className="w-full bg-background border border-border rounded-lg px-3 py-2.5 text-sm text-foreground placeholder:text-muted-foreground/50 outline-none resize-none focus:border-red-600/50 focus:ring-1 focus:ring-red-600/20 transition-colors"
                 />
-                <p className="text-[10px] text-slate-600 mt-1 text-right">{message.length} chars</p>
+                <p className="text-[10px] text-muted-foreground/50 mt-1 text-right">{message.length} chars</p>
               </div>
 
               {/* Recipient + Priority row */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="text-xs text-slate-400 font-medium mb-1.5 block">
+                  <label className="text-xs text-muted-foreground font-medium mb-1.5 block">
                     <Users className="h-3 w-3 inline mr-1" />
                     Recipients
                   </label>
                   <select
                     value={recipient}
                     onChange={(e) => setRecipient(e.target.value)}
-                    className="w-full bg-[#0F1117] border border-[#1E2A3A] rounded-lg px-3 py-2 text-sm text-white outline-none focus:border-red-600/50 focus:ring-1 focus:ring-red-600/20 transition-colors appearance-none"
+                    className="w-full bg-background border border-border rounded-lg px-3 py-2 text-sm text-foreground outline-none focus:border-red-600/50 focus:ring-1 focus:ring-red-600/20 transition-colors appearance-none"
                   >
                     {RECIPIENTS.map((r) => (
                       <option key={r} value={r}>{r}</option>
@@ -290,7 +290,7 @@ export default function AnnouncementsPage() {
                   </select>
                 </div>
                 <div>
-                  <label className="text-xs text-slate-400 font-medium mb-1.5 block">
+                  <label className="text-xs text-muted-foreground font-medium mb-1.5 block">
                     Priority
                   </label>
                   <div className="flex items-center gap-2">
@@ -302,11 +302,11 @@ export default function AnnouncementsPage() {
                           'flex-1 py-2 rounded-lg text-xs font-medium border transition-all',
                           priority === p.value
                             ? p.value === 'urgent'
-                              ? 'bg-red-600/20 border-red-600/50 text-red-300'
+                              ? 'bg-red-600/20 border-red-600/50 text-red-600 dark:text-red-300'
                               : p.value === 'info'
-                              ? 'bg-blue-600/20 border-blue-600/50 text-blue-300'
-                              : 'bg-slate-600/20 border-slate-500/50 text-slate-300'
-                            : 'bg-[#0F1117] border-[#1E2A3A] text-slate-500 hover:text-slate-300',
+                              ? 'bg-blue-600/20 border-blue-600/50 text-blue-600 dark:text-blue-300'
+                              : 'bg-muted border-border text-foreground'
+                            : 'bg-background border-border text-muted-foreground hover:text-foreground',
                         )}
                       >
                         {p.label}
@@ -322,7 +322,7 @@ export default function AnnouncementsPage() {
                   variant="ghost"
                   size="sm"
                   onClick={() => { setShowForm(false); setMessage(''); }}
-                  className="text-slate-400 hover:text-white"
+                  className="text-muted-foreground hover:text-foreground"
                 >
                   Cancel
                 </Button>
@@ -346,7 +346,7 @@ export default function AnnouncementsPage() {
           {/* ── Announcements Feed (2/3) ── */}
           <div className="xl:col-span-2 space-y-4">
             <div className="flex items-center justify-between">
-              <h2 className="text-sm font-semibold text-white flex items-center gap-2">
+              <h2 className="text-sm font-semibold text-foreground flex items-center gap-2">
                 <Megaphone className="h-4 w-4 text-red-400" />
                 Club Announcements
               </h2>
@@ -372,8 +372,8 @@ export default function AnnouncementsPage() {
                         size="sm"
                       />
                       <div>
-                        <p className="text-sm font-semibold text-white">{ann.author.name}</p>
-                        <p className="text-[11px] text-slate-500">{ann.author.role}</p>
+                        <p className="text-sm font-semibold text-foreground">{ann.author.name}</p>
+                        <p className="text-[11px] text-muted-foreground">{ann.author.role}</p>
                       </div>
                     </div>
                     <div className="flex items-center gap-2 shrink-0">
@@ -381,7 +381,7 @@ export default function AnnouncementsPage() {
                       <PriorityBadge priority={ann.priority} />
                       <DropdownMenu>
                         <DropdownMenuTrigger asChild>
-                          <button className="h-7 w-7 rounded-md flex items-center justify-center text-slate-500 hover:text-white hover:bg-white/5 transition-colors">
+                          <button className="h-7 w-7 rounded-md flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-foreground/5 transition-colors">
                             <MoreHorizontal className="h-3.5 w-3.5" />
                           </button>
                         </DropdownMenuTrigger>
@@ -406,10 +406,10 @@ export default function AnnouncementsPage() {
                   </div>
 
                   {/* Message */}
-                  <p className="text-sm text-slate-300 leading-relaxed">{ann.message}</p>
+                  <p className="text-sm text-foreground/80 leading-relaxed">{ann.message}</p>
 
                   {/* Timestamp */}
-                  <p className="text-[11px] text-slate-600 mt-3">
+                  <p className="text-[11px] text-muted-foreground/60 mt-3">
                     {getRelativeTime(ann.timestamp)}
                   </p>
                 </CardContent>
@@ -420,7 +420,7 @@ export default function AnnouncementsPage() {
           {/* ── Notifications Feed (1/3) ── */}
           <div className="space-y-4">
             <div className="flex items-center justify-between">
-              <h2 className="text-sm font-semibold text-white flex items-center gap-2">
+              <h2 className="text-sm font-semibold text-foreground flex items-center gap-2">
                 <Bell className="h-4 w-4 text-amber-400" />
                 Notifications
               </h2>
@@ -439,8 +439,8 @@ export default function AnnouncementsPage() {
                     className={cn(
                       'w-full text-left flex items-start gap-3 p-3 rounded-xl border transition-all duration-200',
                       isRead
-                        ? 'bg-[#161B27] border-[#1E2A3A] hover:border-slate-500'
-                        : 'bg-white/2.5 border-white/6 hover:bg-white/4',
+                        ? 'bg-card border-border hover:border-muted-foreground/40'
+                        : 'bg-foreground/2.5 border-foreground/6 hover:bg-foreground/4',
                     )}
                   >
                     {/* Icon */}
@@ -458,7 +458,7 @@ export default function AnnouncementsPage() {
                       <div className="flex items-center gap-2">
                         <p className={cn(
                           'text-xs font-semibold truncate',
-                          isRead ? 'text-slate-300' : 'text-white',
+                          isRead ? 'text-foreground/75' : 'text-foreground',
                         )}>
                           {notif.title}
                         </p>
@@ -466,10 +466,10 @@ export default function AnnouncementsPage() {
                           <span className="h-1.5 w-1.5 rounded-full bg-red-500 shrink-0" />
                         )}
                       </div>
-                      <p className="text-[11px] text-slate-500 mt-0.5 line-clamp-2 leading-snug">
+                      <p className="text-[11px] text-muted-foreground mt-0.5 line-clamp-2 leading-snug">
                         {notif.message}
                       </p>
-                      <p className="text-[10px] text-slate-600 mt-1">
+                      <p className="text-[10px] text-muted-foreground/60 mt-1">
                         {getRelativeTime(notif.timestamp)}
                       </p>
                     </div>
@@ -486,7 +486,7 @@ export default function AnnouncementsPage() {
                 onClick={() =>
                   setReadNotifs(new Set(notifications.map((n) => n.id)))
                 }
-                className="w-full text-xs text-slate-500 hover:text-white"
+                className="w-full text-xs text-muted-foreground hover:text-foreground"
               >
                 <CheckCircle className="h-3.5 w-3.5 mr-1.5" />
                 Mark all as read

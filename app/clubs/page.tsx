@@ -21,7 +21,7 @@ function getInitials(name: string): string {
 
 export default function ClubsPage() {
   return (
-    <div className="min-h-screen bg-[#0A0C12] flex flex-col">
+    <div className="min-h-screen bg-background transition-colors duration-300 flex flex-col">
       {/* Hero */}
       <section className="pt-24 pb-12 px-4 sm:px-6 relative overflow-hidden">
         <div className="absolute inset-0 hero-radial pointer-events-none" />
@@ -39,7 +39,7 @@ export default function ClubsPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.08 }}
-            className="text-4xl sm:text-5xl font-bold text-white mb-4 leading-tight"
+            className="text-4xl sm:text-5xl font-bold text-foreground mb-4 leading-tight"
           >
             Canadian Rugby <span className="gradient-text">Clubs</span>
           </motion.h1>
@@ -47,7 +47,7 @@ export default function ClubsPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.14 }}
-            className="text-slate-400 text-lg max-w-2xl"
+            className="text-muted-foreground text-lg max-w-2xl"
           >
             Discover Canada&apos;s premier rugby clubs — their history, achievements, players, and
             community impact across the nation.
@@ -92,14 +92,14 @@ export default function ClubsPage() {
                     <CardContent className="flex-1 flex flex-col gap-4">
                       {/* Club name & location */}
                       <div>
-                        <h2 className="text-lg font-bold text-white group-hover:text-red-400 transition-colors">
+                        <h2 className="text-lg font-bold text-foreground group-hover:text-red-400 transition-colors">
                           {club.name}
                         </h2>
-                        <div className="flex items-center gap-1.5 mt-1 text-slate-400 text-sm">
+                        <div className="flex items-center gap-1.5 mt-1 text-muted-foreground text-sm">
                           <MapPin className="h-3.5 w-3.5 shrink-0" />
                           <span>{club.city}, {club.province}</span>
                         </div>
-                        <p className="text-xs text-slate-500 mt-0.5">{club.division}</p>
+                        <p className="text-xs text-muted-foreground mt-0.5">{club.division}</p>
                       </div>
 
                       {/* Meta row */}
@@ -121,12 +121,12 @@ export default function ClubsPage() {
                         ].map(({ icon: Icon, label, value }) => (
                           <div
                             key={label}
-                            className="bg-[#0A0C12] border border-[#1E2A3A] rounded-lg p-2.5 flex items-center gap-2"
+                            className="bg-background border border-border rounded-lg p-2.5 flex items-center gap-2"
                           >
-                            <Icon className="h-3.5 w-3.5 text-slate-500 shrink-0" />
+                            <Icon className="h-3.5 w-3.5 text-muted-foreground shrink-0" />
                             <div>
-                              <p className="text-xs font-bold text-white tabular-nums">{value}</p>
-                              <p className="text-[10px] text-slate-500">{label}</p>
+                              <p className="text-xs font-bold text-foreground tabular-nums">{value}</p>
+                              <p className="text-[10px] text-muted-foreground">{label}</p>
                             </div>
                           </div>
                         ))}

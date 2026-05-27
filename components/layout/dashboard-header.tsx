@@ -18,30 +18,30 @@ export function DashboardHeader({ title, subtitle, actions }: DashboardHeaderPro
   const { setMobileOpen } = useSidebar();
 
   return (
-    <header className="sticky top-0 z-30 bg-[#0A0C12]/80 backdrop-blur-xl border-b border-[#1E2A3A] px-4 sm:px-6 h-14 sm:h-16 flex items-center justify-between gap-2 sm:gap-4">
+    <header className="sticky top-0 z-30 bg-background/80 backdrop-blur-xl border-b border-border px-4 sm:px-6 h-14 sm:h-16 flex items-center justify-between gap-2 sm:gap-4 transition-colors duration-300">
       <div className="flex items-center gap-3 min-w-0">
         {/* Mobile hamburger — lives inside the header so it doesn't float over it */}
         <button
           onClick={() => setMobileOpen(true)}
-          className="lg:hidden h-9 w-9 rounded-lg border border-[#1E2A3A] flex items-center justify-center text-slate-400 hover:text-white hover:border-slate-500 transition-colors shrink-0"
+          className="lg:hidden h-9 w-9 rounded-lg border border-border flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-border/70 transition-colors shrink-0"
         >
           <Menu className="h-4 w-4" />
         </button>
         <div className="min-w-0">
-          <h1 className="text-base font-bold text-white truncate">{title}</h1>
-          {subtitle && <p className="text-xs text-slate-500 truncate hidden sm:block">{subtitle}</p>}
+          <h1 className="text-base font-bold text-foreground truncate">{title}</h1>
+          {subtitle && <p className="text-xs text-muted-foreground truncate hidden sm:block">{subtitle}</p>}
         </div>
       </div>
 
       <div className="flex items-center gap-1 sm:gap-2 shrink-0">
         {/* Search - desktop only */}
-        <div className="hidden md:flex items-center gap-2 bg-[#161B27] border border-[#1E2A3A] rounded-lg px-3 h-8 min-w-[200px] max-w-xs">
-          <Search className="h-3.5 w-3.5 text-slate-500 shrink-0" />
+        <div className="hidden md:flex items-center gap-2 bg-card border border-border rounded-lg px-3 h-8 min-w-50 max-w-xs transition-colors duration-300">
+          <Search className="h-3.5 w-3.5 text-muted-foreground shrink-0" />
           <input
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search..."
-            className="bg-transparent text-sm text-white placeholder:text-slate-500 outline-none flex-1 min-w-0"
+            className="bg-transparent text-sm text-foreground placeholder:text-muted-foreground outline-none flex-1 min-w-0"
           />
         </div>
 

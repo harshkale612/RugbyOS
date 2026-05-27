@@ -62,12 +62,12 @@ export function Sidebar({ notificationCount = 3 }: SidebarProps) {
   const SidebarContent = () => (
     <div className="flex flex-col h-full">
       {/* Logo */}
-      <Link href="/" className="flex items-center gap-3 px-4 h-16 border-b border-[#1E2A3A] shrink-0 hover:opacity-80 transition-opacity">
-        <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-red-600 to-red-700 flex items-center justify-center shadow-lg shrink-0">
+      <Link href="/" className="flex items-center gap-3 px-4 h-16 border-b border-(--sidebar-border) shrink-0 hover:opacity-80 transition-opacity">
+        <div className="h-8 w-8 rounded-lg bg-linear-to-br from-red-600 to-red-700 flex items-center justify-center shadow-lg shrink-0">
           <Trophy className="h-4 w-4 text-white" />
         </div>
         {!collapsed && (
-          <span className="font-bold text-base text-white tracking-tight">
+          <span className="font-bold text-base text-foreground tracking-tight">
             Rugby<span className="text-red-500">OS</span>
           </span>
         )}
@@ -75,14 +75,14 @@ export function Sidebar({ notificationCount = 3 }: SidebarProps) {
 
       {/* Club Info */}
       {!collapsed && (
-        <div className="px-4 py-3 border-b border-[#1E2A3A]">
+        <div className="px-4 py-3 border-b border-(--sidebar-border)">
           <div className="flex items-center gap-2.5">
-            <div className="h-8 w-8 rounded-md bg-gradient-to-br from-red-600 to-red-800 flex items-center justify-center text-white font-bold text-xs shrink-0">
+            <div className="h-8 w-8 rounded-md bg-linear-to-br from-red-600 to-red-800 flex items-center justify-center text-white font-bold text-xs shrink-0">
               TOR
             </div>
             <div className="min-w-0">
-              <p className="text-xs font-semibold text-white truncate">Toronto Arrows RFC</p>
-              <p className="text-[10px] text-slate-500 truncate">ORU Premier Division</p>
+              <p className="text-xs font-semibold text-foreground truncate">Toronto Arrows RFC</p>
+              <p className="text-[10px] text-muted-foreground truncate">ORU Premier Division</p>
             </div>
           </div>
         </div>
@@ -93,7 +93,7 @@ export function Sidebar({ notificationCount = 3 }: SidebarProps) {
         {navSections.map((section) => (
           <div key={section.label}>
             {!collapsed && (
-              <p className="px-2 mb-1 text-[10px] font-semibold uppercase tracking-widest text-slate-600">
+              <p className="px-2 mb-1 text-[10px] font-semibold uppercase tracking-widest text-(--sidebar-section-text)">
                 {section.label}
               </p>
             )}
@@ -124,7 +124,7 @@ export function Sidebar({ notificationCount = 3 }: SidebarProps) {
       </nav>
 
       {/* Notifications */}
-      <div className="px-2 py-2 border-t border-[#1E2A3A]">
+      <div className="px-2 py-2 border-t border-(--sidebar-border)">
         <Link
           href="/dashboard/notifications"
           onClick={() => setMobileOpen(false)}
@@ -152,7 +152,7 @@ export function Sidebar({ notificationCount = 3 }: SidebarProps) {
       </div>
 
       {/* User */}
-      <div className="px-3 py-3 border-t border-[#1E2A3A]">
+      <div className="px-3 py-3 border-t border-(--sidebar-border)">
         <div className={cn('flex items-center gap-2.5', collapsed && 'justify-center')}>
           <Avatar
             src="https://api.dicebear.com/7.x/avataaars/svg?seed=admin"
@@ -162,12 +162,12 @@ export function Sidebar({ notificationCount = 3 }: SidebarProps) {
           />
           {!collapsed && (
             <div className="flex-1 min-w-0">
-              <p className="text-xs font-semibold text-white truncate">Brian Kelly</p>
-              <p className="text-[10px] text-slate-500 truncate">Club Admin</p>
+              <p className="text-xs font-semibold text-foreground truncate">Brian Kelly</p>
+              <p className="text-[10px] text-muted-foreground truncate">Club Admin</p>
             </div>
           )}
           {!collapsed && (
-            <button className="text-slate-500 hover:text-red-400 transition-colors p-1 rounded" title="Log out">
+            <button className="text-muted-foreground hover:text-red-400 transition-colors p-1 rounded" title="Log out">
               <LogOut className="h-3.5 w-3.5" />
             </button>
           )}
@@ -177,7 +177,7 @@ export function Sidebar({ notificationCount = 3 }: SidebarProps) {
       {/* Collapse button */}
       <button
         onClick={() => setCollapsed(!collapsed)}
-        className="absolute -right-3 top-20 h-6 w-6 rounded-full bg-[#161B27] border border-[#1E2A3A] flex items-center justify-center text-slate-400 hover:text-white hover:border-red-500/50 transition-all shadow-lg"
+        className="absolute -right-3 top-20 h-6 w-6 rounded-full bg-(--collapse-btn-bg) border border-(--sidebar-border) flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-red-500/50 transition-all shadow-lg"
       >
         {collapsed ? <ChevronRight className="h-3 w-3" /> : <ChevronLeft className="h-3 w-3" />}
       </button>
@@ -190,7 +190,7 @@ export function Sidebar({ notificationCount = 3 }: SidebarProps) {
       <motion.aside
         animate={{ width: collapsed ? 64 : 240 }}
         transition={{ duration: 0.25, ease: 'easeInOut' }}
-        className="hidden lg:flex relative flex-col bg-[#0A0C12] border-r border-[#1E2A3A] h-screen sticky top-0 shrink-0 overflow-hidden"
+        className="hidden lg:flex flex-col bg-(--sidebar-bg) border-r border-(--sidebar-border) h-screen sticky top-0 shrink-0 overflow-hidden transition-colors duration-300"
       >
         <SidebarContent />
       </motion.aside>
@@ -211,11 +211,11 @@ export function Sidebar({ notificationCount = 3 }: SidebarProps) {
               animate={{ x: 0 }}
               exit={{ x: -280 }}
               transition={{ duration: 0.25, ease: 'easeOut' }}
-              className="lg:hidden fixed left-0 top-0 bottom-0 w-[240px] bg-[#0A0C12] border-r border-[#1E2A3A] z-50 flex flex-col"
+              className="lg:hidden fixed left-0 top-0 bottom-0 w-[240px] bg-(--sidebar-bg) border-r border-(--sidebar-border) z-50 flex flex-col transition-colors duration-300"
             >
               <button
                 onClick={() => setMobileOpen(false)}
-                className="absolute top-4 right-4 text-slate-400 hover:text-white p-1"
+                className="absolute top-4 right-4 text-muted-foreground hover:text-foreground p-1"
               >
                 <X className="h-4 w-4" />
               </button>

@@ -106,7 +106,7 @@ function StatCard({ stat, inView }: { stat: StatBlock; inView: boolean }) {
       animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 32 }}
       transition={{ duration: 0.65, delay: stat.delay, ease: [0.22, 1, 0.36, 1] }}
     >
-      <Card className="relative overflow-hidden group border-rugby-border bg-[#161B27] hover:border-white/15 transition-all duration-300 h-full">
+      <Card hover className="relative overflow-hidden group transition-all duration-300 h-full">
         {/* Subtle hover gradient overlay */}
         <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
           style={{ background: 'radial-gradient(ellipse 80% 60% at 50% 0%, rgba(220,38,38,0.05), transparent 70%)' }}
@@ -129,8 +129,8 @@ function StatCard({ stat, inView }: { stat: StatBlock; inView: boolean }) {
 
           {/* Label + Descriptor */}
           <div className="flex flex-col gap-1">
-            <h3 className="text-base font-bold text-white leading-snug">{stat.label}</h3>
-            <p className="text-sm text-slate-500 leading-relaxed">{stat.descriptor}</p>
+            <h3 className="text-base font-bold text-foreground leading-snug">{stat.label}</h3>
+            <p className="text-sm text-muted-foreground leading-relaxed">{stat.descriptor}</p>
           </div>
         </CardContent>
       </Card>
@@ -147,8 +147,8 @@ export function LandingStats() {
   return (
     <section
       ref={ref}
-      className="relative py-20 xl:py-28 border-t border-b border-[#1E2A3A] overflow-hidden"
-      style={{ background: 'hsl(222, 47%, 4%)' }}
+      className="relative py-20 xl:py-28 border-t border-b border-border overflow-hidden"
+      style={{ background: 'hsl(var(--background))' }}
     >
       {/* Subtle radial accent */}
       <div
@@ -171,10 +171,10 @@ export function LandingStats() {
           <p className="text-xs font-bold uppercase tracking-[0.2em] text-red-500 mb-3">
             By the numbers
           </p>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-white leading-tight">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-foreground leading-tight">
             Powering Canadian Rugby
           </h2>
-          <p className="mt-3 text-base text-slate-500 max-w-xl mx-auto">
+          <p className="mt-3 text-base text-muted-foreground max-w-xl mx-auto">
             From grassroots clubs to provincial associations, RugbyOS is the platform
             Canadian rugby trusts to manage what matters.
           </p>

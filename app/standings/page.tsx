@@ -85,7 +85,7 @@ function PositionBadge({ position }: { position: number }) {
     );
   }
   return (
-    <span className="inline-flex items-center justify-center w-7 h-7 rounded-full text-xs font-semibold text-slate-500 bg-[#0A0C12] border border-[#1E2A3A]">
+    <span className="inline-flex items-center justify-center w-7 h-7 rounded-full text-xs font-semibold text-muted-foreground bg-background border border-border">
       {position}
     </span>
   );
@@ -114,26 +114,26 @@ function StandingsTable({ league, leagueIndex }: { league: League; leagueIndex: 
     >
       <div className="flex items-center gap-2 mb-4">
         <TrendingUp className="w-4 h-4 text-amber-500" />
-        <h2 className="text-white font-semibold">{league.name}</h2>
-        <span className="text-slate-500 text-sm">· {league.season}</span>
+        <h2 className="text-foreground font-semibold">{league.name}</h2>
+        <span className="text-muted-foreground text-sm">· {league.season}</span>
         <Badge variant="green" dot size="sm" className="ml-auto">Updated Live</Badge>
       </div>
 
-      <div className="bg-[#161B27] border border-[#1E2A3A] rounded-xl overflow-hidden">
+      <div className="bg-card border border-border rounded-xl overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full min-w-[640px]">
             <thead>
-              <tr className="border-b border-[#1E2A3A]">
-                <th className="py-3 pl-5 pr-3 text-left text-[11px] font-semibold uppercase tracking-wider text-slate-500 w-12">#</th>
-                <th className="py-3 px-3 text-left text-[11px] font-semibold uppercase tracking-wider text-slate-500">Club</th>
-                <th className="py-3 px-3 text-center text-[11px] font-semibold uppercase tracking-wider text-slate-500 w-12">P</th>
-                <th className="py-3 px-3 text-center text-[11px] font-semibold uppercase tracking-wider text-slate-500 w-12">W</th>
-                <th className="py-3 px-3 text-center text-[11px] font-semibold uppercase tracking-wider text-slate-500 w-12">D</th>
-                <th className="py-3 px-3 text-center text-[11px] font-semibold uppercase tracking-wider text-slate-500 w-12">L</th>
-                <th className="py-3 px-3 text-center text-[11px] font-semibold uppercase tracking-wider text-slate-500 w-14">PF</th>
-                <th className="py-3 px-3 text-center text-[11px] font-semibold uppercase tracking-wider text-slate-500 w-14">PA</th>
-                <th className="py-3 px-3 text-center text-[11px] font-semibold uppercase tracking-wider text-slate-500 w-16">Pts</th>
-                <th className="py-3 pl-3 pr-5 text-left text-[11px] font-semibold uppercase tracking-wider text-slate-500 w-32">Form</th>
+              <tr className="border-b border-border">
+                <th className="py-3 pl-5 pr-3 text-left text-[11px] font-semibold uppercase tracking-wider text-muted-foreground w-12">#</th>
+                <th className="py-3 px-3 text-left text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">Club</th>
+                <th className="py-3 px-3 text-center text-[11px] font-semibold uppercase tracking-wider text-muted-foreground w-12">P</th>
+                <th className="py-3 px-3 text-center text-[11px] font-semibold uppercase tracking-wider text-muted-foreground w-12">W</th>
+                <th className="py-3 px-3 text-center text-[11px] font-semibold uppercase tracking-wider text-muted-foreground w-12">D</th>
+                <th className="py-3 px-3 text-center text-[11px] font-semibold uppercase tracking-wider text-muted-foreground w-12">L</th>
+                <th className="py-3 px-3 text-center text-[11px] font-semibold uppercase tracking-wider text-muted-foreground w-14">PF</th>
+                <th className="py-3 px-3 text-center text-[11px] font-semibold uppercase tracking-wider text-muted-foreground w-14">PA</th>
+                <th className="py-3 px-3 text-center text-[11px] font-semibold uppercase tracking-wider text-muted-foreground w-16">Pts</th>
+                <th className="py-3 pl-3 pr-5 text-left text-[11px] font-semibold uppercase tracking-wider text-muted-foreground w-32">Form</th>
               </tr>
             </thead>
             <tbody>
@@ -146,7 +146,7 @@ function StandingsTable({ league, leagueIndex }: { league: League; leagueIndex: 
                   className={`relative border-b last:border-b-0 transition-colors duration-200 ${
                     row.isUserTeam
                       ? 'border-red-900/30 bg-red-600/5 hover:bg-red-600/10'
-                      : 'border-[#1E2A3A] hover:bg-white/[0.02]'
+                      : 'border-border hover:bg-foreground/2'
                   }`}
                 >
                   <td className="py-3.5 pl-5 pr-3 relative">
@@ -157,20 +157,20 @@ function StandingsTable({ league, leagueIndex }: { league: League; leagueIndex: 
                   </td>
                   <td className="py-3.5 px-3">
                     <div className="flex items-center gap-2">
-                      <span className={`font-semibold text-sm ${row.isUserTeam ? 'text-white' : 'text-slate-200'}`}>
+                      <span className={`font-semibold text-sm ${row.isUserTeam ? 'text-foreground' : 'text-foreground/80'}`}>
                         {row.team}
                       </span>
                       {row.isUserTeam && <Badge variant="red" size="sm">Your Club</Badge>}
                     </div>
                   </td>
-                  <td className="py-3.5 px-3 text-center text-slate-400 text-sm tabular-nums">{row.played}</td>
-                  <td className="py-3.5 px-3 text-center text-slate-400 text-sm tabular-nums">{row.won}</td>
-                  <td className="py-3.5 px-3 text-center text-slate-400 text-sm tabular-nums">{row.drawn}</td>
-                  <td className="py-3.5 px-3 text-center text-slate-400 text-sm tabular-nums">{row.lost}</td>
-                  <td className="py-3.5 px-3 text-center text-slate-400 text-sm tabular-nums">{row.pointsFor}</td>
-                  <td className="py-3.5 px-3 text-center text-slate-400 text-sm tabular-nums">{row.pointsAgainst}</td>
+                  <td className="py-3.5 px-3 text-center text-muted-foreground text-sm tabular-nums">{row.played}</td>
+                  <td className="py-3.5 px-3 text-center text-muted-foreground text-sm tabular-nums">{row.won}</td>
+                  <td className="py-3.5 px-3 text-center text-muted-foreground text-sm tabular-nums">{row.drawn}</td>
+                  <td className="py-3.5 px-3 text-center text-muted-foreground text-sm tabular-nums">{row.lost}</td>
+                  <td className="py-3.5 px-3 text-center text-muted-foreground text-sm tabular-nums">{row.pointsFor}</td>
+                  <td className="py-3.5 px-3 text-center text-muted-foreground text-sm tabular-nums">{row.pointsAgainst}</td>
                   <td className="py-3.5 px-3 text-center">
-                    <span className={`font-bold text-sm tabular-nums ${row.isUserTeam ? 'text-amber-400' : 'text-white'}`}>
+                    <span className={`font-bold text-sm tabular-nums ${row.isUserTeam ? 'text-amber-400' : 'text-foreground'}`}>
                       {row.points}
                     </span>
                   </td>
@@ -182,15 +182,15 @@ function StandingsTable({ league, leagueIndex }: { league: League; leagueIndex: 
         </div>
 
         {/* Legend */}
-        <div className="px-5 py-3 border-t border-[#1E2A3A] flex items-center gap-4 flex-wrap">
-          <span className="text-slate-600 text-xs font-medium">Form guide:</span>
+        <div className="px-5 py-3 border-t border-border flex items-center gap-4 flex-wrap">
+          <span className="text-muted-foreground text-xs font-medium">Form guide:</span>
           {(['W', 'L', 'D'] as FormResult[]).map((r) => (
             <div key={r} className="flex items-center gap-1.5">
               <span className={`w-2 h-2 rounded-full ${formDotStyle[r]}`} />
-              <span className="text-slate-500 text-xs">{formLabel[r]}</span>
+              <span className="text-muted-foreground text-xs">{formLabel[r]}</span>
             </div>
           ))}
-          <span className="text-slate-600 text-xs font-medium ml-4">PF = Points For · PA = Points Against</span>
+          <span className="text-muted-foreground text-xs font-medium ml-4">PF = Points For · PA = Points Against</span>
         </div>
       </div>
     </motion.div>
@@ -199,7 +199,7 @@ function StandingsTable({ league, leagueIndex }: { league: League; leagueIndex: 
 
 export default function StandingsPage() {
   return (
-    <div className="min-h-screen bg-[#0A0C12]">
+    <div className="min-h-screen bg-background transition-colors duration-300">
       <div className="pt-24 pb-16">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           {/* Back */}
@@ -211,7 +211,7 @@ export default function StandingsPage() {
           >
             <Link
               href="/"
-              className="inline-flex items-center gap-1.5 text-slate-400 hover:text-white text-sm transition-colors"
+              className="inline-flex items-center gap-1.5 text-muted-foreground hover:text-foreground text-sm transition-colors"
             >
               <ArrowLeft className="w-4 h-4" />
               Back to home
@@ -226,10 +226,10 @@ export default function StandingsPage() {
             className="mb-12"
           >
             <Badge variant="gold" dot size="sm" className="mb-4">League Standings</Badge>
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
               Full Standings
             </h1>
-            <p className="text-slate-400 text-lg max-w-xl">
+            <p className="text-muted-foreground text-lg max-w-xl">
               Complete league tables, form guides, and points breakdowns for all Canadian rugby competitions.
             </p>
           </motion.div>

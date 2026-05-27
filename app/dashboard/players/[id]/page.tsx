@@ -49,7 +49,7 @@ export default function PlayerDetailPage() {
 
   // Season stats items for display
   const seasonStatCards = [
-    { label: 'Matches', value: player.seasonStats.matches, avg: 18, color: 'text-white' },
+    { label: 'Matches', value: player.seasonStats.matches, avg: 18, color: 'text-foreground' },
     { label: 'Tries', value: player.seasonStats.tries, avg: 7, color: 'text-red-400' },
     { label: 'Conversions', value: player.seasonStats.conversions, avg: 12, color: 'text-amber-400' },
     { label: 'Penalties', value: player.seasonStats.penalties, avg: 8, color: 'text-blue-400' },
@@ -65,7 +65,7 @@ export default function PlayerDetailPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#0A0C12]">
+    <div className="min-h-screen bg-background transition-colors duration-300">
       <DashboardHeader
         title={player.name}
         subtitle={player.position}
@@ -87,7 +87,7 @@ export default function PlayerDetailPage() {
         {/* Back button */}
         <motion.div {...fadeUp}>
           <Link href="/dashboard/players">
-            <Button variant="ghost" size="sm" className="text-slate-400 hover:text-white gap-1.5 -ml-2">
+            <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground gap-1.5 -ml-2">
               <ArrowLeft className="h-4 w-4" />
               All Players
             </Button>
@@ -98,15 +98,15 @@ export default function PlayerDetailPage() {
         <motion.div
           {...fadeUp}
           transition={{ duration: 0.35, delay: 0.05 }}
-          className="relative rounded-2xl overflow-hidden bg-gradient-to-br from-[#1a0a0a] via-[#161B27] to-[#0A0C12] border border-[#1E2A3A] p-6"
+          className="relative rounded-2xl overflow-hidden bg-card border border-border p-6"
         >
-          <div className="absolute inset-0 bg-gradient-to-r from-red-600/8 via-transparent to-transparent pointer-events-none" />
+          <div className="absolute inset-0 bg-linear-to-r from-red-600/8 via-transparent to-transparent pointer-events-none" />
           <div className="absolute top-0 right-0 w-72 h-72 bg-red-600/5 rounded-full blur-3xl pointer-events-none" />
           <div className="relative z-10 flex flex-col sm:flex-row items-start sm:items-center gap-6">
             {/* Avatar + jersey */}
             <div className="relative shrink-0">
               <Avatar src={player.avatar} name={player.name} size="2xl" />
-              <span className="absolute -bottom-1 -right-1 inline-flex items-center justify-center h-8 w-8 rounded-full bg-red-600 border-2 border-[#0A0C12] text-sm font-black text-white shadow-lg">
+              <span className="absolute -bottom-1 -right-1 inline-flex items-center justify-center h-8 w-8 rounded-full bg-red-600 border-2 border-background text-sm font-black text-foreground shadow-lg">
                 {player.jerseyNumber}
               </span>
             </div>
@@ -114,7 +114,7 @@ export default function PlayerDetailPage() {
             {/* Details */}
             <div className="flex-1">
               <div className="flex flex-wrap items-center gap-2 mb-2">
-                <h2 className="text-2xl font-black text-white">{player.name}</h2>
+                <h2 className="text-2xl font-black text-foreground">{player.name}</h2>
                 {player.isCaptain && (
                   <span className="inline-flex items-center justify-center h-6 w-6 rounded-full bg-amber-500/20 text-amber-400 text-xs font-black border border-amber-500/30">
                     C
@@ -127,19 +127,19 @@ export default function PlayerDetailPage() {
               <p className="text-red-400 font-semibold text-sm mb-3">{player.position}</p>
 
               <div className="flex flex-wrap gap-4 text-sm">
-                <div className="flex items-center gap-1.5 text-slate-400">
+                <div className="flex items-center gap-1.5 text-muted-foreground">
                   <Flag className="h-3.5 w-3.5" />
                   <span>{player.nationality}</span>
                 </div>
-                <div className="flex items-center gap-1.5 text-slate-400">
+                <div className="flex items-center gap-1.5 text-muted-foreground">
                   <Calendar className="h-3.5 w-3.5" />
                   <span>{age} yrs old</span>
                 </div>
-                <div className="flex items-center gap-1.5 text-slate-400">
+                <div className="flex items-center gap-1.5 text-muted-foreground">
                   <Ruler className="h-3.5 w-3.5" />
                   <span>{player.height} cm</span>
                 </div>
-                <div className="flex items-center gap-1.5 text-slate-400">
+                <div className="flex items-center gap-1.5 text-muted-foreground">
                   <Weight className="h-3.5 w-3.5" />
                   <span>{player.weight} kg</span>
                 </div>
@@ -157,14 +157,14 @@ export default function PlayerDetailPage() {
         >
           {overviewStats.map((s) => (
             <motion.div key={s.label} variants={fadeUp}>
-              <Card className="bg-[#161B27] border border-[#1E2A3A]">
+              <Card className="">
                 <CardContent className="p-4 flex items-center gap-3">
-                  <div className="h-9 w-9 rounded-lg bg-[#0F1117] border border-[#1E2A3A] flex items-center justify-center shrink-0">
+                  <div className="h-9 w-9 rounded-lg bg-background border border-border flex items-center justify-center shrink-0">
                     {s.icon}
                   </div>
                   <div>
-                    <p className="text-[10px] text-slate-500 uppercase tracking-wider">{s.label}</p>
-                    <p className="text-xl font-black text-white">{s.value}</p>
+                    <p className="text-[10px] text-muted-foreground uppercase tracking-wider">{s.label}</p>
+                    <p className="text-xl font-black text-foreground">{s.value}</p>
                   </div>
                 </CardContent>
               </Card>
@@ -192,10 +192,10 @@ export default function PlayerDetailPage() {
               >
                 {seasonStatCards.map((s) => (
                   <motion.div key={s.label} variants={fadeUp}>
-                    <Card className="bg-[#161B27] border border-[#1E2A3A]">
+                    <Card className="">
                       <CardContent className="p-5">
                         <div className="flex items-center justify-between mb-3">
-                          <p className="text-sm text-slate-400">{s.label}</p>
+                          <p className="text-sm text-muted-foreground">{s.label}</p>
                           <span className={`text-2xl font-black ${s.color}`}>{s.value}</span>
                         </div>
                         <Progress
@@ -205,8 +205,8 @@ export default function PlayerDetailPage() {
                           size="sm"
                         />
                         <div className="flex items-center justify-between mt-1.5">
-                          <p className="text-[10px] text-slate-500">Season progress</p>
-                          <p className="text-[10px] text-slate-500">Avg {s.avg}</p>
+                          <p className="text-[10px] text-muted-foreground">Season progress</p>
+                          <p className="text-[10px] text-muted-foreground">Avg {s.avg}</p>
                         </div>
                       </CardContent>
                     </Card>
@@ -218,19 +218,19 @@ export default function PlayerDetailPage() {
             {/* Match History Tab */}
             <TabsContent value="history">
               <motion.div key="history" {...fadeUp}>
-                <Card className="bg-[#161B27] border border-[#1E2A3A]">
+                <Card className="">
                   <CardContent className="p-0">
                     {player.matchHistory.length === 0 ? (
-                      <div className="py-16 text-center text-slate-500">No match history recorded.</div>
+                      <div className="py-16 text-center text-muted-foreground">No match history recorded.</div>
                     ) : (
                       <div className="overflow-x-auto">
                         <table className="w-full text-sm">
                           <thead>
-                            <tr className="border-b border-[#1E2A3A]">
+                            <tr className="border-b border-border">
                               {['Date', 'Opponent', 'Result', 'Score', 'Tries', 'Conv.', 'Pts', 'Mins'].map((h) => (
                                 <th
                                   key={h}
-                                  className="px-4 py-3 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider first:pl-5 last:pr-5"
+                                  className="px-4 py-3 text-left text-xs font-semibold text-muted-foreground uppercase tracking-wider first:pl-5 last:pr-5"
                                 >
                                   {h}
                                 </th>
@@ -244,23 +244,23 @@ export default function PlayerDetailPage() {
                                 initial={{ opacity: 0, x: -8 }}
                                 animate={{ opacity: 1, x: 0 }}
                                 transition={{ delay: idx * 0.04 }}
-                                className="border-b border-[#1E2A3A] last:border-0 hover:bg-white/[0.02] transition-colors"
+                                className="border-b border-border last:border-0 hover:bg-foreground/2 transition-colors"
                               >
-                                <td className="pl-5 pr-4 py-3 text-xs text-slate-400 whitespace-nowrap">
+                                <td className="pl-5 pr-4 py-3 text-xs text-muted-foreground whitespace-nowrap">
                                   {new Date(entry.date).toLocaleDateString('en-CA', {
                                     month: 'short',
                                     day: 'numeric',
                                   })}
                                 </td>
-                                <td className="px-4 py-3 font-medium text-white whitespace-nowrap">{entry.opponent}</td>
+                                <td className="px-4 py-3 font-medium text-foreground whitespace-nowrap">{entry.opponent}</td>
                                 <td className="px-4 py-3">
                                   <span className={`text-sm ${resultColor[entry.result]}`}>{entry.result}</span>
                                 </td>
-                                <td className="px-4 py-3 text-slate-300 font-mono text-xs">{entry.score}</td>
+                                <td className="px-4 py-3 text-foreground/75 font-mono text-xs">{entry.score}</td>
                                 <td className="px-4 py-3 text-center font-semibold text-red-400">{entry.tries}</td>
                                 <td className="px-4 py-3 text-center font-semibold text-amber-400">{entry.conversions}</td>
-                                <td className="px-4 py-3 text-center font-bold text-white">{entry.points}</td>
-                                <td className="pr-5 px-4 py-3 text-center text-slate-400">{entry.minutesPlayed}'</td>
+                                <td className="px-4 py-3 text-center font-bold text-foreground">{entry.points}</td>
+                                <td className="pr-5 px-4 py-3 text-center text-muted-foreground">{entry.minutesPlayed}'</td>
                               </motion.tr>
                             ))}
                           </tbody>
@@ -284,12 +284,12 @@ export default function PlayerDetailPage() {
                 {/* Bio */}
                 {player.bio && (
                   <motion.div variants={fadeUp}>
-                    <Card className="bg-[#161B27] border border-[#1E2A3A] h-full">
+                    <Card className="h-full">
                       <CardHeader>
-                        <CardTitle className="text-sm text-white">Biography</CardTitle>
+                        <CardTitle className="text-sm text-foreground">Biography</CardTitle>
                       </CardHeader>
                       <CardContent>
-                        <p className="text-sm text-slate-400 leading-relaxed">{player.bio}</p>
+                        <p className="text-sm text-muted-foreground leading-relaxed">{player.bio}</p>
                       </CardContent>
                     </Card>
                   </motion.div>
@@ -297,45 +297,45 @@ export default function PlayerDetailPage() {
 
                 {/* Details */}
                 <motion.div variants={fadeUp}>
-                  <Card className="bg-[#161B27] border border-[#1E2A3A] h-full">
+                  <Card className="h-full">
                     <CardHeader>
-                      <CardTitle className="text-sm text-white">Player Details</CardTitle>
+                      <CardTitle className="text-sm text-foreground">Player Details</CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-4">
                       <div className="grid grid-cols-2 gap-4">
-                        <div className="bg-[#0F1117] rounded-lg p-3">
-                          <p className="text-[10px] text-slate-500 uppercase tracking-wider mb-1">Position Group</p>
-                          <p className="text-sm font-semibold text-white">{positionGroup}</p>
+                        <div className="bg-muted rounded-lg p-3">
+                          <p className="text-[10px] text-muted-foreground uppercase tracking-wider mb-1">Position Group</p>
+                          <p className="text-sm font-semibold text-foreground">{positionGroup}</p>
                         </div>
-                        <div className="bg-[#0F1117] rounded-lg p-3">
-                          <p className="text-[10px] text-slate-500 uppercase tracking-wider mb-1">Nationality</p>
-                          <p className="text-sm font-semibold text-white">{player.nationality}</p>
+                        <div className="bg-muted rounded-lg p-3">
+                          <p className="text-[10px] text-muted-foreground uppercase tracking-wider mb-1">Nationality</p>
+                          <p className="text-sm font-semibold text-foreground">{player.nationality}</p>
                         </div>
-                        <div className="bg-[#0F1117] rounded-lg p-3">
-                          <p className="text-[10px] text-slate-500 uppercase tracking-wider mb-1">Date of Birth</p>
-                          <p className="text-sm font-semibold text-white">
+                        <div className="bg-muted rounded-lg p-3">
+                          <p className="text-[10px] text-muted-foreground uppercase tracking-wider mb-1">Date of Birth</p>
+                          <p className="text-sm font-semibold text-foreground">
                             {formatDate(player.dateOfBirth, { year: 'numeric', month: 'short', day: 'numeric' })}
                           </p>
                         </div>
-                        <div className="bg-[#0F1117] rounded-lg p-3">
-                          <p className="text-[10px] text-slate-500 uppercase tracking-wider mb-1">Joined Club</p>
-                          <p className="text-sm font-semibold text-white">
+                        <div className="bg-muted rounded-lg p-3">
+                          <p className="text-[10px] text-muted-foreground uppercase tracking-wider mb-1">Joined Club</p>
+                          <p className="text-sm font-semibold text-foreground">
                             {formatDate(player.joinedDate, { year: 'numeric', month: 'short', day: 'numeric' })}
                           </p>
                         </div>
-                        <div className="bg-[#0F1117] rounded-lg p-3">
-                          <p className="text-[10px] text-slate-500 uppercase tracking-wider mb-1">Height</p>
-                          <p className="text-sm font-semibold text-white">{player.height} cm</p>
+                        <div className="bg-muted rounded-lg p-3">
+                          <p className="text-[10px] text-muted-foreground uppercase tracking-wider mb-1">Height</p>
+                          <p className="text-sm font-semibold text-foreground">{player.height} cm</p>
                         </div>
-                        <div className="bg-[#0F1117] rounded-lg p-3">
-                          <p className="text-[10px] text-slate-500 uppercase tracking-wider mb-1">Weight</p>
-                          <p className="text-sm font-semibold text-white">{player.weight} kg</p>
+                        <div className="bg-muted rounded-lg p-3">
+                          <p className="text-[10px] text-muted-foreground uppercase tracking-wider mb-1">Weight</p>
+                          <p className="text-sm font-semibold text-foreground">{player.weight} kg</p>
                         </div>
                       </div>
 
                       {/* Career stats summary */}
-                      <div className="pt-3 border-t border-[#1E2A3A]">
-                        <p className="text-xs text-slate-500 mb-3 uppercase tracking-wider">Career Records</p>
+                      <div className="pt-3 border-t border-border">
+                        <p className="text-xs text-muted-foreground mb-3 uppercase tracking-wider">Career Records</p>
                         <div className="space-y-2 text-sm">
                           {[
                             { label: 'Total Matches', value: player.stats.totalMatches },
@@ -346,8 +346,8 @@ export default function PlayerDetailPage() {
                             { label: 'Red Cards', value: player.stats.redCards },
                           ].map(({ label, value }) => (
                             <div key={label} className="flex items-center justify-between">
-                              <span className="text-slate-400">{label}</span>
-                              <span className="font-semibold text-white">{value}</span>
+                              <span className="text-muted-foreground">{label}</span>
+                              <span className="font-semibold text-foreground">{value}</span>
                             </div>
                           ))}
                         </div>

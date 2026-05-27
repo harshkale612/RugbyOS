@@ -39,8 +39,8 @@ const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(
             'rounded-full overflow-hidden flex items-center justify-center font-semibold',
             sizeClasses[size],
             !src || imgError
-              ? 'bg-gradient-to-br from-red-600 to-red-800 text-white'
-              : 'bg-slate-800'
+              ? 'bg-linear-to-br from-red-600 to-red-800 text-white'
+              : 'bg-muted'
           )}
         >
           {src && !imgError ? (
@@ -57,7 +57,7 @@ const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(
         {status && (
           <span
             className={cn(
-              'absolute bottom-0 right-0 rounded-full border-2 border-[#0F1117]',
+              'absolute bottom-0 right-0 rounded-full border-2 border-background',
               statusClasses[status],
               size === 'xs' || size === 'sm' ? 'h-2 w-2' : 'h-3 w-3'
             )}

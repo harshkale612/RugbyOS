@@ -13,19 +13,19 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant = 'primary', size = 'md', loading, disabled, children, ...props }, ref) => {
     const base =
-      'inline-flex items-center justify-center gap-2 font-semibold transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0c12] disabled:pointer-events-none disabled:opacity-50 select-none cursor-pointer border-0';
+      'inline-flex items-center justify-center gap-2 font-semibold transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50 select-none cursor-pointer border-0';
 
     const variants = {
       primary:
         'bg-red-600 hover:bg-red-500 text-white focus-visible:ring-red-500 shadow-lg hover:shadow-red-600/25 active:scale-[0.98]',
       secondary:
-        'bg-[#161B27] hover:bg-[#1E2A3A] text-slate-200 border border-[#1E2A3A] hover:border-slate-600/50 focus-visible:ring-slate-500',
+        'bg-secondary hover:bg-secondary/80 text-secondary-foreground border border-border hover:border-border/70 focus-visible:ring-ring',
       ghost:
-        'bg-transparent hover:bg-white/5 text-slate-300 hover:text-white focus-visible:ring-slate-500',
+        'bg-transparent hover:bg-foreground/5 text-muted-foreground hover:text-foreground focus-visible:ring-ring',
       outline:
-        'bg-transparent border border-[#1E2A3A] hover:border-red-500/50 text-slate-300 hover:text-white hover:bg-red-500/5 focus-visible:ring-red-500',
+        'bg-transparent border border-border hover:border-primary/50 text-muted-foreground hover:text-foreground hover:bg-primary/5 focus-visible:ring-primary',
       danger:
-        'bg-red-900/30 hover:bg-red-600 text-red-400 hover:text-white border border-red-800/50 hover:border-red-500 focus-visible:ring-red-500',
+        'bg-red-500/10 hover:bg-red-600 text-red-500 hover:text-white border border-red-500/30 hover:border-red-500 focus-visible:ring-red-500',
       gold:
         'bg-amber-500 hover:bg-amber-400 text-black font-bold focus-visible:ring-amber-400 shadow-lg hover:shadow-amber-500/25 active:scale-[0.98]',
     };

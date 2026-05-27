@@ -54,7 +54,7 @@ function TeamCard({
   return (
     <motion.div variants={fadeUp} className="relative group/card">
       <Link href={`/dashboard/teams/${team.id}`} className="block group">
-        <Card className="bg-[#161B27] border border-[#1E2A3A] hover:border-red-600/40 transition-all duration-200 group-hover:shadow-lg group-hover:shadow-red-900/20 h-full">
+        <Card className="hover:border-red-600/40 transition-all duration-200 group-hover:shadow-lg group-hover:shadow-red-900/20 h-full">
           <CardContent className="p-5 space-y-4">
             {/* Header */}
             <div className="flex items-start justify-between gap-3">
@@ -62,19 +62,19 @@ function TeamCard({
                 {/* Kit swatches */}
                 <div className="relative h-10 w-10 shrink-0">
                   <span
-                    className="absolute top-0 left-0 h-7 w-7 rounded-full border-2 border-[#0A0C12] shadow"
+                    className="absolute top-0 left-0 h-7 w-7 rounded-full border-2 border-background shadow"
                     style={{ backgroundColor: team.kitColors.home }}
                   />
                   <span
-                    className="absolute bottom-0 right-0 h-7 w-7 rounded-full border-2 border-[#0A0C12] shadow"
+                    className="absolute bottom-0 right-0 h-7 w-7 rounded-full border-2 border-background shadow"
                     style={{ backgroundColor: team.kitColors.away }}
                   />
                 </div>
                 <div>
-                  <p className="font-bold text-white group-hover:text-red-400 transition-colors">
+                  <p className="font-bold text-foreground group-hover:text-red-400 transition-colors">
                     {team.name}
                   </p>
-                  <p className="text-xs text-slate-500">{team.division}</p>
+                  <p className="text-xs text-muted-foreground">{team.division}</p>
                 </div>
               </div>
               {getPositionBadge(team.standing.position)}
@@ -87,7 +87,7 @@ function TeamCard({
             </div>
 
             {/* Stats mini-row */}
-            <div className="grid grid-cols-4 gap-2 bg-[#0F1117] rounded-xl p-3">
+            <div className="grid grid-cols-4 gap-2 bg-background rounded-xl p-3 border border-border/40">
               {[
                 { label: 'P', value: team.stats.played },
                 { label: 'W', value: team.stats.won, color: 'text-green-400' },
@@ -95,8 +95,8 @@ function TeamCard({
                 { label: 'D', value: team.stats.drawn, color: 'text-amber-400' },
               ].map(({ label, value, color }) => (
                 <div key={label} className="text-center">
-                  <p className="text-[10px] text-slate-500 uppercase">{label}</p>
-                  <p className={`text-sm font-bold ${color ?? 'text-white'}`}>{value}</p>
+                  <p className="text-[10px] text-muted-foreground uppercase">{label}</p>
+                  <p className={`text-sm font-bold ${color ?? 'text-foreground'}`}>{value}</p>
                 </div>
               ))}
             </div>
@@ -104,10 +104,10 @@ function TeamCard({
             {/* Win rate bar */}
             <div className="space-y-1">
               <div className="flex items-center justify-between text-xs">
-                <span className="text-slate-500">Win Rate</span>
-                <span className="font-semibold text-white">{winRate}%</span>
+                <span className="text-muted-foreground">Win Rate</span>
+                <span className="font-semibold text-foreground">{winRate}%</span>
               </div>
-              <div className="h-1.5 bg-[#1E2A3A] rounded-full overflow-hidden">
+              <div className="h-1.5 bg-border/40 rounded-full overflow-hidden">
                 <div
                   className="h-full bg-linear-to-r from-red-600 to-amber-500 rounded-full transition-all duration-700"
                   style={{ width: `${winRate}%` }}
@@ -116,15 +116,15 @@ function TeamCard({
             </div>
 
             {/* Coach */}
-            <div className="flex items-center justify-between pt-3 border-t border-[#1E2A3A]">
+            <div className="flex items-center justify-between pt-3 border-t border-border">
               <div className="flex items-center gap-2">
                 <Avatar src={team.coach.avatar} name={team.coach.name} size="sm" />
                 <div>
-                  <p className="text-xs font-medium text-white">{team.coach.name}</p>
-                  <p className="text-[10px] text-slate-500">{team.coach.role}</p>
+                  <p className="text-xs font-medium text-foreground">{team.coach.name}</p>
+                  <p className="text-[10px] text-muted-foreground">{team.coach.role}</p>
                 </div>
               </div>
-              <div className="flex items-center gap-1 text-xs text-slate-500">
+              <div className="flex items-center gap-1 text-xs text-muted-foreground">
                 <MapPin className="h-3 w-3" />
                 <span className="hidden sm:block truncate max-w-25">{team.homeVenue.split(',')[0]}</span>
               </div>
@@ -134,7 +134,7 @@ function TeamCard({
             <Button
               variant="ghost"
               size="sm"
-              className="w-full bg-[#0F1117] hover:bg-red-600/10 hover:text-red-400 border border-[#1E2A3A] hover:border-red-600/30 transition-all"
+              className="w-full bg-background hover:bg-red-600/10 hover:text-red-400 border border-border hover:border-red-600/30 transition-all"
             >
               View Team
               <ChevronRight className="h-4 w-4 ml-1" />
@@ -148,7 +148,7 @@ function TeamCard({
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <button
-              className="h-7 w-7 rounded-md bg-[#0F1117]/90 border border-[#1E2A3A] flex items-center justify-center text-slate-400 hover:text-white hover:bg-[#1E2A3A] transition-colors"
+              className="h-7 w-7 rounded-md bg-background/90 border border-border flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
               onClick={(e) => e.preventDefault()}
             >
               <MoreHorizontal className="h-3.5 w-3.5" />
@@ -198,7 +198,7 @@ export default function TeamsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#0A0C12]">
+    <div className="min-h-screen bg-background transition-colors duration-300">
       <DashboardHeader
         title="Teams"
         subtitle={`${teams.length} Active Teams`}
@@ -221,14 +221,14 @@ export default function TeamsPage() {
             { label: 'Top Position', value: `#${topPosition}`, icon: <Trophy className="h-4 w-4 text-amber-400" /> },
             { label: 'Combined Record', value: `${totalWins}W-${totalLosses}L-${totalDraws}D`, icon: <Trophy className="h-4 w-4 text-green-400" /> },
           ].map((s) => (
-            <Card key={s.label} className="bg-[#161B27] border border-[#1E2A3A]">
+            <Card key={s.label}>
               <CardContent className="p-3 sm:p-4 flex items-center gap-2 sm:gap-3">
-                <div className="h-9 w-9 rounded-lg bg-[#0F1117] border border-[#1E2A3A] flex items-center justify-center shrink-0">
+                <div className="h-9 w-9 rounded-lg bg-background border border-border flex items-center justify-center shrink-0">
                   {s.icon}
                 </div>
                 <div>
-                  <p className="text-[10px] text-slate-500 uppercase tracking-wider">{s.label}</p>
-                  <p className="text-xs sm:text-sm font-bold text-white leading-tight">{s.value}</p>
+                  <p className="text-[10px] text-muted-foreground uppercase tracking-wider">{s.label}</p>
+                  <p className="text-xs sm:text-sm font-bold text-foreground leading-tight">{s.value}</p>
                 </div>
               </CardContent>
             </Card>
@@ -244,13 +244,13 @@ export default function TeamsPage() {
               className={`px-4 py-1.5 rounded-lg text-sm font-medium transition-all duration-200 border ${
                 filter === f
                   ? 'bg-red-600 text-white border-red-600'
-                  : 'bg-[#161B27] text-slate-400 border-[#1E2A3A] hover:text-white hover:border-red-600/30'
+                  : 'bg-card text-muted-foreground border-border hover:text-foreground hover:border-red-600/30'
               }`}
             >
               {f.charAt(0).toUpperCase() + f.slice(1)}
             </button>
           ))}
-          <span className="text-xs text-slate-500 ml-2">{filtered.length} teams</span>
+          <span className="text-xs text-muted-foreground ml-2">{filtered.length} teams</span>
         </motion.div>
 
         {/* Teams grid */}

@@ -73,18 +73,18 @@ export default function TeamDetailPage() {
       : 0;
 
   const statsGrid = [
-    { label: 'Played', value: team.stats.played, color: 'text-white' },
+    { label: 'Played', value: team.stats.played, color: 'text-foreground' },
     { label: 'Won', value: team.stats.won, color: 'text-green-400' },
     { label: 'Lost', value: team.stats.lost, color: 'text-red-400' },
     { label: 'Drawn', value: team.stats.drawn, color: 'text-amber-400' },
-    { label: 'Points For', value: team.stats.pointsFor, color: 'text-white' },
-    { label: 'Points Against', value: team.stats.pointsAgainst, color: 'text-white' },
+    { label: 'Points For', value: team.stats.pointsFor, color: 'text-foreground' },
+    { label: 'Points Against', value: team.stats.pointsAgainst, color: 'text-foreground' },
     { label: 'Tries', value: team.stats.tries, color: 'text-red-400' },
     { label: 'Win Rate', value: `${winRate}%`, color: 'text-green-400' },
   ];
 
   return (
-    <div className="min-h-screen bg-[#0A0C12]">
+    <div className="min-h-screen bg-background transition-colors duration-300">
       <DashboardHeader
         title={team.name}
         subtitle={team.division}
@@ -100,7 +100,7 @@ export default function TeamDetailPage() {
         {/* Back button */}
         <motion.div {...fadeUp}>
           <Link href="/dashboard/teams">
-            <Button variant="ghost" size="sm" className="text-slate-400 hover:text-white gap-1.5 -ml-2">
+            <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground gap-1.5 -ml-2">
               <ArrowLeft className="h-4 w-4" />
               All Teams
             </Button>
@@ -111,27 +111,27 @@ export default function TeamDetailPage() {
         <motion.div
           {...fadeUp}
           transition={{ duration: 0.35, delay: 0.05 }}
-          className="relative rounded-2xl overflow-hidden bg-gradient-to-br from-[#1a0a0a] via-[#161B27] to-[#0A0C12] border border-[#1E2A3A] p-6"
+          className="relative rounded-2xl overflow-hidden bg-card border border-border p-6"
         >
-          <div className="absolute inset-0 bg-gradient-to-r from-red-600/8 via-transparent to-transparent pointer-events-none" />
+          <div className="absolute inset-0 bg-linear-to-r from-red-600/8 via-transparent to-transparent pointer-events-none" />
           <div className="relative z-10 flex flex-col sm:flex-row items-start sm:items-center gap-5">
             {/* Kit swatches */}
             <div className="relative h-14 w-14 shrink-0">
               <span
-                className="absolute top-0 left-0 h-10 w-10 rounded-full border-2 border-[#0A0C12] shadow-lg"
+                className="absolute top-0 left-0 h-10 w-10 rounded-full border-2 border-background shadow-lg"
                 style={{ backgroundColor: team.kitColors.home }}
               />
               <span
-                className="absolute bottom-0 right-0 h-10 w-10 rounded-full border-2 border-[#0A0C12] shadow-lg"
+                className="absolute bottom-0 right-0 h-10 w-10 rounded-full border-2 border-background shadow-lg"
                 style={{ backgroundColor: team.kitColors.away }}
               />
             </div>
             <div className="flex-1">
               <div className="flex flex-wrap items-center gap-3 mb-1">
-                <h2 className="text-2xl font-black text-white">{team.name}</h2>
+                <h2 className="text-2xl font-black text-foreground">{team.name}</h2>
                 <Badge variant="gold" size="sm">#{team.standing.position} in {team.standing.leagueName}</Badge>
               </div>
-              <div className="flex flex-wrap items-center gap-3 text-sm text-slate-400">
+              <div className="flex flex-wrap items-center gap-3 text-sm text-muted-foreground">
                 <span className="flex items-center gap-1">
                   <Calendar className="h-3.5 w-3.5" />
                   Season {team.season}
@@ -149,7 +149,7 @@ export default function TeamDetailPage() {
             <div className="flex items-center gap-3">
               <Avatar src={team.coach.avatar} name={team.coach.name} size="lg" />
               <div>
-                <p className="text-sm font-semibold text-white">{team.coach.name}</p>
+                <p className="text-sm font-semibold text-foreground">{team.coach.name}</p>
                 <p className="text-xs text-red-400">{team.coach.role}</p>
               </div>
             </div>
@@ -170,7 +170,7 @@ export default function TeamDetailPage() {
               <motion.div key="roster" {...fadeUp} className="space-y-3">
                 {/* Roster header with Add Player */}
                 <div className="flex items-center justify-between">
-                  <p className="text-sm text-slate-400">
+                  <p className="text-sm text-muted-foreground">
                     {players.length} player{players.length !== 1 ? 's' : ''} in squad
                   </p>
                   <Button size="sm" className="gap-1.5" onClick={() => toast('Add Player to roster coming soon', 'info')}>
@@ -179,19 +179,19 @@ export default function TeamDetailPage() {
                   </Button>
                 </div>
 
-                <Card className="bg-[#161B27] border border-[#1E2A3A]">
+                <Card className="">
                   <CardContent className="p-0">
                     {players.length === 0 ? (
-                      <div className="py-16 text-center text-slate-500">No players assigned to this team yet.</div>
+                      <div className="py-16 text-center text-muted-foreground">No players assigned to this team yet.</div>
                     ) : (
                       <div className="overflow-x-auto">
                         <table className="w-full text-sm">
                           <thead>
-                            <tr className="border-b border-[#1E2A3A]">
+                            <tr className="border-b border-border">
                               {['#', 'Player', 'Position', 'Status', 'Tries', 'Points', ''].map((h) => (
                                 <th
                                   key={h}
-                                  className="px-4 py-3 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider first:pl-5 last:pr-5"
+                                  className="px-4 py-3 text-left text-xs font-semibold text-muted-foreground uppercase tracking-wider first:pl-5 last:pr-5"
                                 >
                                   {h}
                                 </th>
@@ -205,10 +205,10 @@ export default function TeamDetailPage() {
                                 initial={{ opacity: 0, x: -8 }}
                                 animate={{ opacity: 1, x: 0 }}
                                 transition={{ delay: idx * 0.04 }}
-                                className="border-b border-[#1E2A3A] last:border-0 hover:bg-white/[0.02] transition-colors group/row"
+                                className="border-b border-border last:border-0 hover:bg-foreground/2 transition-colors group/row"
                               >
                                 <td className="pl-5 pr-4 py-3">
-                                  <span className="inline-flex items-center justify-center h-6 w-6 rounded-md bg-[#0F1117] border border-[#1E2A3A] text-xs font-bold text-white">
+                                  <span className="inline-flex items-center justify-center h-6 w-6 rounded-md bg-background border border-border text-xs font-bold text-foreground">
                                     {player.jerseyNumber}
                                   </span>
                                 </td>
@@ -218,7 +218,7 @@ export default function TeamDetailPage() {
                                     <div>
                                       <Link
                                         href={`/dashboard/players/${player.id}`}
-                                        className="font-medium text-white hover:text-red-400 transition-colors"
+                                        className="font-medium text-foreground hover:text-red-400 transition-colors"
                                       >
                                         {player.name}
                                       </Link>
@@ -230,7 +230,7 @@ export default function TeamDetailPage() {
                                     </div>
                                   </div>
                                 </td>
-                                <td className="px-4 py-3 text-slate-400 text-xs">{player.position}</td>
+                                <td className="px-4 py-3 text-muted-foreground text-xs">{player.position}</td>
                                 <td className="px-4 py-3">
                                   <Badge
                                     variant={statusVariant[player.status] ?? 'gray'}
@@ -250,14 +250,14 @@ export default function TeamDetailPage() {
                                   <div className="flex items-center justify-end opacity-0 group-hover/row:opacity-100 transition-opacity gap-1">
                                     <button
                                       onClick={() => handleEditPlayer(player.id)}
-                                      className="h-7 w-7 rounded-md flex items-center justify-center text-slate-500 hover:text-white hover:bg-white/5 transition-colors"
+                                      className="h-7 w-7 rounded-md flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-foreground/5 transition-colors"
                                       title="Edit player"
                                     >
                                       <Pencil className="h-3.5 w-3.5" />
                                     </button>
                                     <button
                                       onClick={() => handleDeletePlayer(player.id)}
-                                      className="h-7 w-7 rounded-md flex items-center justify-center text-slate-500 hover:text-red-400 hover:bg-red-500/10 transition-colors"
+                                      className="h-7 w-7 rounded-md flex items-center justify-center text-muted-foreground hover:text-red-400 hover:bg-red-500/10 transition-colors"
                                       title="Remove from roster"
                                     >
                                       <Trash2 className="h-3.5 w-3.5" />
@@ -286,9 +286,9 @@ export default function TeamDetailPage() {
               >
                 <motion.div variants={fadeUp} className="grid grid-cols-2 md:grid-cols-4 gap-4">
                   {statsGrid.map((s) => (
-                    <Card key={s.label} className="bg-[#161B27] border border-[#1E2A3A]">
+                    <Card key={s.label} className="">
                       <CardContent className="p-4 text-center">
-                        <p className="text-xs text-slate-500 uppercase tracking-wider mb-1">{s.label}</p>
+                        <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">{s.label}</p>
                         <p className={`text-2xl font-black ${s.color}`}>{s.value}</p>
                       </CardContent>
                     </Card>
@@ -296,9 +296,9 @@ export default function TeamDetailPage() {
                 </motion.div>
 
                 <motion.div variants={fadeUp}>
-                  <Card className="bg-[#161B27] border border-[#1E2A3A]">
+                  <Card className="">
                     <CardHeader>
-                      <CardTitle className="flex items-center gap-2 text-white text-sm">
+                      <CardTitle className="flex items-center gap-2 text-foreground text-sm">
                         <TrendingUp className="h-4 w-4 text-red-500" />
                         Win / Loss Ratio
                       </CardTitle>
@@ -315,15 +315,15 @@ export default function TeamDetailPage() {
                       <div className="grid grid-cols-3 gap-4 pt-2">
                         <div className="text-center">
                           <p className="text-2xl font-black text-green-400">{team.stats.won}</p>
-                          <p className="text-xs text-slate-500">Wins</p>
+                          <p className="text-xs text-muted-foreground">Wins</p>
                         </div>
                         <div className="text-center">
                           <p className="text-2xl font-black text-amber-400">{team.stats.drawn}</p>
-                          <p className="text-xs text-slate-500">Draws</p>
+                          <p className="text-xs text-muted-foreground">Draws</p>
                         </div>
                         <div className="text-center">
                           <p className="text-2xl font-black text-red-400">{team.stats.lost}</p>
-                          <p className="text-xs text-slate-500">Losses</p>
+                          <p className="text-xs text-muted-foreground">Losses</p>
                         </div>
                       </div>
                     </CardContent>
@@ -331,9 +331,9 @@ export default function TeamDetailPage() {
                 </motion.div>
 
                 <motion.div variants={fadeUp} className="grid md:grid-cols-2 gap-4">
-                  <Card className="bg-[#161B27] border border-[#1E2A3A]">
+                  <Card className="">
                     <CardHeader>
-                      <CardTitle className="text-sm text-white">Points</CardTitle>
+                      <CardTitle className="text-sm text-foreground">Points</CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-3">
                       <Progress
@@ -344,7 +344,7 @@ export default function TeamDetailPage() {
                         showLabel={false}
                       />
                       <div className="flex items-center justify-between text-sm">
-                        <span className="text-slate-400">Points For</span>
+                        <span className="text-muted-foreground">Points For</span>
                         <span className="font-bold text-green-400">{team.stats.pointsFor}</span>
                       </div>
                       <Progress
@@ -353,32 +353,32 @@ export default function TeamDetailPage() {
                         color="red"
                       />
                       <div className="flex items-center justify-between text-sm">
-                        <span className="text-slate-400">Points Against</span>
+                        <span className="text-muted-foreground">Points Against</span>
                         <span className="font-bold text-red-400">{team.stats.pointsAgainst}</span>
                       </div>
                     </CardContent>
                   </Card>
 
-                  <Card className="bg-[#161B27] border border-[#1E2A3A]">
+                  <Card className="">
                     <CardHeader>
-                      <CardTitle className="text-sm text-white">Discipline</CardTitle>
+                      <CardTitle className="text-sm text-foreground">Discipline</CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-4">
                       <div className="flex items-center justify-between">
-                        <span className="text-sm text-slate-400">Yellow Cards</span>
+                        <span className="text-sm text-muted-foreground">Yellow Cards</span>
                         <span className="font-bold text-amber-400">{team.stats.yellowCards}</span>
                       </div>
                       <div className="flex items-center justify-between">
-                        <span className="text-sm text-slate-400">Red Cards</span>
+                        <span className="text-sm text-muted-foreground">Red Cards</span>
                         <span className="font-bold text-red-500">{team.stats.redCards}</span>
                       </div>
                       <div className="flex items-center justify-between">
-                        <span className="text-sm text-slate-400">Tries Scored</span>
-                        <span className="font-bold text-white">{team.stats.tries}</span>
+                        <span className="text-sm text-muted-foreground">Tries Scored</span>
+                        <span className="font-bold text-foreground">{team.stats.tries}</span>
                       </div>
                       <div className="flex items-center justify-between">
-                        <span className="text-sm text-slate-400">Tries Conceded</span>
-                        <span className="font-bold text-slate-400">{team.stats.triesAgainst}</span>
+                        <span className="text-sm text-muted-foreground">Tries Conceded</span>
+                        <span className="font-bold text-muted-foreground">{team.stats.triesAgainst}</span>
                       </div>
                     </CardContent>
                   </Card>
@@ -397,33 +397,33 @@ export default function TeamDetailPage() {
               >
                 {upcomingMatches.map((match) => (
                   <motion.div key={match.id} variants={fadeUp}>
-                    <Card className="bg-[#161B27] border border-[#1E2A3A]">
+                    <Card className="">
                       <CardContent className="p-5 flex items-center justify-between gap-4 flex-wrap">
                         <div className="flex items-center gap-4">
-                          <div className="h-10 w-10 rounded-lg bg-[#0F1117] border border-[#1E2A3A] flex items-center justify-center">
-                            <Calendar className="h-5 w-5 text-slate-400" />
+                          <div className="h-10 w-10 rounded-lg bg-background border border-border flex items-center justify-center">
+                            <Calendar className="h-5 w-5 text-muted-foreground" />
                           </div>
                           <div>
                             <div className="flex items-center gap-2 flex-wrap">
-                              <p className="font-semibold text-white">vs {match.opponent}</p>
+                              <p className="font-semibold text-foreground">vs {match.opponent}</p>
                               <Badge variant={match.isHome ? 'green' : 'gray'} size="sm">
                                 {match.isHome ? 'Home' : 'Away'}
                               </Badge>
                             </div>
-                            <div className="flex items-center gap-2 mt-0.5 text-xs text-slate-500">
+                            <div className="flex items-center gap-2 mt-0.5 text-xs text-muted-foreground">
                               <MapPin className="h-3 w-3" />
                               {match.venue}
                             </div>
                           </div>
                         </div>
                         <div className="text-right">
-                          <p className="text-sm font-semibold text-white">
+                          <p className="text-sm font-semibold text-foreground">
                             {new Date(match.date).toLocaleDateString('en-CA', {
                               month: 'short',
                               day: 'numeric',
                             })}
                           </p>
-                          <p className="text-xs text-slate-500">{match.competition}</p>
+                          <p className="text-xs text-muted-foreground">{match.competition}</p>
                         </div>
                       </CardContent>
                     </Card>

@@ -36,7 +36,7 @@ function Toggle({ checked, onChange }: { checked: boolean; onChange: () => void 
       onClick={onChange}
       className={cn(
         'relative inline-flex h-5 w-9 rounded-full transition-colors duration-200 cursor-pointer',
-        checked ? 'bg-red-600' : 'bg-slate-700'
+        checked ? 'bg-red-600' : 'bg-muted'
       )}
     >
       <span className={cn(
@@ -88,7 +88,7 @@ export default function SettingsPage() {
                       <Button variant="secondary" size="sm" onClick={() => toast('Photo upload coming soon', 'info')}>
                         <Upload className="h-3.5 w-3.5 mr-1.5" /> Change Photo
                       </Button>
-                      <p className="text-xs text-slate-500 mt-1">JPG, PNG up to 5MB</p>
+                      <p className="text-xs text-muted-foreground mt-1">JPG, PNG up to 5MB</p>
                     </div>
                   </div>
                   <div className="space-y-4">
@@ -114,7 +114,7 @@ export default function SettingsPage() {
                       <Label>Role</Label>
                       <div className="flex items-center gap-2 mt-1">
                         <Badge variant="red">Club Admin</Badge>
-                        <span className="text-xs text-slate-500">Contact your administrator to change roles</span>
+                        <span className="text-xs text-muted-foreground">Contact your administrator to change roles</span>
                       </div>
                     </FormGroup>
                   </div>
@@ -144,7 +144,7 @@ export default function SettingsPage() {
                       </FormGroup>
                       <FormGroup>
                         <Label>Province</Label>
-                        <select className="flex h-10 w-full rounded-lg border bg-[#0F1117] px-3 py-2 text-sm text-white border-[#1E2A3A] focus:border-red-500/60 focus:outline-none" defaultValue="Ontario">
+                        <select className="flex h-10 w-full rounded-lg border bg-background px-3 py-2 text-sm text-foreground border-border focus:border-red-500/60 focus:outline-none" defaultValue="Ontario">
                           {provinces.map(p => <option key={p} value={p}>{p}</option>)}
                         </select>
                       </FormGroup>
@@ -162,11 +162,11 @@ export default function SettingsPage() {
                       <div className="flex items-center gap-3 mt-1.5">
                         <div className="flex items-center gap-2">
                           <div className="h-8 w-8 rounded-full bg-red-600 border-2 border-white/20 cursor-pointer" />
-                          <span className="text-xs text-slate-400">Primary</span>
+                          <span className="text-xs text-muted-foreground">Primary</span>
                         </div>
                         <div className="flex items-center gap-2">
                           <div className="h-8 w-8 rounded-full bg-[#1E3A5F] border-2 border-white/20 cursor-pointer" />
-                          <span className="text-xs text-slate-400">Secondary</span>
+                          <span className="text-xs text-muted-foreground">Secondary</span>
                         </div>
                       </div>
                     </div>
@@ -185,15 +185,15 @@ export default function SettingsPage() {
               <Card>
                 <CardHeader><CardTitle>Notification Preferences</CardTitle></CardHeader>
                 <CardContent>
-                  <div className="mb-3 grid grid-cols-3 text-xs font-semibold uppercase tracking-wider text-slate-500 px-1">
+                  <div className="mb-3 grid grid-cols-3 text-xs font-semibold uppercase tracking-wider text-muted-foreground px-1">
                     <span>Category</span>
                     <span className="text-center">Email</span>
                     <span className="text-center">Push</span>
                   </div>
                   <div className="space-y-3">
                     {Object.entries(notifs).map(([key, val]) => (
-                      <div key={key} className="grid grid-cols-3 items-center py-2 border-b border-[#1E2A3A] last:border-0">
-                        <span className="text-sm text-slate-300 font-medium">{key}</span>
+                      <div key={key} className="grid grid-cols-3 items-center py-2 border-b border-border last:border-0">
+                        <span className="text-sm text-foreground font-medium">{key}</span>
                         <div className="flex justify-center">
                           <Toggle checked={val.email} onChange={() => toggleNotif(key, 'email')} />
                         </div>
@@ -218,11 +218,11 @@ export default function SettingsPage() {
                     <div>
                       <div className="flex items-center gap-2 mb-1">
                         <Zap className="h-4 w-4 text-amber-400" />
-                        <span className="text-white font-bold">Professional Plan</span>
+                        <span className="text-foreground font-bold">Professional Plan</span>
                         <Badge variant="gold">Active</Badge>
                       </div>
-                      <p className="text-2xl font-bold text-white">$89<span className="text-sm font-normal text-slate-400">/month</span></p>
-                      <p className="text-xs text-slate-500 mt-1">Next billing: November 1, 2024</p>
+                      <p className="text-2xl font-bold text-foreground">$89<span className="text-sm font-normal text-muted-foreground">/month</span></p>
+                      <p className="text-xs text-muted-foreground mt-1">Next billing: November 1, 2024</p>
                     </div>
                     <Button variant="outline" size="sm" onClick={() => toast('Plan management coming soon', 'info')}>Manage Plan</Button>
                   </div>
@@ -234,12 +234,12 @@ export default function SettingsPage() {
                     ].map(item => (
                       <div key={item.label}>
                         <div className="flex justify-between text-xs mb-1">
-                          <span className="text-slate-400">{item.label}</span>
-                          <span className="text-slate-300 font-semibold">{item.used}{item.unit ?? ''} / {item.max}{item.unit ?? ''}</span>
+                          <span className="text-muted-foreground">{item.label}</span>
+                          <span className="text-foreground/80 font-semibold">{item.used}{item.unit ?? ''} / {item.max}{item.unit ?? ''}</span>
                         </div>
-                        <div className="h-1.5 bg-[#1E2A3A] rounded-full overflow-hidden">
+                        <div className="h-1.5 bg-border/40 rounded-full overflow-hidden">
                           <div
-                            className="h-full rounded-full bg-gradient-to-r from-red-600 to-amber-500"
+                            className="h-full rounded-full bg-linear-to-r from-red-600 to-amber-500"
                             style={{ width: `${(item.used / item.max) * 100}%` }}
                           />
                         </div>
@@ -255,8 +255,8 @@ export default function SettingsPage() {
                   <div className="flex items-center gap-3 mb-2">
                     <Zap className="h-5 w-5 text-amber-400" />
                     <div>
-                      <p className="text-white font-semibold">Enterprise Plan — $199/month</p>
-                      <p className="text-xs text-slate-400">Unlimited players, advanced analytics, dedicated support</p>
+                      <p className="text-foreground font-semibold">Enterprise Plan — $199/month</p>
+                      <p className="text-xs text-muted-foreground">Unlimited players, advanced analytics, dedicated support</p>
                     </div>
                   </div>
                   <Button variant="gold" size="sm" onClick={() => toast('Enterprise upgrade coming soon', 'info')}>Upgrade to Enterprise</Button>

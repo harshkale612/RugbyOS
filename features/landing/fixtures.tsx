@@ -56,11 +56,11 @@ function FixtureCard({
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay }}
       whileHover={{ y: -4, transition: { duration: 0.2 } }}
-      className="bg-[#161B27] border border-[#1E2A3A] rounded-xl p-5 flex flex-col gap-4 hover:border-red-600/40 transition-colors duration-300 cursor-pointer"
+      className="bg-card border border-border rounded-xl p-5 flex flex-col gap-4 hover:border-red-600/40 transition-colors duration-300 cursor-pointer"
     >
       <div className="flex items-center justify-between">
         <Badge variant="gray" size="sm">{competition}</Badge>
-        <div className="flex items-center gap-1.5 text-slate-500 text-xs">
+        <div className="flex items-center gap-1.5 text-muted-foreground text-xs">
           <Calendar className="w-3 h-3" />
           <span>{date}</span>
         </div>
@@ -69,25 +69,25 @@ function FixtureCard({
       <div className="flex items-center justify-between gap-3">
         <div className="flex items-center gap-3 flex-1 min-w-0">
           <TeamLogo initials={homeInitials} color={homeColor} />
-          <span className="text-white font-semibold text-sm truncate">{homeTeam}</span>
+          <span className="text-foreground font-semibold text-sm truncate">{homeTeam}</span>
         </div>
 
         <div className="flex flex-col items-center shrink-0 px-2">
-          <span className="text-slate-500 text-xs font-medium uppercase tracking-widest">vs</span>
+          <span className="text-muted-foreground text-xs font-medium uppercase tracking-widest">vs</span>
         </div>
 
         <div className="flex items-center gap-3 flex-1 min-w-0 justify-end">
-          <span className="text-white font-semibold text-sm truncate text-right">{awayTeam}</span>
+          <span className="text-foreground font-semibold text-sm truncate text-right">{awayTeam}</span>
           <TeamLogo initials={awayInitials} color={awayColor} />
         </div>
       </div>
 
-      <div className="flex items-center gap-4 pt-1 border-t border-[#1E2A3A]">
-        <div className="flex items-center gap-1.5 text-slate-400 text-xs">
+      <div className="flex items-center gap-4 pt-1 border-t border-border">
+        <div className="flex items-center gap-1.5 text-muted-foreground text-xs">
           <Clock className="w-3 h-3 text-amber-500" />
           <span>{time}</span>
         </div>
-        <div className="flex items-center gap-1.5 text-slate-400 text-xs">
+        <div className="flex items-center gap-1.5 text-muted-foreground text-xs">
           <MapPin className="w-3 h-3 text-amber-500" />
           <span className="truncate">{venue}</span>
         </div>
@@ -104,39 +104,39 @@ function LiveMatchCard() {
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: 0.3 }}
       whileHover={{ y: -4, transition: { duration: 0.2 } }}
-      className="bg-[#161B27] border border-red-600/50 rounded-xl p-5 flex flex-col gap-4 relative overflow-hidden cursor-pointer"
+      className="bg-card border border-red-600/50 rounded-xl p-5 flex flex-col gap-4 relative overflow-hidden cursor-pointer"
     >
       {/* Red glow top edge */}
-      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-red-600 to-transparent" />
+      <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-red-600 to-transparent" />
 
       <div className="flex items-center justify-between">
         <Badge variant="red" dot size="sm">LIVE</Badge>
-        <span className="text-slate-500 text-xs">ORU Premier Division · R14</span>
+        <span className="text-muted-foreground text-xs">ORU Premier Division · R14</span>
       </div>
 
       <div className="flex items-center justify-between gap-3">
         <div className="flex items-center gap-3 flex-1 min-w-0">
           <TeamLogo initials="TA" color="#DC2626" />
-          <span className="text-white font-semibold text-sm truncate">Toronto Arrows RFC</span>
+          <span className="text-foreground font-semibold text-sm truncate">Toronto Arrows RFC</span>
         </div>
 
         <div className="flex flex-col items-center shrink-0 px-3">
-          <div className="bg-[#0A0C12] border border-[#1E2A3A] rounded-lg px-3 py-1.5 flex items-center gap-2">
-            <span className="text-white font-bold text-lg tabular-nums">17</span>
-            <span className="text-slate-600 text-sm">-</span>
-            <span className="text-white font-bold text-lg tabular-nums">14</span>
+          <div className="bg-background border border-border rounded-lg px-3 py-1.5 flex items-center gap-2">
+            <span className="text-foreground font-bold text-lg tabular-nums">17</span>
+            <span className="text-muted-foreground text-sm">-</span>
+            <span className="text-foreground font-bold text-lg tabular-nums">14</span>
           </div>
           <span className="text-red-400 text-[10px] font-semibold mt-1 animate-pulse">52&apos;</span>
         </div>
 
         <div className="flex items-center gap-3 flex-1 min-w-0 justify-end">
-          <span className="text-white font-semibold text-sm truncate text-right">Hamilton RFC</span>
+          <span className="text-foreground font-semibold text-sm truncate text-right">Hamilton RFC</span>
           <TeamLogo initials="HC" color="#1E40AF" />
         </div>
       </div>
 
       <div className="flex items-center gap-4 pt-1 border-t border-red-900/30">
-        <div className="flex items-center gap-1.5 text-slate-400 text-xs">
+        <div className="flex items-center gap-1.5 text-muted-foreground text-xs">
           <MapPin className="w-3 h-3 text-amber-500" />
           <span>Tim Hortons Field, Hamilton</span>
         </div>
@@ -147,7 +147,7 @@ function LiveMatchCard() {
 
 export function LandingFixtures() {
   return (
-    <section className="py-20 px-4 bg-[#0A0C12]">
+    <section className="py-20 px-4 bg-background transition-colors duration-300">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <motion.div
@@ -158,10 +158,10 @@ export function LandingFixtures() {
           className="text-center mb-12"
         >
           <Badge variant="red" dot size="sm" className="mb-4">Live Match Tracking</Badge>
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
             Upcoming Fixtures
           </h2>
-          <p className="text-slate-400 text-lg max-w-xl mx-auto">
+          <p className="text-muted-foreground text-lg max-w-xl mx-auto">
             Real-time scores, fixture schedules, and competition standings — all in one place for your club.
           </p>
         </motion.div>
@@ -191,7 +191,7 @@ export function LandingFixtures() {
           transition={{ duration: 0.4, delay: 0.1 }}
           className="mb-3"
         >
-          <p className="text-xs font-semibold uppercase tracking-widest text-slate-500">
+          <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
             Upcoming
           </p>
         </motion.div>
@@ -246,7 +246,7 @@ export function LandingFixtures() {
           className="text-center"
         >
           <Link href="/fixtures">
-            <Button variant="ghost" size="lg" className="group text-slate-300 hover:text-white">
+            <Button variant="ghost" size="lg" className="group text-muted-foreground hover:text-foreground">
               View All Fixtures
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Button>

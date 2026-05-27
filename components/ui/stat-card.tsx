@@ -55,11 +55,11 @@ export function StatCard({
       )}
     >
       <div className={cn(
-        'h-full bg-gradient-to-br p-4 sm:p-5',
+        'h-full bg-linear-to-br p-4 sm:p-5',
         accentMap[accentColor]
       )}>
         <div className="flex items-start justify-between mb-4">
-          <p className="text-xs font-semibold uppercase tracking-widest text-slate-400">{title}</p>
+          <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">{title}</p>
           {icon && (
             <div className={cn('p-2 rounded-lg', iconBg[accentColor])}>
               {icon}
@@ -68,7 +68,7 @@ export function StatCard({
         </div>
 
         <div className="mt-1">
-          <span className="text-2xl sm:text-3xl font-bold text-white tabular-nums tracking-tight">
+          <span className="text-2xl sm:text-3xl font-bold text-foreground tabular-nums tracking-tight">
             {value}
           </span>
         </div>
@@ -79,7 +79,7 @@ export function StatCard({
               'inline-flex items-center gap-0.5 text-xs font-semibold',
               trendPositive && 'text-green-400',
               trendNegative && 'text-red-400',
-              !trendPositive && !trendNegative && 'text-slate-400',
+              !trendPositive && !trendNegative && 'text-muted-foreground',
             )}>
               {trendPositive && <TrendingUp className="h-3 w-3" />}
               {trendNegative && <TrendingDown className="h-3 w-3" />}
@@ -87,8 +87,8 @@ export function StatCard({
               {trend > 0 ? '+' : ''}{trend}%
             </span>
           )}
-          {subtitle && <p className="text-xs text-slate-500">{subtitle}</p>}
-          {trendLabel && <p className="text-xs text-slate-500">{trendLabel}</p>}
+          {subtitle && <p className="text-xs text-muted-foreground">{subtitle}</p>}
+          {trendLabel && <p className="text-xs text-muted-foreground">{trendLabel}</p>}
         </div>
       </div>
     </motion.div>

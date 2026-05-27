@@ -11,16 +11,16 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     return (
       <div className="relative w-full">
         {icon && (
-          <div className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 pointer-events-none">
+          <div className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground pointer-events-none">
             {icon}
           </div>
         )}
         <input
           type={type}
           className={cn(
-            'flex h-10 w-full rounded-lg border bg-[#0F1117] px-3 py-2 text-sm text-white transition-colors',
-            'placeholder:text-slate-500',
-            'border-[#1E2A3A] focus:border-red-500/60 focus:outline-none focus:ring-2 focus:ring-red-500/20',
+            'flex h-10 w-full rounded-lg border bg-background px-3 py-2 text-sm text-foreground transition-colors',
+            'placeholder:text-muted-foreground',
+            'border-border focus:border-red-500/60 focus:outline-none focus:ring-2 focus:ring-red-500/20',
             'disabled:cursor-not-allowed disabled:opacity-50',
             error && 'border-red-500 focus:border-red-500',
             icon && 'pl-9',
@@ -42,7 +42,7 @@ const Label = React.forwardRef<HTMLLabelElement, React.LabelHTMLAttributes<HTMLL
   ({ className, ...props }, ref) => (
     <label
       ref={ref}
-      className={cn('block text-sm font-medium text-slate-300 mb-1.5', className)}
+      className={cn('block text-sm font-medium text-foreground mb-1.5', className)}
       {...props}
     />
   )

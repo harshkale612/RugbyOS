@@ -48,7 +48,7 @@ function PositionBadge({ position }: { position: number }) {
   }
   if (position === 2) {
     return (
-      <span className="inline-flex items-center justify-center h-6 w-6 rounded-full bg-slate-300/20 text-slate-300 text-xs font-black border border-slate-300/30">
+      <span className="inline-flex items-center justify-center h-6 w-6 rounded-full bg-slate-300/20 text-slate-500 dark:text-slate-300 text-xs font-black border border-slate-300/30">
         2
       </span>
     );
@@ -61,7 +61,7 @@ function PositionBadge({ position }: { position: number }) {
     );
   }
   return (
-    <span className="inline-flex items-center justify-center h-6 w-6 text-xs font-bold text-slate-500 tabular-nums">
+    <span className="inline-flex items-center justify-center h-6 w-6 text-xs font-bold text-muted-foreground tabular-nums">
       {position}
     </span>
   );
@@ -76,32 +76,32 @@ function StandingsTable({ standings }: { standings: LeagueStanding[] }) {
     <div className="overflow-x-auto">
       <table className="w-full text-xs">
         <thead>
-          <tr className="border-b border-[#1E2A3A]">
-            <th className="text-left py-2 px-2 text-slate-500 font-medium w-8">Pos</th>
-            <th className="text-left py-2 px-2 text-slate-500 font-medium min-w-[140px]">Team</th>
-            <th className="text-center py-2 px-2 text-slate-500 font-medium w-8">P</th>
-            <th className="text-center py-2 px-2 text-slate-500 font-medium w-8">W</th>
-            <th className="text-center py-2 px-2 text-slate-500 font-medium w-8">D</th>
-            <th className="text-center py-2 px-2 text-slate-500 font-medium w-8">L</th>
-            <th className="text-center py-2 px-2 text-slate-500 font-medium w-10">PF</th>
-            <th className="text-center py-2 px-2 text-slate-500 font-medium w-10">PA</th>
-            <th className="text-center py-2 px-2 text-slate-500 font-medium w-10">Diff</th>
-            <th className="text-center py-2 px-2 text-slate-500 font-medium w-8">BP</th>
-            <th className="text-left py-2 px-2 text-slate-500 font-medium w-16">Form</th>
-            <th className="text-center py-2 px-2 text-slate-500 font-medium w-10">
-              <span className="text-white font-semibold">Pts</span>
+          <tr className="border-b border-border">
+            <th className="text-left py-2 px-2 text-muted-foreground font-medium w-8">Pos</th>
+            <th className="text-left py-2 px-2 text-muted-foreground font-medium min-w-35">Team</th>
+            <th className="text-center py-2 px-2 text-muted-foreground font-medium w-8">P</th>
+            <th className="text-center py-2 px-2 text-muted-foreground font-medium w-8">W</th>
+            <th className="text-center py-2 px-2 text-muted-foreground font-medium w-8">D</th>
+            <th className="text-center py-2 px-2 text-muted-foreground font-medium w-8">L</th>
+            <th className="text-center py-2 px-2 text-muted-foreground font-medium w-10">PF</th>
+            <th className="text-center py-2 px-2 text-muted-foreground font-medium w-10">PA</th>
+            <th className="text-center py-2 px-2 text-muted-foreground font-medium w-10">Diff</th>
+            <th className="text-center py-2 px-2 text-muted-foreground font-medium w-8">BP</th>
+            <th className="text-left py-2 px-2 text-muted-foreground font-medium w-16">Form</th>
+            <th className="text-center py-2 px-2 text-muted-foreground font-medium w-10">
+              <span className="text-foreground font-semibold">Pts</span>
             </th>
           </tr>
         </thead>
-        <tbody className="divide-y divide-[#1E2A3A]">
+        <tbody className="divide-y divide-border">
           {sorted.map((row) => (
             <tr
               key={row.teamId}
               className={cn(
                 'transition-colors',
                 row.isUserTeam
-                  ? 'bg-red-600/[0.06] hover:bg-red-600/10 border-l-2 border-l-red-600'
-                  : 'hover:bg-white/[0.02]',
+                  ? 'bg-red-600/6 hover:bg-red-600/10 border-l-2 border-l-red-600'
+                  : 'hover:bg-foreground/2',
               )}
             >
               <td className="py-3 px-2">
@@ -113,8 +113,8 @@ function StandingsTable({ standings }: { standings: LeagueStanding[] }) {
                     className={cn(
                       'h-6 w-6 rounded flex items-center justify-center text-[9px] font-bold shrink-0',
                       row.isUserTeam
-                        ? 'bg-gradient-to-br from-red-600 to-red-800 text-white'
-                        : 'bg-[#1E2A3A] text-slate-400',
+                        ? 'bg-linear-to-br from-red-600 to-red-800 text-white'
+                        : 'bg-muted text-muted-foreground',
                     )}
                   >
                     {row.teamShortName}
@@ -122,7 +122,7 @@ function StandingsTable({ standings }: { standings: LeagueStanding[] }) {
                   <span
                     className={cn(
                       'truncate',
-                      row.isUserTeam ? 'text-white font-semibold' : 'text-slate-300',
+                      row.isUserTeam ? 'text-foreground font-semibold' : 'text-foreground/75',
                     )}
                   >
                     {row.teamName}
@@ -132,21 +132,21 @@ function StandingsTable({ standings }: { standings: LeagueStanding[] }) {
                   )}
                 </div>
               </td>
-              <td className="py-3 px-2 text-center text-slate-300 tabular-nums">{row.played}</td>
+              <td className="py-3 px-2 text-center text-foreground/80 tabular-nums">{row.played}</td>
               <td className="py-3 px-2 text-center text-green-400 tabular-nums font-medium">{row.won}</td>
               <td className="py-3 px-2 text-center text-yellow-400 tabular-nums">{row.drawn}</td>
               <td className="py-3 px-2 text-center text-red-400 tabular-nums">{row.lost}</td>
-              <td className="py-3 px-2 text-center text-slate-300 tabular-nums">{row.pointsFor}</td>
-              <td className="py-3 px-2 text-center text-slate-400 tabular-nums">{row.pointsAgainst}</td>
+              <td className="py-3 px-2 text-center text-foreground/80 tabular-nums">{row.pointsFor}</td>
+              <td className="py-3 px-2 text-center text-muted-foreground tabular-nums">{row.pointsAgainst}</td>
               <td
                 className={cn(
                   'py-3 px-2 text-center font-medium tabular-nums',
-                  row.pointsDiff > 0 ? 'text-green-400' : row.pointsDiff < 0 ? 'text-red-400' : 'text-slate-400',
+                  row.pointsDiff > 0 ? 'text-green-400' : row.pointsDiff < 0 ? 'text-red-400' : 'text-muted-foreground',
                 )}
               >
                 {row.pointsDiff > 0 ? '+' : ''}{row.pointsDiff}
               </td>
-              <td className="py-3 px-2 text-center text-slate-400 tabular-nums">{row.bonusPoints}</td>
+              <td className="py-3 px-2 text-center text-muted-foreground tabular-nums">{row.bonusPoints}</td>
               <td className="py-3 px-2">
                 {row.form && (
                   <div className="flex items-center gap-0.5">
@@ -160,7 +160,7 @@ function StandingsTable({ standings }: { standings: LeagueStanding[] }) {
                 <span
                   className={cn(
                     'text-sm font-black tabular-nums',
-                    row.isUserTeam ? 'text-red-400' : 'text-white',
+                    row.isUserTeam ? 'text-red-400' : 'text-foreground',
                   )}
                 >
                   {row.points}
@@ -214,7 +214,7 @@ export default function LeaguesPage() {
             </Button>
           }
         />
-        <main className="flex-1 flex items-center justify-center text-slate-500 text-sm">
+        <main className="flex-1 flex items-center justify-center text-muted-foreground text-sm">
           No leagues. Add one to get started.
         </main>
       </div>
@@ -238,7 +238,7 @@ export default function LeaguesPage() {
 
         {/* ── League Selector ── */}
         <div>
-          <h2 className="text-sm font-semibold text-slate-400 mb-3 uppercase tracking-wide">
+          <h2 className="text-sm font-semibold text-muted-foreground mb-3 uppercase tracking-wide">
             Select Competition
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -250,7 +250,7 @@ export default function LeaguesPage() {
                     'w-full text-left p-4 rounded-xl border transition-all duration-200',
                     selectedLeagueId === league.id
                       ? 'bg-red-600/10 border-red-600/50 ring-1 ring-red-600/30'
-                      : 'bg-[#161B27] border-[#1E2A3A] hover:border-slate-500',
+                      : 'bg-card border-border hover:border-muted-foreground/40',
                   )}
                 >
                   <div className="flex items-start gap-3 pr-8">
@@ -259,13 +259,13 @@ export default function LeaguesPage() {
                         'h-9 w-9 rounded-lg flex items-center justify-center shrink-0',
                         selectedLeagueId === league.id
                           ? 'bg-red-600/20'
-                          : 'bg-[#1E2A3A]',
+                          : 'bg-muted',
                       )}
                     >
                       <Trophy
                         className={cn(
                           'h-4 w-4',
-                          selectedLeagueId === league.id ? 'text-red-400' : 'text-slate-500',
+                          selectedLeagueId === league.id ? 'text-red-400' : 'text-muted-foreground',
                         )}
                       />
                     </div>
@@ -273,12 +273,12 @@ export default function LeaguesPage() {
                       <p
                         className={cn(
                           'text-sm font-semibold truncate',
-                          selectedLeagueId === league.id ? 'text-white' : 'text-slate-300',
+                          selectedLeagueId === league.id ? 'text-foreground' : 'text-foreground/75',
                         )}
                       >
                         {league.shortName}
                       </p>
-                      <p className="text-xs text-slate-500 mt-0.5">{league.country} · {league.province}</p>
+                      <p className="text-xs text-muted-foreground mt-0.5">{league.country} · {league.province}</p>
                       <div className="flex items-center gap-2 mt-1.5">
                         <Badge
                           variant={selectedLeagueId === league.id ? 'red' : 'gray'}
@@ -286,7 +286,7 @@ export default function LeaguesPage() {
                         >
                           {league.season}
                         </Badge>
-                        <span className="text-[10px] text-slate-600">{league.standings.length} teams</span>
+                        <span className="text-[10px] text-muted-foreground/60">{league.standings.length} teams</span>
                       </div>
                     </div>
                   </div>
@@ -296,7 +296,7 @@ export default function LeaguesPage() {
                 <div className="absolute top-2 right-2 z-10 opacity-0 group-hover/league:opacity-100 transition-opacity">
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
-                      <button className="h-7 w-7 rounded-md bg-[#0F1117]/90 border border-[#1E2A3A] flex items-center justify-center text-slate-400 hover:text-white hover:bg-[#1E2A3A] transition-colors">
+                      <button className="h-7 w-7 rounded-md bg-background/90 border border-border flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-muted transition-colors">
                         <MoreHorizontal className="h-3.5 w-3.5" />
                       </button>
                     </DropdownMenuTrigger>
@@ -327,8 +327,8 @@ export default function LeaguesPage() {
                   <Trophy className="h-4 w-4 text-amber-400" />
                 </div>
                 <div>
-                  <p className="text-xs text-slate-500">Competition</p>
-                  <p className="text-sm font-semibold text-white truncate">{selectedLeague.shortName}</p>
+                  <p className="text-xs text-muted-foreground">Competition</p>
+                  <p className="text-sm font-semibold text-foreground truncate">{selectedLeague.shortName}</p>
                 </div>
               </div>
             </CardContent>
@@ -340,8 +340,8 @@ export default function LeaguesPage() {
                   <Calendar className="h-4 w-4 text-blue-400" />
                 </div>
                 <div>
-                  <p className="text-xs text-slate-500">Season</p>
-                  <p className="text-sm font-semibold text-white">{selectedLeague.season}</p>
+                  <p className="text-xs text-muted-foreground">Season</p>
+                  <p className="text-sm font-semibold text-foreground">{selectedLeague.season}</p>
                 </div>
               </div>
             </CardContent>
@@ -353,8 +353,8 @@ export default function LeaguesPage() {
                   <Users className="h-4 w-4 text-green-400" />
                 </div>
                 <div>
-                  <p className="text-xs text-slate-500">Teams</p>
-                  <p className="text-sm font-semibold text-white">{selectedLeague.standings.length}</p>
+                  <p className="text-xs text-muted-foreground">Teams</p>
+                  <p className="text-sm font-semibold text-foreground">{selectedLeague.standings.length}</p>
                 </div>
               </div>
             </CardContent>
@@ -366,8 +366,8 @@ export default function LeaguesPage() {
                   <Globe className="h-4 w-4 text-purple-400" />
                 </div>
                 <div>
-                  <p className="text-xs text-slate-500">Matches Played</p>
-                  <p className="text-sm font-semibold text-white">{totalMatches}</p>
+                  <p className="text-xs text-muted-foreground">Matches Played</p>
+                  <p className="text-sm font-semibold text-foreground">{totalMatches}</p>
                 </div>
               </div>
             </CardContent>
@@ -380,7 +380,7 @@ export default function LeaguesPage() {
             <div className="flex items-center justify-between flex-wrap gap-2">
               <div>
                 <CardTitle>{selectedLeague.name}</CardTitle>
-                <p className="text-xs text-slate-500 mt-1">{selectedLeague.description}</p>
+                <p className="text-xs text-muted-foreground mt-1">{selectedLeague.description}</p>
               </div>
               <div className="flex items-center gap-2">
                 <Badge variant="gold" dot>Season {selectedLeague.season}</Badge>
@@ -398,7 +398,7 @@ export default function LeaguesPage() {
         </Card>
 
         {/* ── Legend ── */}
-        <div className="flex items-center gap-6 text-[11px] text-slate-500">
+        <div className="flex items-center gap-6 text-[11px] text-muted-foreground">
           <span className="flex items-center gap-1.5">
             <span className="h-3 w-3 rounded-full bg-amber-400/60 inline-block" />
             1st — Championship / Promotion

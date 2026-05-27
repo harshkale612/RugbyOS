@@ -106,7 +106,7 @@ function FeatureItem({ feature, delay, inView }: { feature: FeatureCard; delay: 
       animate={inView ? 'visible' : 'hidden'}
       className="h-full"
     >
-      <Card hover className="h-full group border-[#1E2A3A] bg-[#161B27] transition-all duration-300">
+      <Card hover className="h-full group transition-all duration-300">
         <CardContent className="p-6 flex flex-col gap-4 h-full">
           {/* Icon */}
           <div className={`inline-flex w-11 h-11 rounded-xl items-center justify-center flex-shrink-0 ${feature.iconBg} transition-transform duration-300 group-hover:scale-110`}>
@@ -115,10 +115,10 @@ function FeatureItem({ feature, delay, inView }: { feature: FeatureCard; delay: 
 
           {/* Text */}
           <div className="flex flex-col gap-2 flex-1">
-            <h3 className="text-base font-bold text-white leading-snug group-hover:text-red-300 transition-colors duration-200">
+            <h3 className="text-base font-bold text-foreground leading-snug group-hover:text-red-500 transition-colors duration-200">
               {feature.title}
             </h3>
-            <p className="text-sm text-slate-500 leading-relaxed">
+            <p className="text-sm text-muted-foreground leading-relaxed">
               {feature.description}
             </p>
           </div>
@@ -129,7 +129,7 @@ function FeatureItem({ feature, delay, inView }: { feature: FeatureCard; delay: 
               {feature.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-white/[0.05] border border-white/[0.08] text-slate-500"
+                  className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-foreground/5 border border-foreground/8 text-muted-foreground"
                 >
                   {tag}
                 </span>
@@ -156,7 +156,7 @@ export function LandingFeatures() {
       id="features"
       ref={ref}
       className="relative py-20 xl:py-28 overflow-hidden"
-      style={{ background: 'hsl(222, 47%, 5%)' }}
+      style={{ background: 'hsl(var(--background))' }}
     >
       {/* Background accent */}
       <div
@@ -179,10 +179,10 @@ export function LandingFeatures() {
           <p className="text-xs font-bold uppercase tracking-[0.2em] text-red-500 mb-3">
             Platform Features
           </p>
-          <h2 className="text-3xl sm:text-4xl xl:text-5xl font-extrabold text-white leading-tight">
+          <h2 className="text-3xl sm:text-4xl xl:text-5xl font-extrabold text-foreground leading-tight">
             Everything Your Club Needs
           </h2>
-          <p className="mt-4 text-base text-slate-500 leading-relaxed">
+          <p className="mt-4 text-base text-muted-foreground leading-relaxed">
             One platform purpose-built for Canadian rugby — no duct tape, no spreadsheets,
             no switching between a dozen tools.
           </p>

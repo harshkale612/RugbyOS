@@ -56,11 +56,11 @@ function ChartTooltip({ active, payload, label }: {
 }) {
   if (!active || !payload?.length) return null;
   return (
-    <div className="bg-[#161B27] border border-[#1E2A3A] rounded-lg px-3 py-2 text-xs shadow-xl">
-      <p className="text-slate-400 mb-1 font-medium">{label}</p>
+    <div className="bg-card border border-border rounded-lg px-3 py-2 text-xs shadow-xl">
+      <p className="text-muted-foreground mb-1 font-medium">{label}</p>
       {payload.map((entry) => (
         <p key={entry.name} className="font-semibold" style={{ color: entry.color }}>
-          {entry.name}: <span className="text-white">{entry.value}</span>
+          {entry.name}: <span className="text-foreground">{entry.value}</span>
         </p>
       ))}
     </div>
@@ -78,7 +78,7 @@ function ActivityIcon({ type }: { type: string }) {
     case 'announcement': return <Zap className={cn(base, 'text-purple-400')} />;
     case 'award':        return <Star className={cn(base, 'text-amber-400')} />;
     case 'training':     return <Activity className={cn(base, 'text-green-400')} />;
-    default:             return <Activity className={cn(base, 'text-slate-400')} />;
+    default:             return <Activity className={cn(base, 'text-muted-foreground')} />;
   }
 }
 
@@ -104,8 +104,8 @@ function NotificationIcon({ type }: { type: string }) {
     case 'payment':      return <Zap className={cn(base, 'text-amber-400')} />;
     case 'selection':    return <Shield className={cn(base, 'text-green-400')} />;
     case 'announcement': return <Star className={cn(base, 'text-purple-400')} />;
-    case 'system':       return <CheckCircle className={cn(base, 'text-slate-400')} />;
-    default:             return <AlertCircle className={cn(base, 'text-slate-400')} />;
+    case 'system':       return <CheckCircle className={cn(base, 'text-muted-foreground')} />;
+    default:             return <AlertCircle className={cn(base, 'text-muted-foreground')} />;
   }
 }
 
@@ -223,14 +223,14 @@ export default function DashboardPage() {
                       <CardTitle>Match Performance</CardTitle>
                       <CardDescription className="mt-1">Points for vs against — last 7 rounds</CardDescription>
                     </div>
-                    <div className="flex items-center gap-3 text-xs text-slate-400 shrink-0">
+                    <div className="flex items-center gap-3 text-xs text-muted-foreground shrink-0">
                       <span className="flex items-center gap-1.5">
                         <span className="h-2.5 w-2.5 rounded-full bg-red-500 inline-block" />
-                        For
+                        <span className="text-muted-foreground">For</span>
                       </span>
                       <span className="flex items-center gap-1.5">
                         <span className="h-2.5 w-2.5 rounded-full bg-blue-500 inline-block" />
-                        Against
+                        <span className="text-muted-foreground">Against</span>
                       </span>
                     </div>
                   </div>
@@ -249,15 +249,15 @@ export default function DashboardPage() {
                             <stop offset="95%" stopColor="#3B82F6" stopOpacity={0} />
                           </linearGradient>
                         </defs>
-                        <CartesianGrid stroke="#1E2A3A" strokeDasharray="3 3" vertical={false} />
+                        <CartesianGrid stroke="hsl(var(--border))" strokeDasharray="3 3" vertical={false} />
                         <XAxis
                           dataKey="name"
-                          tick={{ fill: '#64748b', fontSize: 11 }}
+                          tick={{ fill: 'hsl(var(--muted-foreground))', fontSize: 11 }}
                           axisLine={false}
                           tickLine={false}
                         />
                         <YAxis
-                          tick={{ fill: '#64748b', fontSize: 11 }}
+                          tick={{ fill: 'hsl(var(--muted-foreground))', fontSize: 11 }}
                           axisLine={false}
                           tickLine={false}
                         />
@@ -302,14 +302,14 @@ export default function DashboardPage() {
                       <CardDescription className="mt-1">Next scheduled matches</CardDescription>
                     </div>
                     <Link href="/dashboard/fixtures">
-                      <Button variant="ghost" size="sm" className="text-xs text-slate-400 hover:text-white gap-1">
+                      <Button variant="ghost" size="sm" className="text-xs text-muted-foreground hover:text-foreground gap-1">
                         View all <ArrowRight className="h-3.5 w-3.5" />
                       </Button>
                     </Link>
                   </div>
                 </CardHeader>
                 <CardContent className="pt-1 pb-2">
-                  <div className="divide-y divide-[#1E2A3A]">
+                  <div className="divide-y divide-border">
                     {upcomingMatches.map((match, idx) => {
                       const isHome = match.homeTeam.id === 'toronto-arrows';
                       const opponent = isHome ? match.awayTeam : match.homeTeam;
@@ -323,24 +323,24 @@ export default function DashboardPage() {
                           initial={{ opacity: 0, x: -8 }}
                           animate={{ opacity: 1, x: 0 }}
                           transition={{ duration: 0.3, delay: 0.4 + idx * 0.08 }}
-                          className="flex items-center gap-3 py-3 hover:bg-white/[0.02] rounded-lg px-1 transition-colors cursor-pointer"
+                          className="flex items-center gap-3 py-3 hover:bg-foreground/2 rounded-lg px-1 transition-colors cursor-pointer"
                         >
                           {/* Opponent badge */}
-                          <div className="h-9 w-9 rounded-lg bg-gradient-to-br from-slate-600 to-slate-800 flex items-center justify-center text-white text-[10px] font-bold shrink-0 border border-[#1E2A3A]">
+                          <div className="h-9 w-9 rounded-lg bg-linear-to-br from-slate-600 to-slate-800 flex items-center justify-center text-white text-[10px] font-bold shrink-0 border border-border">
                             {opponent.shortName}
                           </div>
 
                           {/* Match info */}
                           <div className="flex-1 min-w-0">
-                            <p className="text-sm font-semibold text-white truncate">
+                            <p className="text-sm font-semibold text-foreground truncate">
                               {isHome ? 'vs' : '@'} {opponent.name}
                             </p>
                             <div className="flex items-center gap-3 mt-0.5">
-                              <span className="flex items-center gap-1 text-xs text-slate-400 shrink-0">
+                              <span className="flex items-center gap-1 text-xs text-muted-foreground shrink-0">
                                 <Clock className="h-3 w-3" />
                                 {formatShortDate(match.date)} · {match.time}
                               </span>
-                              <span className="hidden sm:flex items-center gap-1 text-xs text-slate-500 min-w-0">
+                              <span className="hidden sm:flex items-center gap-1 text-xs text-muted-foreground min-w-0">
                                 <MapPin className="h-3 w-3 shrink-0" />
                                 <span className="truncate">{venue}</span>
                               </span>
@@ -352,7 +352,7 @@ export default function DashboardPage() {
                             <Badge variant={competitionVariant as 'blue' | 'gold'} size="sm">
                               {competitionLabel}
                             </Badge>
-                            <span className="text-[10px] text-slate-500">{match.round}</span>
+                            <span className="text-[10px] text-muted-foreground">{match.round}</span>
                           </div>
                         </motion.div>
                       );
@@ -382,7 +382,7 @@ export default function DashboardPage() {
                   <CardDescription className="mt-1">Top 5 — Round 14</CardDescription>
                 </CardHeader>
                 <CardContent className="pt-1 pb-2">
-                  <div className="divide-y divide-[#1E2A3A]">
+                  <div className="divide-y divide-border">
                     {topStandings.map((team, idx) => (
                       <motion.div
                         key={team.teamId}
@@ -393,7 +393,7 @@ export default function DashboardPage() {
                           'flex items-center gap-2 py-2.5 px-1 rounded-md transition-colors',
                           team.isUserTeam
                             ? 'bg-red-600/5 hover:bg-red-600/10'
-                            : 'hover:bg-white/[0.02]',
+                            : 'hover:bg-foreground/2',
                         )}
                       >
                         {/* Position */}
@@ -402,7 +402,7 @@ export default function DashboardPage() {
                           team.position === 1 && 'pos-1',
                           team.position === 2 && 'pos-2',
                           team.position === 3 && 'pos-3',
-                          team.position > 3 && 'text-slate-500',
+                          team.position > 3 && 'text-muted-foreground',
                         )}>
                           {team.position}
                         </span>
@@ -411,8 +411,8 @@ export default function DashboardPage() {
                         <div className={cn(
                           'h-6 w-6 rounded flex items-center justify-center text-[9px] font-bold shrink-0',
                           team.isUserTeam
-                            ? 'bg-gradient-to-br from-red-600 to-red-800 text-white'
-                            : 'bg-[#1E2A3A] text-slate-400',
+                            ? 'bg-linear-to-br from-red-600 to-red-800 text-white'
+                            : 'bg-secondary text-muted-foreground',
                         )}>
                           {team.teamShortName}
                         </div>
@@ -420,7 +420,7 @@ export default function DashboardPage() {
                         {/* Name */}
                         <span className={cn(
                           'flex-1 text-xs truncate min-w-0',
-                          team.isUserTeam ? 'font-semibold text-white' : 'text-slate-300',
+                          team.isUserTeam ? 'font-semibold text-foreground' : 'text-foreground/80',
                         )}>
                           {team.teamShortName === 'TOR' ? 'Toronto Arrows' : team.teamName.replace(' RFC', '')}
                         </span>
@@ -435,7 +435,7 @@ export default function DashboardPage() {
                         {/* Points */}
                         <span className={cn(
                           'text-xs font-bold w-6 text-right shrink-0 tabular-nums',
-                          team.isUserTeam ? 'text-red-400' : 'text-white',
+                          team.isUserTeam ? 'text-red-500' : 'text-foreground',
                         )}>
                           {team.points}
                         </span>
@@ -445,7 +445,7 @@ export default function DashboardPage() {
                 </CardContent>
                 <CardFooter className="pt-2">
                   <Link href="/dashboard/leagues" className="w-full">
-                    <Button variant="ghost" size="sm" className="w-full text-xs text-slate-400 hover:text-white gap-1">
+                    <Button variant="ghost" size="sm" className="w-full text-xs gap-1">
                       Full Table <ArrowRight className="h-3.5 w-3.5" />
                     </Button>
                   </Link>
@@ -474,7 +474,7 @@ export default function DashboardPage() {
                         initial={{ opacity: 0, x: 8 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.3, delay: 0.45 + idx * 0.06 }}
-                        className="flex items-start gap-2.5 py-2 px-1 rounded-lg hover:bg-white/[0.02] transition-colors cursor-pointer group"
+                        className="flex items-start gap-2.5 py-2 px-1 rounded-lg hover:bg-foreground/2 transition-colors cursor-pointer group"
                       >
                         <div className={cn(
                           'h-7 w-7 rounded-lg border flex items-center justify-center shrink-0 mt-0.5',
@@ -485,11 +485,11 @@ export default function DashboardPage() {
                         <div className="flex-1 min-w-0">
                           <p className={cn(
                             'text-xs leading-snug',
-                            item.highlight ? 'text-white font-medium' : 'text-slate-300',
+                            item.highlight ? 'text-foreground font-medium' : 'text-foreground/75',
                           )}>
                             {item.message}
                           </p>
-                          <p className="text-[10px] text-slate-500 mt-0.5">{item.time}</p>
+                          <p className="text-[10px] text-muted-foreground mt-0.5">{item.time}</p>
                         </div>
                       </motion.div>
                     ))}
@@ -518,7 +518,7 @@ export default function DashboardPage() {
                     <CardDescription className="mt-1">New registrations per month — 2024</CardDescription>
                   </div>
                   <div className="text-right shrink-0">
-                    <p className="text-xl font-bold text-white tabular-nums">412</p>
+                    <p className="text-xl font-bold text-foreground tabular-nums">412</p>
                     <p className="text-xs text-green-400 flex items-center justify-end gap-1 mt-0.5">
                       <TrendingUp className="h-3 w-3" />
                       +12% YTD
@@ -546,10 +546,10 @@ export default function DashboardPage() {
                         content={({ active, payload, label }) => {
                           if (!active || !payload?.length) return null;
                           return (
-                            <div className="bg-[#161B27] border border-[#1E2A3A] rounded-lg px-3 py-2 text-xs shadow-xl">
-                              <p className="text-slate-400 mb-1 font-medium">{label}</p>
-                              <p className="font-semibold text-red-400">
-                                Registrations: <span className="text-white">{payload[0]?.value}</span>
+                            <div className="bg-card border border-border rounded-lg px-3 py-2 text-xs shadow-xl">
+                              <p className="text-muted-foreground mb-1 font-medium">{label}</p>
+                              <p className="font-semibold text-red-500">
+                                Registrations: <span className="text-foreground">{payload[0]?.value}</span>
                               </p>
                             </div>
                           );
@@ -584,7 +584,7 @@ export default function DashboardPage() {
                     </CardDescription>
                   </div>
                   <Link href="/dashboard/notifications">
-                    <Button variant="ghost" size="sm" className="text-xs text-slate-400 hover:text-white gap-1">
+                    <Button variant="ghost" size="sm" className="text-xs text-muted-foreground hover:text-foreground gap-1">
                       View all <ArrowRight className="h-3.5 w-3.5" />
                     </Button>
                   </Link>
@@ -601,8 +601,8 @@ export default function DashboardPage() {
                       className={cn(
                         'flex items-start gap-3 p-2.5 rounded-lg transition-colors cursor-pointer',
                         notif.isRead
-                          ? 'hover:bg-white/[0.02]'
-                          : 'bg-white/[0.025] hover:bg-white/[0.04] border border-white/[0.04]',
+                          ? 'hover:bg-foreground/2'
+                          : 'bg-foreground/2.5 hover:bg-foreground/4 border border-border',
                       )}
                     >
                       {/* Icon */}
@@ -618,7 +618,7 @@ export default function DashboardPage() {
                         <div className="flex items-center gap-2">
                           <p className={cn(
                             'text-xs font-semibold truncate',
-                            notif.isRead ? 'text-slate-300' : 'text-white',
+                            notif.isRead ? 'text-foreground/75' : 'text-foreground',
                           )}>
                             {notif.title}
                           </p>
@@ -626,10 +626,10 @@ export default function DashboardPage() {
                             <span className="h-1.5 w-1.5 rounded-full bg-red-500 shrink-0" />
                           )}
                         </div>
-                        <p className="text-[11px] text-slate-500 mt-0.5 line-clamp-2 leading-snug">
+                        <p className="text-[11px] text-muted-foreground mt-0.5 line-clamp-2 leading-snug">
                           {notif.message}
                         </p>
-                        <p className="text-[10px] text-slate-600 mt-1">
+                        <p className="text-[10px] text-muted-foreground/70 mt-1">
                           {getRelativeTime(notif.timestamp)}
                         </p>
                       </div>

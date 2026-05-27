@@ -47,9 +47,9 @@ export default function ForgotPasswordPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0A0C12] flex items-center justify-center p-6 relative overflow-hidden">
+    <div className="min-h-screen bg-background transition-colors duration-300 flex items-center justify-center p-6 relative overflow-hidden">
       {/* Background decorations */}
-      <div className="absolute inset-0 bg-[#0A0C12]" />
+      <div className="absolute inset-0 bg-background" />
       <div
         className="absolute inset-0 opacity-[0.025]"
         style={{
@@ -72,7 +72,7 @@ export default function ForgotPasswordPage() {
           <div className="w-10 h-10 rounded-xl bg-red-600 flex items-center justify-center shadow-lg shadow-red-600/30">
             <Trophy className="w-5 h-5 text-white" />
           </div>
-          <span className="text-xl font-bold text-white tracking-tight">
+          <span className="text-xl font-bold text-foreground tracking-tight">
             Rugby<span className="text-red-500">OS</span>
           </span>
         </motion.div>
@@ -89,7 +89,7 @@ export default function ForgotPasswordPage() {
             >
               {/* Icon badge */}
               <motion.div variants={itemVariants} className="flex justify-center mb-6">
-                <div className="w-16 h-16 rounded-2xl bg-[#161B27] border border-[#1E2A3A] flex items-center justify-center shadow-xl">
+                <div className="w-16 h-16 rounded-2xl bg-card border border-border flex items-center justify-center shadow-xl">
                   <div className="w-10 h-10 rounded-xl bg-red-500/10 flex items-center justify-center">
                     <Mail className="w-5 h-5 text-red-400" />
                   </div>
@@ -97,8 +97,8 @@ export default function ForgotPasswordPage() {
               </motion.div>
 
               <motion.div variants={itemVariants} className="text-center mb-8">
-                <h1 className="text-2xl font-bold text-white mb-2">Forgot your password?</h1>
-                <p className="text-slate-400 text-sm leading-relaxed">
+                <h1 className="text-2xl font-bold text-foreground mb-2">Forgot your password?</h1>
+                <p className="text-muted-foreground text-sm leading-relaxed">
                   No worries. Enter your email address and we&apos;ll send you a secure link to
                   reset your password.
                 </p>
@@ -106,7 +106,7 @@ export default function ForgotPasswordPage() {
 
               <motion.div
                 variants={itemVariants}
-                className="bg-[#161B27] border border-[#1E2A3A] rounded-2xl p-6"
+                className="bg-card border border-border rounded-2xl p-6"
               >
                 <form onSubmit={handleSubmit} className="space-y-5">
                   <FormGroup>
@@ -145,7 +145,7 @@ export default function ForgotPasswordPage() {
               <motion.div variants={itemVariants} className="flex items-center justify-center mt-6">
                 <Link
                   href="/auth/login"
-                  className="inline-flex items-center gap-2 text-sm text-slate-400 hover:text-white transition-colors group"
+                  className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors group"
                 >
                   <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-0.5" />
                   Back to sign in
@@ -176,16 +176,16 @@ export default function ForgotPasswordPage() {
               </motion.div>
 
               <motion.div variants={itemVariants} className="text-center mb-8">
-                <h1 className="text-2xl font-bold text-white mb-2">Check your inbox</h1>
-                <p className="text-slate-400 text-sm leading-relaxed">
+                <h1 className="text-2xl font-bold text-foreground mb-2">Check your inbox</h1>
+                <p className="text-muted-foreground text-sm leading-relaxed">
                   We&apos;ve sent a password reset link to
                 </p>
-                <p className="text-white font-semibold text-sm mt-1">{email}</p>
+                <p className="text-foreground font-semibold text-sm mt-1">{email}</p>
               </motion.div>
 
               <motion.div
                 variants={itemVariants}
-                className="bg-[#161B27] border border-[#1E2A3A] rounded-2xl p-6 space-y-4"
+                className="bg-card border border-border rounded-2xl p-6 space-y-4"
               >
                 {/* Steps */}
                 <div className="space-y-3">
@@ -195,16 +195,16 @@ export default function ForgotPasswordPage() {
                     { step: '3', text: 'Create a new secure password' },
                   ].map(({ step, text }) => (
                     <div key={step} className="flex items-center gap-3">
-                      <div className="w-6 h-6 rounded-full bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 text-xs font-bold flex-shrink-0">
+                      <div className="w-6 h-6 rounded-full bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 text-xs font-bold shrink-0">
                         {step}
                       </div>
-                      <p className="text-slate-300 text-sm">{text}</p>
+                      <p className="text-foreground/80 text-sm">{text}</p>
                     </div>
                   ))}
                 </div>
 
-                <div className="pt-3 border-t border-[#1E2A3A]">
-                  <p className="text-slate-500 text-xs mb-3">
+                <div className="pt-3 border-t border-border">
+                  <p className="text-muted-foreground text-xs mb-3">
                     Didn&apos;t receive the email? Check your spam folder or request a new link.
                   </p>
                   <Button
@@ -223,7 +223,7 @@ export default function ForgotPasswordPage() {
               <motion.div variants={itemVariants} className="flex items-center justify-center mt-6">
                 <Link
                   href="/auth/login"
-                  className="inline-flex items-center gap-2 text-sm text-slate-400 hover:text-white transition-colors group"
+                  className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors group"
                 >
                   <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-0.5" />
                   Back to sign in
@@ -240,9 +240,9 @@ export default function ForgotPasswordPage() {
           transition={{ delay: 0.6, duration: 0.4 }}
           className="text-center mt-8"
         >
-          <p className="text-slate-600 text-xs">
+          <p className="text-muted-foreground/60 text-xs">
             Need help?{' '}
-            <span className="text-slate-500 hover:text-slate-300 cursor-pointer transition-colors underline">
+            <span className="text-muted-foreground hover:text-foreground cursor-pointer transition-colors underline">
               Contact support
             </span>
           </p>

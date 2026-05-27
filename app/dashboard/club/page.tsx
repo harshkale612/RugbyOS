@@ -52,9 +52,9 @@ const stagger = {
 };
 
 const tierConfig: Record<string, { label: string; variant: 'gold' | 'gray' | 'blue' | 'green'; color: string }> = {
-  platinum: { label: 'Platinum', variant: 'gray', color: 'bg-slate-300/15 text-slate-200 border border-slate-300/25' },
+  platinum: { label: 'Platinum', variant: 'gray', color: 'bg-slate-300/15 text-slate-500 dark:text-slate-200 border border-slate-300/25' },
   gold: { label: 'Gold', variant: 'gold', color: 'bg-amber-500/15 text-amber-400 border border-amber-500/25' },
-  silver: { label: 'Silver', variant: 'gray', color: 'bg-slate-400/15 text-slate-300 border border-slate-400/25' },
+  silver: { label: 'Silver', variant: 'gray', color: 'bg-slate-400/15 text-slate-500 dark:text-slate-300 border border-slate-400/25' },
   bronze: { label: 'Bronze', variant: 'gray', color: 'bg-orange-700/20 text-orange-400 border border-orange-600/25' },
 };
 
@@ -93,7 +93,7 @@ export default function ClubPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#0A0C12]">
+    <div className="min-h-screen bg-background transition-colors duration-300">
       <DashboardHeader
         title="Club Profile"
         subtitle="Toronto Arrows RFC"
@@ -109,7 +109,7 @@ export default function ClubPage() {
         {/* Hero Banner */}
         <motion.div
           {...fadeUp}
-          className="relative rounded-2xl overflow-hidden bg-linear-to-br from-[#1a0a0a] via-[#161B27] to-[#0A0C12] border border-[#1E2A3A] p-8"
+          className="relative rounded-2xl overflow-hidden bg-card border border-border p-8"
         >
           <div className="absolute inset-0 bg-linear-to-r from-red-600/10 via-transparent to-transparent pointer-events-none" />
           <div className="absolute top-0 right-0 w-96 h-96 bg-red-600/5 rounded-full blur-3xl pointer-events-none" />
@@ -119,7 +119,7 @@ export default function ClubPage() {
             </div>
             <div className="flex-1">
               <div className="flex flex-wrap items-center gap-3 mb-2">
-                <h2 className="text-3xl md:text-4xl font-black bg-linear-to-r from-white via-slate-100 to-slate-300 bg-clip-text text-transparent">
+                <h2 className="text-3xl md:text-4xl font-black text-foreground">
                   {primaryClub.name}
                 </h2>
                 <Badge variant="red" className="text-xs">
@@ -127,7 +127,7 @@ export default function ClubPage() {
                 </Badge>
               </div>
               <div className="flex flex-wrap items-center gap-3">
-                <span className="inline-flex items-center gap-1.5 text-sm text-slate-400">
+                <span className="inline-flex items-center gap-1.5 text-sm text-muted-foreground">
                   <MapPin className="h-3.5 w-3.5" />
                   {primaryClub.city}, {primaryClub.province}
                 </span>
@@ -146,12 +146,12 @@ export default function ClubPage() {
         >
           {statItems.map((s) => (
             <motion.div key={s.label} variants={fadeUp}>
-              <Card className="bg-[#161B27] border border-[#1E2A3A] p-5">
+              <Card className="p-5">
                 <div className="flex items-center justify-between mb-3">
-                  <span className="text-xs text-slate-500 uppercase tracking-wider">{s.label}</span>
+                  <span className="text-xs text-muted-foreground uppercase tracking-wider">{s.label}</span>
                   {s.icon}
                 </div>
-                <p className="text-3xl font-black text-white">{s.value}</p>
+                <p className="text-3xl font-black text-foreground">{s.value}</p>
               </Card>
             </motion.div>
           ))}
@@ -178,29 +178,29 @@ export default function ClubPage() {
               >
                 {/* About */}
                 <motion.div variants={fadeUp}>
-                  <Card className="bg-[#161B27] border border-[#1E2A3A] h-full">
+                  <Card className="h-full">
                     <CardHeader>
                       <div className="flex items-center justify-between">
-                        <CardTitle className="flex items-center gap-2 text-white">
+                        <CardTitle className="flex items-center gap-2">
                           <Shield className="h-4 w-4 text-red-500" />
                           About the Club
                         </CardTitle>
-                        <Button variant="ghost" size="sm" className="gap-1.5 text-slate-400 hover:text-white" onClick={() => toast('Edit club description coming soon', 'info')}>
+                        <Button variant="ghost" size="sm" className="gap-1.5 text-muted-foreground hover:text-foreground" onClick={() => toast('Edit club description coming soon', 'info')}>
                           <Pencil className="h-3.5 w-3.5" />
                           Edit
                         </Button>
                       </div>
                     </CardHeader>
                     <CardContent>
-                      <p className="text-slate-400 leading-relaxed text-sm">{primaryClub.description}</p>
+                      <p className="text-muted-foreground leading-relaxed text-sm">{primaryClub.description}</p>
                       <div className="mt-4 grid grid-cols-2 gap-3">
-                        <div className="bg-[#0F1117] rounded-lg p-3">
-                          <p className="text-xs text-slate-500 mb-0.5">Seasons Played</p>
-                          <p className="text-xl font-bold text-white">{primaryClub.stats.seasonsPlayed}</p>
+                        <div className="bg-background rounded-lg p-3 border border-border/40">
+                          <p className="text-xs text-muted-foreground mb-0.5">Seasons Played</p>
+                          <p className="text-xl font-bold text-foreground">{primaryClub.stats.seasonsPlayed}</p>
                         </div>
-                        <div className="bg-[#0F1117] rounded-lg p-3">
-                          <p className="text-xs text-slate-500 mb-0.5">Total Members</p>
-                          <p className="text-xl font-bold text-white">{primaryClub.stats.totalMembers}</p>
+                        <div className="bg-background rounded-lg p-3 border border-border/40">
+                          <p className="text-xs text-muted-foreground mb-0.5">Total Members</p>
+                          <p className="text-xl font-bold text-foreground">{primaryClub.stats.totalMembers}</p>
                         </div>
                       </div>
                     </CardContent>
@@ -209,14 +209,14 @@ export default function ClubPage() {
 
                 {/* Contact */}
                 <motion.div variants={fadeUp}>
-                  <Card className="bg-[#161B27] border border-[#1E2A3A] h-full">
+                  <Card className="h-full">
                     <CardHeader>
                       <div className="flex items-center justify-between">
-                        <CardTitle className="flex items-center gap-2 text-white">
+                        <CardTitle className="flex items-center gap-2">
                           <Mail className="h-4 w-4 text-red-500" />
                           Contact Information
                         </CardTitle>
-                        <Button variant="ghost" size="sm" className="gap-1.5 text-slate-400 hover:text-white" onClick={() => toast('Edit contact information coming soon', 'info')}>
+                        <Button variant="ghost" size="sm" className="gap-1.5 text-muted-foreground hover:text-foreground" onClick={() => toast('Edit contact information coming soon', 'info')}>
                           <Pencil className="h-3.5 w-3.5" />
                           Edit
                         </Button>
@@ -224,22 +224,22 @@ export default function ClubPage() {
                     </CardHeader>
                     <CardContent className="space-y-3">
                       <div className="flex items-start gap-3">
-                        <MapPin className="h-4 w-4 text-slate-500 mt-0.5 shrink-0" />
+                        <MapPin className="h-4 w-4 text-muted-foreground mt-0.5 shrink-0" />
                         <div>
-                          <p className="text-sm text-white">{primaryClub.contact.address}</p>
-                          <p className="text-sm text-slate-400">{primaryClub.contact.city}</p>
+                          <p className="text-sm text-foreground">{primaryClub.contact.address}</p>
+                          <p className="text-sm text-muted-foreground">{primaryClub.contact.city}</p>
                         </div>
                       </div>
                       <div className="flex items-center gap-3">
-                        <Phone className="h-4 w-4 text-slate-500 shrink-0" />
-                        <p className="text-sm text-white">{primaryClub.contact.phone}</p>
+                        <Phone className="h-4 w-4 text-muted-foreground shrink-0" />
+                        <p className="text-sm text-foreground">{primaryClub.contact.phone}</p>
                       </div>
                       <div className="flex items-center gap-3">
-                        <Mail className="h-4 w-4 text-slate-500 shrink-0" />
-                        <p className="text-sm text-white">{primaryClub.contact.email}</p>
+                        <Mail className="h-4 w-4 text-muted-foreground shrink-0" />
+                        <p className="text-sm text-foreground">{primaryClub.contact.email}</p>
                       </div>
                       <div className="flex items-center gap-3">
-                        <Globe className="h-4 w-4 text-slate-500 shrink-0" />
+                        <Globe className="h-4 w-4 text-muted-foreground shrink-0" />
                         <a
                           href={`https://${primaryClub.contact.website}`}
                           className="text-sm text-red-400 hover:text-red-300 transition-colors"
@@ -251,31 +251,31 @@ export default function ClubPage() {
                       </div>
 
                       {/* Social Media */}
-                      <div className="pt-3 border-t border-[#1E2A3A]">
-                        <p className="text-xs text-slate-500 mb-3 uppercase tracking-wider">Social Media</p>
+                      <div className="pt-3 border-t border-border">
+                        <p className="text-xs text-muted-foreground mb-3 uppercase tracking-wider">Social Media</p>
                         <div className="flex flex-wrap gap-2">
                           {primaryClub.socialMedia.twitter && (
-                            <div className="flex items-center gap-1.5 bg-[#0F1117] border border-[#1E2A3A] rounded-lg px-3 py-1.5">
+                            <div className="flex items-center gap-1.5 bg-background border border-border rounded-lg px-3 py-1.5">
                               <AtSign className="h-3.5 w-3.5 text-sky-400" />
-                              <span className="text-xs text-slate-300">{primaryClub.socialMedia.twitter}</span>
+                              <span className="text-xs text-foreground/80">{primaryClub.socialMedia.twitter}</span>
                             </div>
                           )}
                           {primaryClub.socialMedia.instagram && (
-                            <div className="flex items-center gap-1.5 bg-[#0F1117] border border-[#1E2A3A] rounded-lg px-3 py-1.5">
+                            <div className="flex items-center gap-1.5 bg-background border border-border rounded-lg px-3 py-1.5">
                               <Hash className="h-3.5 w-3.5 text-pink-400" />
-                              <span className="text-xs text-slate-300">{primaryClub.socialMedia.instagram}</span>
+                              <span className="text-xs text-foreground/80">{primaryClub.socialMedia.instagram}</span>
                             </div>
                           )}
                           {primaryClub.socialMedia.facebook && (
-                            <div className="flex items-center gap-1.5 bg-[#0F1117] border border-[#1E2A3A] rounded-lg px-3 py-1.5">
+                            <div className="flex items-center gap-1.5 bg-background border border-border rounded-lg px-3 py-1.5">
                               <ExternalLink className="h-3.5 w-3.5 text-blue-400" />
-                              <span className="text-xs text-slate-300">{primaryClub.socialMedia.facebook}</span>
+                              <span className="text-xs text-foreground/80">{primaryClub.socialMedia.facebook}</span>
                             </div>
                           )}
                           {primaryClub.socialMedia.youtube && (
-                            <div className="flex items-center gap-1.5 bg-[#0F1117] border border-[#1E2A3A] rounded-lg px-3 py-1.5">
+                            <div className="flex items-center gap-1.5 bg-background border border-border rounded-lg px-3 py-1.5">
                               <ExternalLink className="h-3.5 w-3.5 text-red-400" />
-                              <span className="text-xs text-slate-300">{primaryClub.socialMedia.youtube}</span>
+                              <span className="text-xs text-foreground/80">{primaryClub.socialMedia.youtube}</span>
                             </div>
                           )}
                         </div>
@@ -291,7 +291,7 @@ export default function ClubPage() {
               <motion.div key="staff" variants={stagger} initial="initial" animate="animate" className="space-y-4">
                 {/* Staff header */}
                 <div className="flex items-center justify-between">
-                  <p className="text-sm text-slate-400">{staffList.length} staff member{staffList.length !== 1 ? 's' : ''}</p>
+                  <p className="text-sm text-muted-foreground">{staffList.length} staff member{staffList.length !== 1 ? 's' : ''}</p>
                   <Button size="sm" className="gap-1.5" onClick={() => toast('Add Staff form coming soon', 'info')}>
                     <Plus className="h-3.5 w-3.5" />
                     Add Staff
@@ -301,29 +301,29 @@ export default function ClubPage() {
                 <div className="grid sm:grid-cols-2 xl:grid-cols-4 gap-5">
                   {staffList.map((member) => (
                     <motion.div key={member.id} variants={fadeUp} className="relative group/staff">
-                      <Card className="bg-[#161B27] border border-[#1E2A3A] h-full flex flex-col">
+                      <Card className="h-full flex flex-col">
                         <CardContent className="pt-5 flex flex-col gap-4 flex-1">
                           <div className="flex flex-col items-center text-center gap-2">
                             <Avatar src={member.avatar} name={member.name} size="xl" />
                             <div>
-                              <p className="font-semibold text-white">{member.name}</p>
+                              <p className="font-semibold text-foreground">{member.name}</p>
                               <p className="text-xs text-red-400 mt-0.5">{member.role}</p>
                             </div>
                           </div>
 
                           {member.bio && (
-                            <p className="text-xs text-slate-400 leading-relaxed text-center line-clamp-3">
+                            <p className="text-xs text-muted-foreground leading-relaxed text-center line-clamp-3">
                               {member.bio}
                             </p>
                           )}
 
                           <div className="space-y-2 mt-auto">
-                            <p className="text-[10px] text-slate-500 uppercase tracking-wider">Qualifications</p>
+                            <p className="text-[10px] text-muted-foreground uppercase tracking-wider">Qualifications</p>
                             <div className="flex flex-wrap gap-1.5">
                               {member.qualifications.map((q, i) => (
                                 <span
                                   key={i}
-                                  className="inline-block bg-[#0F1117] border border-[#1E2A3A] text-slate-300 text-[10px] px-2 py-0.5 rounded-md"
+                                  className="inline-block bg-background border border-border text-foreground/80 text-[10px] px-2 py-0.5 rounded-md"
                                 >
                                   {q}
                                 </span>
@@ -331,8 +331,8 @@ export default function ClubPage() {
                             </div>
                           </div>
 
-                          <div className="flex items-center justify-between pt-3 border-t border-[#1E2A3A]">
-                            <span className="text-xs text-slate-500">Experience</span>
+                          <div className="flex items-center justify-between pt-3 border-t border-border">
+                            <span className="text-xs text-muted-foreground">Experience</span>
                             <span className="text-sm font-semibold text-amber-400">{member.yearsExperience} yrs</span>
                           </div>
                         </CardContent>
@@ -342,7 +342,7 @@ export default function ClubPage() {
                       <div className="absolute top-2 right-2 z-10 opacity-0 group-hover/staff:opacity-100 transition-opacity">
                         <DropdownMenu>
                           <DropdownMenuTrigger asChild>
-                            <button className="h-7 w-7 rounded-md bg-[#0F1117]/90 border border-[#1E2A3A] flex items-center justify-center text-slate-400 hover:text-white hover:bg-[#1E2A3A] transition-colors">
+                            <button className="h-7 w-7 rounded-md bg-background/90 border border-border flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-muted transition-colors">
                               <MoreHorizontal className="h-3.5 w-3.5" />
                             </button>
                           </DropdownMenuTrigger>
@@ -370,7 +370,7 @@ export default function ClubPage() {
               <motion.div key="sponsors" variants={stagger} initial="initial" animate="animate" className="space-y-6">
                 {/* Sponsors header */}
                 <div className="flex items-center justify-between">
-                  <p className="text-sm text-slate-400">{sponsorList.length} sponsor{sponsorList.length !== 1 ? 's' : ''}</p>
+                  <p className="text-sm text-muted-foreground">{sponsorList.length} sponsor{sponsorList.length !== 1 ? 's' : ''}</p>
                   <Button size="sm" className="gap-1.5" onClick={() => toast('Add Sponsor form coming soon', 'info')}>
                     <Plus className="h-3.5 w-3.5" />
                     Add Sponsor
@@ -387,18 +387,18 @@ export default function ClubPage() {
                         <span className={`badge text-xs font-semibold ${cfg.color}`}>
                           {cfg.label} Partners
                         </span>
-                        <div className="flex-1 h-px bg-[#1E2A3A]" />
+                        <div className="flex-1 h-px bg-border" />
                       </div>
                       <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                         {sponsors.map((sponsor) => (
                           <div key={sponsor.id} className="relative group/sponsor">
-                            <Card className="bg-[#161B27] border border-[#1E2A3A]">
+                            <Card>
                               <CardContent className="p-5 flex items-center justify-between gap-3">
                                 <div className="flex items-center gap-3">
-                                  <div className="h-10 w-10 rounded-lg bg-[#0F1117] border border-[#1E2A3A] flex items-center justify-center text-slate-400 text-xs font-bold">
+                                  <div className="h-10 w-10 rounded-lg bg-background border border-border flex items-center justify-center text-muted-foreground text-xs font-bold">
                                     {sponsor.name.slice(0, 2).toUpperCase()}
                                   </div>
-                                  <p className="font-medium text-white text-sm">{sponsor.name}</p>
+                                  <p className="font-medium text-foreground text-sm">{sponsor.name}</p>
                                 </div>
                                 <span className={`badge text-[10px] font-semibold ${cfg.color}`}>
                                   {cfg.label}
@@ -410,7 +410,7 @@ export default function ClubPage() {
                             <div className="absolute top-2 right-2 z-10 opacity-0 group-hover/sponsor:opacity-100 transition-opacity">
                               <DropdownMenu>
                                 <DropdownMenuTrigger asChild>
-                                  <button className="h-7 w-7 rounded-md bg-[#0F1117]/90 border border-[#1E2A3A] flex items-center justify-center text-slate-400 hover:text-white hover:bg-[#1E2A3A] transition-colors">
+                                  <button className="h-7 w-7 rounded-md bg-background/90 border border-border flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-muted transition-colors">
                                     <MoreHorizontal className="h-3.5 w-3.5" />
                                   </button>
                                 </DropdownMenuTrigger>
@@ -441,7 +441,7 @@ export default function ClubPage() {
               <motion.div key="achievements" variants={stagger} initial="initial" animate="animate" className="space-y-4">
                 {/* Achievements header */}
                 <div className="flex items-center justify-between">
-                  <p className="text-sm text-slate-400">{achievementList.length} achievement{achievementList.length !== 1 ? 's' : ''}</p>
+                  <p className="text-sm text-muted-foreground">{achievementList.length} achievement{achievementList.length !== 1 ? 's' : ''}</p>
                   <Button size="sm" className="gap-1.5" onClick={() => toast('Add Achievement form coming soon', 'info')}>
                     <Plus className="h-3.5 w-3.5" />
                     Add Achievement
@@ -449,32 +449,32 @@ export default function ClubPage() {
                 </div>
 
                 <div className="relative">
-                  <div className="absolute left-6 top-0 bottom-0 w-px bg-[#1E2A3A]" />
+                  <div className="absolute left-6 top-0 bottom-0 w-px bg-border" />
                   <div className="space-y-4 pl-16">
                     {achievementList
                       .sort((a, b) => b.year - a.year)
                       .map((achievement) => (
                         <motion.div key={achievement.id} variants={fadeUp} className="relative group/achievement">
                           <div className="absolute -left-10 top-4 flex items-center justify-center">
-                            <div className="h-8 w-8 rounded-full bg-[#161B27] border border-[#1E2A3A] flex items-center justify-center">
+                            <div className="h-8 w-8 rounded-full bg-card border border-border flex items-center justify-center">
                               {achievementTypeIcon(achievement.type)}
                             </div>
                           </div>
-                          <Card className="bg-[#161B27] border border-[#1E2A3A]">
+                          <Card>
                             <CardContent className="p-5">
                               <div className="flex items-start justify-between gap-4">
                                 <div className="flex-1">
-                                  <p className="font-semibold text-white">{achievement.title}</p>
-                                  <p className="text-sm text-slate-400 mt-1">{achievement.description}</p>
+                                  <p className="font-semibold text-foreground">{achievement.title}</p>
+                                  <p className="text-sm text-muted-foreground mt-1">{achievement.description}</p>
                                 </div>
                                 <div className="flex items-center gap-2 shrink-0">
-                                  <Calendar className="h-3.5 w-3.5 text-slate-500" />
+                                  <Calendar className="h-3.5 w-3.5 text-muted-foreground" />
                                   <span className="text-sm font-bold text-amber-400">{achievement.year}</span>
 
                                   {/* Action menu */}
                                   <DropdownMenu>
                                     <DropdownMenuTrigger asChild>
-                                      <button className="h-7 w-7 rounded-md flex items-center justify-center text-slate-500 hover:text-white hover:bg-white/5 transition-colors ml-1">
+                                      <button className="h-7 w-7 rounded-md flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-foreground/5 transition-colors ml-1">
                                         <MoreHorizontal className="h-3.5 w-3.5" />
                                       </button>
                                     </DropdownMenuTrigger>

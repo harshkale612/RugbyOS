@@ -25,7 +25,7 @@ const typeBg: Record<Notification['type'], string> = {
   payment: 'bg-green-600/15 text-green-400',
   selection: 'bg-blue-600/15 text-blue-400',
   announcement: 'bg-purple-600/15 text-purple-400',
-  system: 'bg-slate-600/15 text-slate-400',
+  system: 'bg-slate-600/15 text-muted-foreground',
 };
 
 export default function NotificationsPage() {
@@ -77,17 +77,17 @@ export default function NotificationsPage() {
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center justify-between gap-2 mb-0.5">
-                    <p className={cn('text-sm font-semibold', notification.isRead ? 'text-slate-300' : 'text-white')}>
+                    <p className={cn('text-sm font-semibold', notification.isRead ? 'text-foreground/75' : 'text-foreground')}>
                       {notification.title}
                     </p>
                     <div className="flex items-center gap-2 shrink-0">
-                      <span className="text-xs text-slate-500">{getRelativeTime(notification.timestamp)}</span>
+                      <span className="text-xs text-muted-foreground">{getRelativeTime(notification.timestamp)}</span>
                       {!notification.isRead && (
                         <span className="h-2 w-2 rounded-full bg-red-500 shrink-0" />
                       )}
                     </div>
                   </div>
-                  <p className="text-sm text-slate-400">{notification.message}</p>
+                  <p className="text-sm text-muted-foreground">{notification.message}</p>
                 </div>
               </div>
             </motion.div>
@@ -97,7 +97,7 @@ export default function NotificationsPage() {
         {unreadCount === 0 && (
           <div className="text-center py-12">
             <CheckCircle className="h-10 w-10 text-green-400 mx-auto mb-3 opacity-60" />
-            <p className="text-slate-400">All notifications have been read.</p>
+            <p className="text-muted-foreground">All notifications have been read.</p>
           </div>
         )}
       </div>

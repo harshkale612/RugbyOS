@@ -125,11 +125,11 @@ function MatchCard({
             <div className="flex items-center justify-between mb-3">
               <div className="flex items-center gap-2 min-w-0">
                 <TypeBadge type={match.type} />
-                <span className="text-[11px] text-slate-500 truncate">{match.leagueName}</span>
+                <span className="text-[11px] text-muted-foreground truncate">{match.leagueName}</span>
               </div>
               <div className="flex items-center gap-2 shrink-0">
                 {match.round && (
-                  <span className="text-[10px] text-slate-600">{match.round}</span>
+                  <span className="text-[10px] text-muted-foreground/60">{match.round}</span>
                 )}
                 <StatusBadge status={match.status} />
               </div>
@@ -146,7 +146,7 @@ function MatchCard({
                 <span
                   className={cn(
                     'text-sm font-semibold truncate',
-                    match.homeTeam.id === userTeamId ? 'text-white' : 'text-slate-300',
+                    match.homeTeam.id === userTeamId ? 'text-foreground' : 'text-foreground/75',
                   )}
                 >
                   {match.homeTeam.name}
@@ -157,17 +157,17 @@ function MatchCard({
               <div className="flex flex-col items-center shrink-0 mx-1">
                 {isCompleted || isLive ? (
                   <div className="flex items-center gap-2">
-                    <span className="text-2xl font-black text-white tabular-nums">
+                    <span className="text-2xl font-black text-foreground tabular-nums">
                       {match.homeTeam.score ?? 0}
                     </span>
-                    <span className="text-slate-500 text-sm">–</span>
-                    <span className="text-2xl font-black text-white tabular-nums">
+                    <span className="text-muted-foreground text-sm">–</span>
+                    <span className="text-2xl font-black text-foreground tabular-nums">
                       {match.awayTeam.score ?? 0}
                     </span>
                   </div>
                 ) : (
                   <div className="flex items-center gap-2">
-                    <span className="text-slate-500 text-xs font-medium">VS</span>
+                    <span className="text-muted-foreground text-xs font-medium">VS</span>
                   </div>
                 )}
                 {result && (
@@ -185,7 +185,7 @@ function MatchCard({
                 <span
                   className={cn(
                     'text-sm font-semibold truncate text-right',
-                    match.awayTeam.id === userTeamId ? 'text-white' : 'text-slate-300',
+                    match.awayTeam.id === userTeamId ? 'text-foreground' : 'text-foreground/75',
                   )}
                 >
                   {match.awayTeam.name}
@@ -198,19 +198,19 @@ function MatchCard({
             </div>
 
             {/* Bottom row: date/time/venue */}
-            <div className="flex items-center gap-3 mt-3 pt-3 border-t border-[#1E2A3A] min-w-0">
-              <span className="flex items-center gap-1 text-[11px] text-slate-500 shrink-0">
+            <div className="flex items-center gap-3 mt-3 pt-3 border-t border-border min-w-0">
+              <span className="flex items-center gap-1 text-[11px] text-muted-foreground shrink-0">
                 <Clock className="h-3 w-3 shrink-0" />
                 {formatDate(match.date, { day: 'numeric', month: 'short', year: 'numeric' })}
                 {' · '}
                 {formatTime(match.time)}
               </span>
-              <span className="hidden sm:flex items-center gap-1 text-[11px] text-slate-500 min-w-0">
+              <span className="hidden sm:flex items-center gap-1 text-[11px] text-muted-foreground min-w-0">
                 <MapPin className="h-3 w-3 shrink-0" />
                 <span className="truncate">{match.venue}</span>
               </span>
               {match.attendance && isCompleted && (
-                <span className="flex items-center gap-1 text-[11px] text-slate-600 ml-auto shrink-0">
+                <span className="flex items-center gap-1 text-[11px] text-muted-foreground/60 ml-auto shrink-0">
                   <Users className="h-3 w-3" />
                   {match.attendance.toLocaleString()}
                 </span>
@@ -226,7 +226,7 @@ function MatchCard({
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <button
-                className="h-7 w-7 rounded-md bg-[#0F1117]/90 border border-[#1E2A3A] flex items-center justify-center text-slate-400 hover:text-white hover:bg-[#1E2A3A] transition-colors"
+                className="h-7 w-7 rounded-md bg-background/90 border border-border flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
                 onClick={(e) => e.preventDefault()}
               >
                 <MoreHorizontal className="h-3.5 w-3.5" />
@@ -319,18 +319,18 @@ export default function FixturesPage() {
                 <Badge variant="red">LIVE</Badge>
               </div>
               <div className="flex items-center gap-2 sm:gap-3 flex-1 min-w-0">
-                <span className="text-sm font-semibold text-white truncate">{lm.homeTeam.shortName}</span>
-                <span className="hidden sm:inline text-sm font-semibold text-white truncate">{lm.homeTeam.name}</span>
-                <span className="text-xl font-black text-white tabular-nums shrink-0">
+                <span className="text-sm font-semibold text-foreground truncate">{lm.homeTeam.shortName}</span>
+                <span className="hidden sm:inline text-sm font-semibold text-foreground truncate">{lm.homeTeam.name}</span>
+                <span className="text-xl font-black text-foreground tabular-nums shrink-0">
                   {lm.homeTeam.score ?? 0} – {lm.awayTeam.score ?? 0}
                 </span>
-                <span className="text-sm font-semibold text-white truncate">{lm.awayTeam.shortName}</span>
-                <span className="hidden sm:inline text-sm font-semibold text-white truncate">{lm.awayTeam.name}</span>
+                <span className="text-sm font-semibold text-foreground truncate">{lm.awayTeam.shortName}</span>
+                <span className="hidden sm:inline text-sm font-semibold text-foreground truncate">{lm.awayTeam.name}</span>
               </div>
               <div className="flex items-center gap-2 shrink-0">
                 <Zap className="h-3.5 w-3.5 text-red-400" />
                 <span className="text-xs text-red-300 font-medium">In Progress</span>
-                <span className="hidden sm:inline text-xs text-slate-500">· {lm.venue}</span>
+                <span className="hidden sm:inline text-xs text-muted-foreground">· {lm.venue}</span>
               </div>
             </div>
           </Link>
@@ -346,7 +346,7 @@ export default function FixturesPage() {
                 'px-3 py-1.5 rounded-lg text-sm font-medium transition-all duration-200',
                 filter === f.value
                   ? 'bg-red-600 text-white'
-                  : 'bg-[#161B27] border border-[#1E2A3A] text-slate-400 hover:text-white hover:border-slate-500',
+                  : 'bg-card border border-border text-muted-foreground hover:text-foreground hover:border-muted-foreground/40',
               )}
             >
               {f.label}
@@ -378,7 +378,7 @@ export default function FixturesPage() {
 
           <TabsContent value="upcoming">
             {upcomingMatches.length === 0 ? (
-              <div className="py-12 text-center text-slate-500 text-sm">No upcoming matches found.</div>
+              <div className="py-12 text-center text-muted-foreground text-sm">No upcoming matches found.</div>
             ) : (
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                 {upcomingMatches.map((m) => (
@@ -390,7 +390,7 @@ export default function FixturesPage() {
 
           <TabsContent value="results">
             {completedMatches.length === 0 ? (
-              <div className="py-12 text-center text-slate-500 text-sm">No results found.</div>
+              <div className="py-12 text-center text-muted-foreground text-sm">No results found.</div>
             ) : (
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                 {completedMatches.map((m) => <MatchCard key={m.id} match={m} />)}
@@ -400,7 +400,7 @@ export default function FixturesPage() {
 
           <TabsContent value="all">
             {allMatches.length === 0 ? (
-              <div className="py-12 text-center text-slate-500 text-sm">No fixtures found.</div>
+              <div className="py-12 text-center text-muted-foreground text-sm">No fixtures found.</div>
             ) : (
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                 {allMatches.map((m) => (

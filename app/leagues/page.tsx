@@ -22,7 +22,7 @@ function FormDot({ result }: { result: 'W' | 'L' | 'D' }) {
 
 export default function LeaguesPage() {
   return (
-    <div className="min-h-screen bg-[#0A0C12]">
+    <div className="min-h-screen bg-background transition-colors duration-300">
       <div className="pt-24 pb-16">
         {/* Hero */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 mb-12">
@@ -35,10 +35,10 @@ export default function LeaguesPage() {
               <Trophy className="h-5 w-5 text-amber-400" />
               <Badge variant="gold">2024 Season</Badge>
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
               League <span className="gradient-text">Standings</span>
             </h1>
-            <p className="text-lg text-slate-400 max-w-xl">
+            <p className="text-lg text-muted-foreground max-w-xl">
               Live standings, rankings, and results from Canadian rugby competitions.
             </p>
           </motion.div>
@@ -55,8 +55,8 @@ export default function LeaguesPage() {
             >
               <div className="flex items-center justify-between mb-4">
                 <div>
-                  <h2 className="text-xl font-bold text-white">{league.name}</h2>
-                  <p className="text-sm text-slate-500">{league.province} · {league.season} Season</p>
+                  <h2 className="text-xl font-bold text-foreground">{league.name}</h2>
+                  <p className="text-sm text-muted-foreground">{league.province} · {league.season} Season</p>
                 </div>
                 <Link href="/dashboard/leagues">
                   <Button variant="ghost" size="sm">
@@ -92,27 +92,27 @@ export default function LeaguesPage() {
                               s.position === 1 && 'bg-amber-500/20 text-amber-400',
                               s.position === 2 && 'bg-slate-500/20 text-slate-300',
                               s.position === 3 && 'bg-orange-500/20 text-orange-400',
-                              s.position > 3 && 'text-slate-500',
+                              s.position > 3 && 'text-muted-foreground',
                             )}>
                               {s.position}
                             </span>
                           </td>
                           <td>
                             <div className="flex items-center gap-2">
-                              <div className="h-7 w-7 rounded-md bg-gradient-to-br from-red-600/30 to-slate-700 flex items-center justify-center text-[10px] font-bold text-white shrink-0">
+                              <div className="h-7 w-7 rounded-md bg-linear-to-br from-red-600/30 to-slate-700 flex items-center justify-center text-[10px] font-bold text-white shrink-0">
                                 {s.teamShortName}
                               </div>
-                              <span className={cn('font-medium', s.isUserTeam ? 'text-red-400' : 'text-white')}>
+                              <span className={cn('font-medium', s.isUserTeam ? 'text-red-400' : 'text-foreground')}>
                                 {s.teamName}
                               </span>
                               {s.isUserTeam && <Badge variant="red" size="sm">You</Badge>}
                             </div>
                           </td>
-                          <td className="text-center text-slate-400">{s.played}</td>
+                          <td className="text-center text-muted-foreground">{s.played}</td>
                           <td className="text-center text-green-400 font-semibold">{s.won}</td>
                           <td className="text-center text-yellow-400">{s.drawn}</td>
                           <td className="text-center text-red-400">{s.lost}</td>
-                          <td className="text-center font-bold text-white">{s.points}</td>
+                          <td className="text-center font-bold text-foreground">{s.points}</td>
                           <td className="hidden md:table-cell">
                             <div className="flex items-center gap-1 justify-center">
                               {s.form.map((r, i) => <FormDot key={i} result={r} />)}

@@ -18,7 +18,7 @@ const colorMap = {
   gold: 'bg-amber-500',
   green: 'bg-green-500',
   blue: 'bg-blue-500',
-  gradient: 'bg-gradient-to-r from-red-600 to-amber-500',
+  gradient: 'bg-linear-to-r from-red-600 to-amber-500',
 };
 
 const sizeMap = {
@@ -42,11 +42,11 @@ export function Progress({
     <div className={cn('w-full', className)}>
       {(showLabel || label) && (
         <div className="flex items-center justify-between mb-1.5">
-          {label && <span className="text-xs text-slate-400">{label}</span>}
-          {showLabel && <span className="text-xs font-semibold text-white">{Math.round(pct)}%</span>}
+          {label && <span className="text-xs text-muted-foreground">{label}</span>}
+          {showLabel && <span className="text-xs font-semibold text-foreground">{Math.round(pct)}%</span>}
         </div>
       )}
-      <div className={cn('w-full bg-[#1E2A3A] rounded-full overflow-hidden', sizeMap[size])}>
+      <div className={cn('w-full bg-border rounded-full overflow-hidden', sizeMap[size])}>
         <motion.div
           initial={{ width: 0 }}
           animate={{ width: `${pct}%` }}
@@ -83,8 +83,8 @@ export function DualProgress({
     <div className="w-full">
       {(leftLabel || rightLabel) && (
         <div className="flex items-center justify-between mb-2 text-xs font-semibold">
-          <span className="text-white">{leftLabel} <span className="text-slate-400 ml-1">{leftValue}%</span></span>
-          <span className="text-white">{rightLabel} <span className="text-slate-400 ml-1">{rightValue}%</span></span>
+          <span className="text-foreground">{leftLabel} <span className="text-muted-foreground ml-1">{leftValue}%</span></span>
+          <span className="text-foreground">{rightLabel} <span className="text-muted-foreground ml-1">{rightValue}%</span></span>
         </div>
       )}
       <div className="flex h-2 rounded-full overflow-hidden gap-px">

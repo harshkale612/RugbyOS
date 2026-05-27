@@ -273,7 +273,7 @@ export function LandingHero() {
     <section
       ref={sectionRef}
       className="relative min-h-screen overflow-hidden"
-      style={{ background: '#060A14' }}
+      style={{ background: 'var(--hero-section-bg)' }}
     >
       {/* Background with parallax */}
       <motion.div
@@ -338,7 +338,7 @@ export function LandingHero() {
         {/* Bottom fade */}
         <div
           className="absolute bottom-0 left-0 right-0"
-          style={{ height: 160, background: 'linear-gradient(to bottom, transparent, #060A14)' }}
+          style={{ height: 160, background: 'linear-gradient(to bottom, transparent, var(--hero-section-bg))' }}
         />
       </motion.div>
 
@@ -351,17 +351,16 @@ export function LandingHero() {
 
             {/* 1. Status badge */}
             <motion.div
-              className="inline-flex items-center gap-2 self-start px-3.5 py-2 rounded-full border border-white/[0.08] backdrop-blur-sm"
-              style={{ background: 'rgba(255,255,255,0.04)' }}
+              className="inline-flex items-center gap-2 self-start px-3.5 py-2 rounded-full border border-border backdrop-blur-sm bg-background/50"
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.55, ease: EASE }}
             >
               <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              <span className="uppercase text-[11px] tracking-[0.2em] text-slate-400 font-medium">
+              <span className="uppercase text-[11px] tracking-[0.2em] text-muted-foreground font-medium">
                 Platform Now Live
               </span>
-              <ChevronRight suppressHydrationWarning size={13} className="text-slate-500" />
+              <ChevronRight suppressHydrationWarning size={13} className="text-muted-foreground" />
             </motion.div>
 
             {/* 2. Headline — staggered line reveal */}
@@ -372,17 +371,16 @@ export function LandingHero() {
                     className={
                       line.variant === 'gradient'
                         ? 'block font-black uppercase tracking-tighter gradient-text'
-                        : 'block font-black uppercase tracking-tighter'
+                        : 'block font-black uppercase tracking-tighter text-foreground'
                     }
                     style={{
                       fontSize: 'clamp(2.8rem, 8vw, 6.5rem)',
                       lineHeight: 1,
                       ...(line.variant === 'outline' && {
                         color: 'transparent',
-                        WebkitTextStroke: '2px rgba(255,255,255,0.2)',
+                        WebkitTextStroke: '2px hsl(var(--foreground) / 0.2)',
                       }),
                       ...(line.variant === 'solid' && {
-                        color: '#ffffff',
                         textShadow: '0 0 100px rgba(220,38,38,0.2)',
                       }),
                     }}
@@ -398,7 +396,7 @@ export function LandingHero() {
 
             {/* 3. Subtitle */}
             <motion.p
-              className="text-slate-400 text-base sm:text-lg leading-relaxed max-w-md"
+              className="text-muted-foreground text-base sm:text-lg leading-relaxed max-w-md"
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.65, ease: EASE, delay: 0.42 }}
@@ -417,8 +415,7 @@ export function LandingHero() {
               {FEATURE_PILLS.map(({ label, icon: Icon, color }) => (
                 <span
                   key={label}
-                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-white/[0.06] text-xs font-medium text-slate-300 transition-colors duration-200 hover:border-white/15 hover:text-white cursor-default"
-                  style={{ background: 'rgba(255,255,255,0.04)' }}
+                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-border/50 text-xs font-medium text-muted-foreground transition-colors duration-200 hover:border-border hover:text-foreground cursor-default bg-background/50"
                 >
                   <Icon suppressHydrationWarning size={13} style={{ color }} />
                   {label}
@@ -460,7 +457,7 @@ export function LandingHero() {
               >
                 <Link
                   href="/dashboard"
-                  className="flex items-center justify-center gap-2 px-8 py-4 rounded-xl text-slate-400 border border-white/[0.08] transition-all duration-200 hover:text-white hover:border-white/[0.18] hover:bg-white/[0.04]"
+                  className="flex items-center justify-center gap-2 px-8 py-4 rounded-xl text-muted-foreground border border-border transition-all duration-200 hover:text-foreground hover:border-border/80 hover:bg-secondary/50"
                 >
                   View Demo
                   <ChevronRight
@@ -482,11 +479,11 @@ export function LandingHero() {
               {TRUST_STATS.map((stat, i) => (
                 <div key={stat.label} className="flex items-center gap-5">
                   <div className="flex flex-col">
-                    <span className="text-white font-black text-xl leading-none">{stat.value}</span>
-                    <span className="text-slate-600 text-sm mt-0.5">{stat.label}</span>
+                    <span className="text-foreground font-black text-xl leading-none">{stat.value}</span>
+                    <span className="text-muted-foreground text-sm mt-0.5">{stat.label}</span>
                   </div>
                   {i < TRUST_STATS.length - 1 && (
-                    <div className="w-px h-5 bg-white/[0.08] flex-shrink-0" />
+                    <div className="w-px h-5 bg-border flex-shrink-0" />
                   )}
                 </div>
               ))}
@@ -508,8 +505,7 @@ export function LandingHero() {
 
             {/* Floating chip 1 — top-right: social proof */}
             <motion.div
-              className="absolute -top-4 -right-6 z-20 flex items-center gap-2 px-3 py-2 rounded-full border border-white/10 shadow-2xl backdrop-blur-md"
-              style={{ background: 'rgba(9,14,28,0.95)' }}
+              className="absolute -top-4 -right-6 z-20 flex items-center gap-2 px-3 py-2 rounded-full border border-border shadow-2xl backdrop-blur-md bg-card/95"
               initial={{ opacity: 0, y: 10, scale: 0.9 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ duration: 0.55, ease: EASE, delay: 1.05 }}
@@ -527,15 +523,14 @@ export function LandingHero() {
                 ))}
               </div>
               <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-              <span className="text-[11px] font-medium text-slate-300 whitespace-nowrap">
+              <span className="text-[11px] font-medium text-muted-foreground whitespace-nowrap">
                 12 clubs joined today
               </span>
             </motion.div>
 
             {/* Floating chip 2 — bottom-left: key metric */}
             <motion.div
-              className="absolute -bottom-5 -left-6 z-20 flex items-center gap-2.5 p-3 rounded-2xl border border-white/10 shadow-2xl backdrop-blur-md"
-              style={{ background: 'rgba(9,14,28,0.95)' }}
+              className="absolute -bottom-5 -left-6 z-20 flex items-center gap-2.5 p-3 rounded-2xl border border-border shadow-2xl backdrop-blur-md bg-card/95"
               initial={{ opacity: 0, x: -12, y: 10 }}
               animate={{ opacity: 1, x: 0, y: 0 }}
               transition={{ duration: 0.55, ease: EASE, delay: 1.2 }}
@@ -550,10 +545,10 @@ export function LandingHero() {
                 <TrendingUp suppressHydrationWarning size={14} style={{ color: '#10B981' }} />
               </div>
               <div>
-                <div className="text-[10px] text-slate-500 font-medium leading-none">
+                <div className="text-[10px] text-muted-foreground font-medium leading-none">
                   Win Rate this season
                 </div>
-                <div className="text-sm font-black text-white leading-tight mt-0.5">
+                <div className="text-sm font-black text-foreground leading-tight mt-0.5">
                   68%{' '}
                   <span style={{ color: '#10B981' }}>↑ +5%</span>
                 </div>
